@@ -110,6 +110,8 @@
       this.XTextBox.Name = "XTextBox";
       this.XTextBox.Size = new System.Drawing.Size(46, 20);
       this.XTextBox.TabIndex = 8;
+      this.XTextBox.Leave += new System.EventHandler(this.XTextBox_Leave);
+      this.XTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XTextBox_KeyPress);
       // 
       // YTextBox
       // 
@@ -117,6 +119,8 @@
       this.YTextBox.Name = "YTextBox";
       this.YTextBox.Size = new System.Drawing.Size(46, 20);
       this.YTextBox.TabIndex = 9;
+      this.YTextBox.Leave += new System.EventHandler(this.YTextBox_Leave);
+      this.YTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YTextBox_KeyPress);
       // 
       // VTextBox
       // 
@@ -124,6 +128,8 @@
       this.VTextBox.Name = "VTextBox";
       this.VTextBox.Size = new System.Drawing.Size(46, 20);
       this.VTextBox.TabIndex = 10;
+      this.VTextBox.Leave += new System.EventHandler(this.VTextBox_Leave);
+      this.VTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VTextBox_KeyPress);
       // 
       // HTextBox
       // 
@@ -131,6 +137,8 @@
       this.HTextBox.Name = "HTextBox";
       this.HTextBox.Size = new System.Drawing.Size(46, 20);
       this.HTextBox.TabIndex = 11;
+      this.HTextBox.Leave += new System.EventHandler(this.HTextBox_Leave);
+      this.HTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HTextBox_KeyPress);
       // 
       // groupBox1
       // 
@@ -175,8 +183,8 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(284, 542);
-      this.Controls.Add(this.label1);
       this.Controls.Add(this.redDot);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.gridBox);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.groupBox2);
