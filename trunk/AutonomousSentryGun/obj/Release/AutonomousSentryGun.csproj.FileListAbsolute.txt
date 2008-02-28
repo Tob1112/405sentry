@@ -1,9 +1,0 @@
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\ResolveAssemblyReference.cache
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.Forms.Test.TransmitPosition.resources
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.MainForm.resources
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.Properties.Resources.resources
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.csproj.GenerateResource.Cache
-E:\school\ECEN405\AutonomousSentryGun\bin\Release\AutonomousSentryGun.exe
-E:\school\ECEN405\AutonomousSentryGun\bin\Release\AutonomousSentryGun.pdb
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.exe
-E:\school\ECEN405\AutonomousSentryGun\obj\Release\AutonomousSentryGun.pdb
