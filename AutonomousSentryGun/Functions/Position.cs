@@ -10,6 +10,58 @@ namespace AutonomousSentryGun.Functions
     private int x, y;
     private double hAngle, vAngle;
 
+    public int X
+    {
+      get
+      {
+        return x;
+      }
+      set
+      {
+        x = value;
+        hAngle = CoordinateToAngle(value);
+      }
+    }
+
+    public int Y
+    {
+      get
+      {
+        return y;
+      }
+      set
+      {
+        y = value;
+        vAngle = CoordinateToAngle(value);
+      }
+    }
+
+    public double HAngle
+    {
+      get
+      {
+        return hAngle;
+      }
+      set
+      {
+        hAngle = value;
+        x = AngleToCoordinate(value);
+      }
+    }
+    
+    public double VAngle
+    {
+      get
+      {
+        return vAngle;
+      }
+      set
+      {
+        vAngle = value;
+        y = AngleToCoordinate(value);
+      }
+    }
+    
     public Position()
     {
       this.x = ServoController.MAX_INTEGER_INPUT / 2;
@@ -34,10 +86,11 @@ namespace AutonomousSentryGun.Functions
     }
     private int AngleToCoordinate(double angle)
     {
-      return (int)Math.Round((double)angle/ServoController.getFactor());
+      return (int)Math.Round((double)angle / ServoController.getFactor());
     }
     private double CoordinateToAngle(int coordinate)
     {
+      double factor = ServoController.getFactor();
       return Math.Round(coordinate * ServoController.getFactor());
     }
   }
