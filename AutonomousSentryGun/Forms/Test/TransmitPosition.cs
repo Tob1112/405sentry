@@ -46,15 +46,19 @@ namespace AutonomousSentryGun.Forms.Test
     private void XTextBox_Update(object sender, EventArgs e)
     {
       int x = int.Parse(XTextBox.Text);
-      if (x > ServoController.MAX_INTEGER_INPUT)
+      if (x != dotPosition.X)
       {
-        x = ServoController.MAX_INTEGER_INPUT;
-        XTextBox.Text = x.ToString();
-      }
+        if (x > ServoController.MAX_INTEGER_INPUT)
+        {
+          x = ServoController.MAX_INTEGER_INPUT;
+          XTextBox.Text = x.ToString();
+        }
 
-      dotPosition.X = x;
-      redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
-      HTextBox.Text = (dotPosition.HAngle).ToString();
+        dotPosition.X = x;
+        redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
+        HTextBox.Text = (dotPosition.HAngle).ToString();
+        ServoController.sendPosition(dotPosition);
+      }
     }
 
     private void YTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,14 +75,18 @@ namespace AutonomousSentryGun.Forms.Test
     private void YTextBox_Update(object sender, EventArgs e)
     {
       int y = int.Parse(YTextBox.Text);
-      if (y > ServoController.MAX_INTEGER_INPUT)
+      if (y != dotPosition.Y)
       {
-        y = ServoController.MAX_INTEGER_INPUT;
-        YTextBox.Text = y.ToString();
+        if (y > ServoController.MAX_INTEGER_INPUT)
+        {
+          y = ServoController.MAX_INTEGER_INPUT;
+          YTextBox.Text = y.ToString();
+        }
+        dotPosition.Y = y;
+        redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
+        VTextBox.Text = (dotPosition.VAngle).ToString();
+        ServoController.sendPosition(dotPosition);
       }
-      dotPosition.Y = y;
-      redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
-      VTextBox.Text = (dotPosition.VAngle).ToString();
     }
 
     private void HTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -94,16 +102,20 @@ namespace AutonomousSentryGun.Forms.Test
     }
     private void HTextBox_Update(object sender, EventArgs e)
     {
-      int x = int.Parse(HTextBox.Text);
-      if (x > ServoController.MAX_ANGLE)
+      int hAngle = int.Parse(HTextBox.Text);
+      if (hAngle != dotPosition.HAngle)
       {
-        x = (int)ServoController.MAX_ANGLE;
-        HTextBox.Text = x.ToString();
-      }
+        if (hAngle > ServoController.MAX_ANGLE)
+        {
+          hAngle = (int)ServoController.MAX_ANGLE;
+          HTextBox.Text = hAngle.ToString();
+        }
 
-      dotPosition.HAngle = x;
-      redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
-      XTextBox.Text = (dotPosition.X).ToString();
+        dotPosition.HAngle = hAngle;
+        redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
+        XTextBox.Text = (dotPosition.X).ToString();
+        ServoController.sendPosition(dotPosition);
+      }
     }
 
     private void VTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -119,15 +131,19 @@ namespace AutonomousSentryGun.Forms.Test
     }
     private void VTextBox_Update(object sender, EventArgs e)
     {
-      int y = int.Parse(VTextBox.Text);
-      if (y > ServoController.MAX_ANGLE)
+      int vAngle = int.Parse(VTextBox.Text);
+      if (vAngle != dotPosition.VAngle)
       {
-        y = (int)ServoController.MAX_ANGLE;
-        VTextBox.Text = y.ToString();
+        if (vAngle > ServoController.MAX_ANGLE)
+        {
+          vAngle = (int)ServoController.MAX_ANGLE;
+          VTextBox.Text = vAngle.ToString();
+        }
+        dotPosition.VAngle = vAngle;
+        redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
+        YTextBox.Text = (dotPosition.Y).ToString();
+        ServoController.sendPosition(dotPosition);
       }
-      dotPosition.VAngle = y;
-      redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
-      YTextBox.Text = (dotPosition.Y).ToString();
     }
   }
 }
