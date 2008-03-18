@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using AutonomousSentryGun.Objects;
+
 namespace AutonomousSentryGun
 {
   static class Program
@@ -20,7 +22,8 @@ namespace AutonomousSentryGun
     }
     static void test()
     {
-
+      Packet packet = new Packet();
+      packet.setXPosition(0xAAAA);
     }
   }
 }

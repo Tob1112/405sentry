@@ -62,8 +62,9 @@ namespace AutonomousSentryGun.Objects
         private byte[] IntToTwoBytes(int n)
         {
             byte[] twoByte = new byte[2];
-            twoByte[0] = Convert.ToByte(Convert.ToString(n, 2).Substring(8,8),2);
-            twoByte[1] = Convert.ToByte(Convert.ToString(n, 2).Substring(0,8), 2);
+            string nStr = Convert.ToString(n, 2);
+            twoByte[0] = Convert.ToByte((nStr.Length >= 8) ? nStr.Substring(0, 8) : nStr.Substring(0), 2);
+            twoByte[1] = Convert.ToByte((nStr.Length<=8)?"0":nStr.Substring(8),2);            
             return twoByte;
         }
 
