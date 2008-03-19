@@ -26,13 +26,15 @@ void initi2c(void)
 	//
 	//***48 mhz settings***0x1D for 400k...0x0B for 1Mhz...0x77 for 100khz.........///
 	//
- 	SSPADD=0x0B; 				//see above speed guide for 48mhz//
+ 	SSPADD=0x77; 				//see above speed guide for 48mhz//
 	//******************
     SSPCON1=0x28;				//sspen and ssmp: 1 0 0 0 for master i2c mode//
     SSPCON2=0x00; 				//init values//
     TRISBbits.TRISB0=1;			//make sure port is input//
     TRISBbits.TRISB1=1;	 		//make sure port is input//
 }
+
+
 
 //
 //	EErombyteread 
@@ -419,4 +421,5 @@ SSPCON1=0x28;
 
 return ( 0 );                   // return with no error 
 } 
+
 

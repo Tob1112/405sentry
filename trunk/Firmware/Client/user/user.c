@@ -120,6 +120,21 @@ void ServiceRequests(void)
 	switch(dataPacket.CMD)
         {
 
+		case gunMove:
+			//copy all of the USB data to the Xbee interface
+			temp_buffa[0]=dataPacket._byte[1];
+			temp_buffa[1]=dataPacket._byte[2];
+			temp_buffa[2]=dataPacket._byte[3];
+			temp_buffa[3]=dataPacket._byte[4];
+			temp_buffa[4]=dataPacket._byte[5];
+			//write to the Xbee interface
+			putsuart(temp_buffa);
+			
+			//now send back an ok byte to let the server know write OK
+			dataPacket._byte[1] = 0x01;
+			counter=0x02;
+			break;
+
 		case bootmodecheck:
 			dataPacket._byte[1]=0x05;
 			counter=0x02;
@@ -348,10 +363,10 @@ void putsuart( char *data)
   do
   {  // Transmit a byte
     while(fulluart());
-	if(*data!=0)
-	{
+//	if(*data!=0)
+//	{
     	Writeuart(*data);
-	}
+//	}
   } while( *data++ );
   PORTCbits.RC6=1;
 }
@@ -963,8 +978,11 @@ else
 
 void function25mS(void)
 {
-	;
-	
+
+//	}
+
+	;	
+
 }
 
 void function100mS(void)
@@ -974,11 +992,29 @@ void function100mS(void)
 
 void function1Sec(void)
 {
-	;
+;
 }
 
 void function1min(void)
 {
+	IO7=1;
+		xbee_sleep=0;
+		temp_buffa[0]=0x01;
+		temp_buffa[1]=0x4C;
+		temp_buffa[2]=0x04;
+		temp_buffa[3]=0x4C;
+		temp_buffa[4]=0x04;
+		putsuart(temp_buffa);
+
+		xbee_sleep=0;
+		temp_buffa[0]=0x01;
+		temp_buffa[1]=0xDC;
+		temp_buffa[2]=0x05;
+		temp_buffa[3]=0xDC;
+		temp_buffa[4]=0x05;
+		putsuart(temp_buffa);
+
+	IO8=1;
 
 	;
 }
@@ -1022,11 +1058,11 @@ void initxbee(void)
 	}
 
 //this is command mode entry command do not remove
-putrsuart( "+++" );
+putrsuart("+++");
 getsuart(temp_buffa,3);
 
 // set channel to C
-putrsuart("ATCH0C\r");
+putrsuart("ATSC0C\r");
 getsuart(temp_buffa,3);
 
 //panid
@@ -1037,16 +1073,22 @@ getsuart(temp_buffa,3);
 putrsuart("ATNJFF\r");
 getsuart(temp_buffa,3);
 
-//destination high
+//node identifier for this node
+putrsuart("ATNIGUN1\r");
+getsuart(temp_buffa,3);
+
+// turn off sleep mode
+putrsuart("ATSM0\r");
+getsuart(temp_buffa,3);
+
+//save changes
+//putrsuart("ATWR\r");
+//getsuart(temp_buffa,3);
+
 putrsuart("ATDH0\r");
 getsuart(temp_buffa,3);
 
-//destination addy
 putrsuart("ATDL0\r");
-getsuart(temp_buffa,3);
-
-//node identifier for this node
-putrsuart("ATNIGUN1\r");
 getsuart(temp_buffa,3);
 
 //exit command mode
@@ -1096,6 +1138,9 @@ getsuart(temp_buffa,3);
 
 // initialize with changes
 //putrsuart("ATAC\r");
+//getsuart(temp_buffa,3);
+
+//putrsuart("ATWR\r");
 //getsuart(temp_buffa,3);
 
 //exit command mode
@@ -1196,6 +1241,7 @@ void loadconfigfriendly( void )
 	//
 	// please goto i2cstuff.c to change this setting.
 	//
+
 
 }
 
