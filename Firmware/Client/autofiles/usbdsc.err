@@ -1,5 +1,5 @@
-Warning[2054] C:\controller\code\mainzig\autofiles\usbdsc.c 238 : suspicious pointer conversion
-Warning[2054] C:\controller\code\mainzig\autofiles\usbdsc.c 238 : suspicious pointer conversion
-Warning[2054] C:\controller\code\mainzig\autofiles\usbdsc.c 239 : suspicious pointer conversion
-Warning[2054] C:\controller\code\mainzig\autofiles\usbdsc.c 239 : suspicious pointer conversion
-Warning[2054] C:\controller\code\mainzig\autofiles\usbdsc.c 239 : suspicious pointer conversion
+Warning[2054] H:\Zigbee FW\Client\autofiles\usbdsc.c 238 : suspicious pointer conversion
+Warning[2054] H:\Zigbee FW\Client\autofiles\usbdsc.c 238 : suspicious pointer conversion
+Warning[2054] H:\Zigbee FW\Client\autofiles\usbdsc.c 239 : suspicious pointer conversion
+Warning[2054] H:\Zigbee FW\Client\autofiles\usbdsc.c 239 : suspicious pointer conversion
+Warning[2054] H:\Zigbee FW\Client\autofiles\usbdsc.c 239 : suspicious pointer conversion

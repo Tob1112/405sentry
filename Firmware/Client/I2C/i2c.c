@@ -14,6 +14,26 @@
 ************************************************************************/
 unsigned char blah22;
 
+void initi2c(void)
+{
+	SSPCON1=0x00;
+	SSPSTAT=0x80;				// turn off slew rate control for 100k and 1 mhz, turn on for 400k//
+ 	//*******************
+	//
+	//I2C speed setting here
+	//
+	//***48 mhz settings***0x1D for 400k...0x0B for 1Mhz...0x77 for 100khz.........///
+	//
+ 	SSPADD=0x77; 				//see above speed guide for 48mhz//
+	//******************
+    SSPCON1=0x28;				//sspen and ssmp: 1 0 0 0 for master i2c mode//
+    SSPCON2=0x00; 				//init values//
+    TRISBbits.TRISB0=1;			//make sure port is input//
+    TRISBbits.TRISB1=1;	 		//make sure port is input//
+}
+
+
+
 
 unsigned int EERandomReadm( unsigned char control, unsigned char addressh, unsigned char addressl )
 {

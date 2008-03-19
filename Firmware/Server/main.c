@@ -201,7 +201,7 @@ void main(void)
 
 
 
-//start I2C system at 1 Mhz speed
+//start I2C system at 100 Khz speed
 	initi2c();
 
 
@@ -259,7 +259,7 @@ for (c=0;c<10;c++)
 		if (testxbee())
 		{
 
-//LOOP FOR NO XBEE MODULE FOUND (FAILED AT BOTH BAUDRATES)
+		//LOOP FOR NO XBEE MODULE FOUND (FAILED AT BOTH BAUDRATES)
 		//xbee module failed at 9600 baud so no module present at either baudrate
 		//new modules come with a 9600 baud rate by default.
 		//
@@ -342,7 +342,7 @@ for (c=0;c<10;c++)
 			// this function is found in user.c
       		//			
 
-		//	initxbee();
+			initxbee();
 
 		}
 
@@ -364,7 +364,7 @@ for (c=0;c<10;c++)
 			}
 
 
-	//	initxbee();
+		initxbee();
 	}
 	
 
@@ -374,14 +374,14 @@ for (c=0;c<10;c++)
 
 	//configure xbee sleep mode here but it is not written to non volatile memory
  	//since may have problems re-entering command mode later on!!
-  //  sleep_config_xbee();
+    //sleep_config_xbee();
 
 
 
 
 
-//put xbee to pin sleep 
-//	xbee_sleep=1; //put module to sleep!! (edge triggeered wakeup)
+//put xbee to not pin sleep 
+	xbee_sleep=0; //put module to not sleep!! (edge triggeered wakeup)
 
 
 
@@ -444,10 +444,7 @@ for (c=0;c<10;c++)
 		//service USB tasks
 				USBTasks(); 
 				ProcessIO(); 
-
-			
 		}
-
 
 	}//end while
 

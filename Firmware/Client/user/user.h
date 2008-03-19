@@ -64,6 +64,7 @@ typedef union DATA_PACKET
     {
         enum
         {
+			gunMove			= 0xAA,
 			bootmodecheck	= 0x44,
             READ_VERSION    = 0x00,
 			getrcv_buffa	= 0xA0,

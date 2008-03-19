@@ -382,6 +382,7 @@ void Writeuart(char data)
 
 void Writeuart_1byte(char data)
 {
+	//xbee_sleep=0;
 	TXREG=data;
 	while(BusyUSART());
 	PORTCbits.RC6=1;
@@ -686,7 +687,7 @@ void write_sndbuffa(unsigned char blah123)
 
 
 
-// read a byte from receive buffer
+// read a byte from send buffer
 unsigned char read_sndbuffa(void) 
 { 
 
@@ -723,7 +724,7 @@ unsigned char read_sndbuffa(void)
 	}
 	return Data1; 
 } 
-// end read byte from receive buffa
+// end read byte from send buffa
 
 
 
@@ -748,7 +749,7 @@ void interrupthingie(void)
 	if (PIR1bits.RCIF==1)
 	{
 
-	//	xbee_sleep=0;
+		xbee_sleep=0;
 	//	while(!xbee_cts);
 	    datatemp=RCREG;
 
@@ -765,20 +766,20 @@ void interrupthingie(void)
         WriteTimer1(28100);
 		inctime();
  
-			if (!Sbuffer_empty)
+		if (!Sbuffer_empty)
 		{
-		for (m=0;m<5;m++)
-		{
-			datatemp2=read_sndbuffa();
-			if (datatemp2!=0x00)
+			for (m=0;m<5;m++)
 			{
-				Writeuart_1byte(datatemp2);
+				datatemp2=read_sndbuffa();
+				if (datatemp2!=0x00)
+				{
+					Writeuart_1byte(datatemp2);
+				}
+				else
+				{
+					m=5;
+				}
 			}
-			else
-			{
-				m=5;
-			}
-		}
 		}
 
 	//clear timer 1 flag
@@ -963,8 +964,7 @@ else
 
 void function25mS(void)
 {
-	;
-	
+	;	
 }
 
 void function100mS(void)
@@ -974,12 +974,85 @@ void function100mS(void)
 
 void function1Sec(void)
 {
+		if(buffer_empty==0)
+		{
+			temp_buffa[0]=read_rcvbuffa();
+			if(buffer_empty==0)
+				temp_buffa[1]=read_rcvbuffa();
+			if(buffer_empty==0)
+				temp_buffa[2]=read_rcvbuffa();
+			if(buffer_empty==0)
+				temp_buffa[3]=read_rcvbuffa();
+			if(buffer_empty==0)
+				temp_buffa[4]=read_rcvbuffa();
+		}
+	
+	if (temp_buffa[0] == 0x01)
+		{
+			IO7=1;
+	
+			//create and send the I2C packet to the Xservo controller
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//start with register 0 for the X servo
+			HighAdd=0x00;
+			//set the speed to the max supported
+			LowAdd=0x00;
+			//write the speed data to register 0
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//use register 1 for the low bits of the position
+			HighAdd=0x01;
+			//store the low bits of the data
+			LowAdd=temp_buffa[1];
+			//write the low bits of the data to the register
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//use register 2 for the high bits of servo 1
+			HighAdd=0x02;
+			//store the high bits of the data to the register
+			LowAdd=temp_buffa[2];
+			//write the high bits of the data to the register
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+
+			//create and send the I2C packet to the Yservo controller
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//start with register 0 for the X servo
+			HighAdd=0x03;
+			//set the speed to the max supported
+			LowAdd=0x00;
+			//write the speed data to register 0
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//use register 1 for the low bits of the position
+			HighAdd=0x04;
+			//store the low bits of the data
+			LowAdd=temp_buffa[3];
+			//write the low bits of the data to the register
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+			//control byte is always 0xC2
+			ControlByte=0xC2;
+			//use register 2 for the high bits of servo 1
+			HighAdd=0x05;
+			//store the high bits of the data to the register
+			LowAdd=temp_buffa[4];
+			//write the high bits of the data to the register
+			EErombytewrite2(ControlByte,HighAdd,LowAdd);
+		}
 	;
 }
 
 void function1min(void)
 {
-
 	;
 }
 
@@ -1026,7 +1099,7 @@ putrsuart( "+++" );
 getsuart(temp_buffa,3);
 
 // set channel to C
-putrsuart("ATCH0C\r");
+putrsuart("ATSC0C\r");
 getsuart(temp_buffa,3);
 
 //panid
@@ -1042,14 +1115,12 @@ putrsuart("ATNJFF\r");
 getsuart(temp_buffa,3);
 
 //node identifier for this node
-putrsuart("ATNIMAINCPU\r");
+putrsuart("ATNIMAIN\r");
 getsuart(temp_buffa,3);
 
 //exit command mode
 putrsuart("ATCN\r");
 getsuart(temp_buffa,3);
-
-
 
 }
 
@@ -1080,8 +1151,8 @@ putrsuart( "+++" );
 getsuart(temp_buffa,3);
 
 // turn off sleep mode
-//putrsuart("ATSM0\r");
-//getsuart(temp_buffa,3);
+putrsuart("ATSM0\r");
+getsuart(temp_buffa,3);
 
 // time before sleep x 1 mS curently 50 mS
 //putrsuart("ATST0004\r");
@@ -1096,9 +1167,8 @@ getsuart(temp_buffa,3);
 //getsuart(temp_buffa,3);
 
 //exit command mode
-//putrsuart("ATCN\r");
-//getsuart(temp_buffa,3);
-
+putrsuart("ATCN\r");
+getsuart(temp_buffa,3);
 
 }
 

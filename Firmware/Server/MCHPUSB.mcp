@@ -4,12 +4,12 @@ file_version=1.0
 [PATH_INFO]
 BuildDirPolicy=BuildDirIsSourceDir
 dir_src=
-dir_bin=c:\controller\code\mainzig\_output
-dir_tmp=c:\controller\code\mainzig\_output
+dir_bin=H:\Zigbee FW\Server\_output
+dir_tmp=H:\Zigbee FW\Server\_output
 dir_sin=
-dir_inc=c:\controller\code\mainzig
-dir_lib=c:\mcc18\lib
-dir_lkr=c:\controller\code\mainmini
+dir_inc=H:\Zigbee FW\Server
+dir_lib=C:\MCC18\lib
+dir_lkr=
 [CAT_FILTERS]
 filter_src=*.asm;*.c
 filter_inc=*.h;*.inc
