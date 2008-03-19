@@ -19,7 +19,7 @@ namespace AutonomousSentryGun.Functions
       set
       {
         x = value;
-        hAngle = CoordinateToAngle(value);
+        hAngle = CoordinateToHAngle(value);
       }
     }
 
@@ -32,7 +32,7 @@ namespace AutonomousSentryGun.Functions
       set
       {
         y = value;
-        vAngle = CoordinateToAngle(value);
+        vAngle = CoordinateToVAngle(value);
       }
     }
 
@@ -45,7 +45,7 @@ namespace AutonomousSentryGun.Functions
       set
       {
         hAngle = value;
-        x = AngleToCoordinate(value);
+        x = HAngleToCoordinate(value);
       }
     }
     
@@ -58,40 +58,49 @@ namespace AutonomousSentryGun.Functions
       set
       {
         vAngle = value;
-        y = AngleToCoordinate(value);
+        y = VAngleToCoordinate(value);
       }
     }
     
     public Position()
     {
-      this.x = ServoController.MAX_INTEGER_INPUT / 2;
-      this.y = ServoController.MAX_INTEGER_INPUT / 2;
-      this.hAngle = this.CoordinateToAngle(this.x);
-      this.vAngle = this.CoordinateToAngle(this.y);
+      this.x = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
+      this.y = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
+      this.hAngle = this.CoordinateToHAngle(this.x);
+      this.vAngle = this.CoordinateToVAngle(this.y);
     }
     public Position(int x, int y)
     {
       this.x = x;
       this.y = y;
-      this.hAngle = this.CoordinateToAngle(this.x);
-      this.vAngle = this.CoordinateToAngle(this.y);
+      this.hAngle = this.CoordinateToHAngle(this.x);
+      this.vAngle = this.CoordinateToVAngle(this.y);
     }
 
     public Position(double hAngle, double vAngle)
     {
       this.hAngle = hAngle;
       this.vAngle = vAngle;
-      this.x = this.AngleToCoordinate(this.hAngle);
-      this.y = this.AngleToCoordinate(this.vAngle);
+      this.x = this.HAngleToCoordinate(this.hAngle);
+      this.y = this.VAngleToCoordinate(this.vAngle);
     }
-    private int AngleToCoordinate(double angle)
+    private int HAngleToCoordinate(double angle)
     {
-      return (int)Math.Round((double)angle / ServoController.getFactor());
+      return (int)Math.Round((double)angle / ServoController.getXFactor()) + ServoController.MIN_INTEGER_INPUT;
     }
-    private double CoordinateToAngle(int coordinate)
+    private double CoordinateToHAngle(int coordinate)
     {
-      double factor = ServoController.getFactor();
-      return Math.Round(coordinate * ServoController.getFactor());
+      double factor = ServoController.getXFactor();
+      return Math.Round((coordinate - ServoController.MIN_INTEGER_INPUT) * ServoController.getXFactor()) + ServoController.MIN_H_ANGLE;
+    }
+    private int VAngleToCoordinate(double angle)
+    {
+      return (int)Math.Round((double)angle / ServoController.getYFactor()) + ServoController.MIN_INTEGER_INPUT;
+    }
+    private double CoordinateToVAngle(int coordinate)
+    {
+      double factor = ServoController.getYFactor();
+      return Math.Round((coordinate-ServoController.MIN_INTEGER_INPUT) * ServoController.getYFactor())+ServoController.MIN_V_ANGLE;
     }
   }
 }

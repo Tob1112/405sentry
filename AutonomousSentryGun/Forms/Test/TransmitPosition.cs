@@ -23,13 +23,15 @@ namespace AutonomousSentryGun.Forms.Test
       InitializeComponent();
 
       redDot.Location = new Point(TransmitPosition.CENTER_GRID_X, TransmitPosition.CENTER_GRID_Y);
-      dotPosition = new Position(ServoController.MAX_INTEGER_INPUT / 2, ServoController.MAX_INTEGER_INPUT / 2);
+      dotPosition = new Position();
       XTextBox.Text = (dotPosition.X).ToString();
       YTextBox.Text = (dotPosition.Y).ToString();
       X_CENTER = dotPosition.X;
       Y_CENTER = dotPosition.Y;
       HTextBox.Text = (dotPosition.HAngle).ToString();
       VTextBox.Text = (dotPosition.VAngle).ToString();
+      label1.Text = "(" + ServoController.MIN_INTEGER_INPUT + "," + ServoController.MIN_INTEGER_INPUT + ")" + "\n" +
+                      "(" + ServoController.MIN_H_ANGLE + "°," + ServoController.MIN_V_ANGLE + "°)";
     }
 
     private void XTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -51,6 +53,11 @@ namespace AutonomousSentryGun.Forms.Test
         if (x > ServoController.MAX_INTEGER_INPUT)
         {
           x = ServoController.MAX_INTEGER_INPUT;
+          XTextBox.Text = x.ToString();
+        }
+        else if (x < ServoController.MIN_INTEGER_INPUT)
+        {
+          x = ServoController.MIN_INTEGER_INPUT;
           XTextBox.Text = x.ToString();
         }
 
@@ -75,6 +82,7 @@ namespace AutonomousSentryGun.Forms.Test
     private void YTextBox_Update(object sender, EventArgs e)
     {
       int y = int.Parse(YTextBox.Text);
+      
       if (y != dotPosition.Y)
       {
         if (y > ServoController.MAX_INTEGER_INPUT)
@@ -82,6 +90,12 @@ namespace AutonomousSentryGun.Forms.Test
           y = ServoController.MAX_INTEGER_INPUT;
           YTextBox.Text = y.ToString();
         }
+        else if (y < ServoController.MIN_INTEGER_INPUT)
+        {
+          y = ServoController.MIN_INTEGER_INPUT;
+          YTextBox.Text = y.ToString();
+        }
+
         dotPosition.Y = y;
         redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
         VTextBox.Text = (dotPosition.VAngle).ToString();
@@ -105,9 +119,14 @@ namespace AutonomousSentryGun.Forms.Test
       int hAngle = int.Parse(HTextBox.Text);
       if (hAngle != dotPosition.HAngle)
       {
-        if (hAngle > ServoController.MAX_ANGLE)
+        if (hAngle > ServoController.MAX_H_ANGLE)
         {
-          hAngle = (int)ServoController.MAX_ANGLE;
+          hAngle = (int)ServoController.MAX_H_ANGLE;
+          HTextBox.Text = hAngle.ToString();
+        }
+        else if (hAngle < ServoController.MIN_H_ANGLE)
+        {
+          hAngle = (int)ServoController.MIN_H_ANGLE;
           HTextBox.Text = hAngle.ToString();
         }
 
@@ -134,11 +153,17 @@ namespace AutonomousSentryGun.Forms.Test
       int vAngle = int.Parse(VTextBox.Text);
       if (vAngle != dotPosition.VAngle)
       {
-        if (vAngle > ServoController.MAX_ANGLE)
+        if (vAngle > ServoController.MAX_V_ANGLE)
         {
-          vAngle = (int)ServoController.MAX_ANGLE;
+          vAngle = (int)ServoController.MAX_V_ANGLE;
           VTextBox.Text = vAngle.ToString();
         }
+        else if (vAngle < ServoController.MIN_V_ANGLE)
+        {
+          vAngle = (int)ServoController.MIN_V_ANGLE;
+          VTextBox.Text = vAngle.ToString();
+        }
+        
         dotPosition.VAngle = vAngle;
         redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
         YTextBox.Text = (dotPosition.Y).ToString();
