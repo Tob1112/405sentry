@@ -36,6 +36,16 @@ namespace AutonomousSentryGun
 			get { return lastFrame; }
 		}
 
+        public void setAlarmLevel(double al)
+        {
+            alarmLevel = al;
+        }
+
+        public double getAlarmLevel()
+        {
+            return alarmLevel;
+        }
+
         // Last video source error
         public string LastVideoSourceError
         {

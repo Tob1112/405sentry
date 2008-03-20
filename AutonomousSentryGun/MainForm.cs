@@ -18,7 +18,7 @@ using AutonomousSentryGun.Forms.Test;
 namespace AutonomousSentryGun
 {
   public partial class MainForm : Form
-  {
+  {      
       // motion detector
       private IMotionDetector detector = null;
       
@@ -59,7 +59,36 @@ namespace AutonomousSentryGun
         CloseVideoSource();
     }
 
-    private void cameraFeedToolStripMenuItem_Click(object sender, EventArgs e)
+    private void onOffCameraToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        
+        if (!onOffCameraToolStripMenuItem.Checked)
+        {
+            VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                // create video source
+                VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice);
+
+                // open it
+                OpenVideoSource(videoSource);
+            }                        
+            onOffCameraToolStripMenuItem.Checked = true;
+        }
+        else
+        {
+            if (onOffToolStripMenuItem.Checked)
+            {
+                SetMotionDetector(null);
+                onOffToolStripMenuItem.Checked = false;
+            }
+            CloseVideoSource();
+            onOffCameraToolStripMenuItem.Checked = false;
+        }
+    }
+
+    /*private void cameraFeedToolStripMenuItem_Click(object sender, EventArgs e)
     {
         VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
 
@@ -71,7 +100,7 @@ namespace AutonomousSentryGun
             // open it
             OpenVideoSource(videoSource);
         }
-    }
+    }*/
 
     // Open video source
     private void OpenVideoSource(AForge.Video.IVideoSource source)
@@ -96,7 +125,7 @@ namespace AutonomousSentryGun
 
         // start timer        
         timer.Start();
-
+        
         this.Cursor = Cursors.Default;
     }
 
@@ -193,8 +222,7 @@ namespace AutonomousSentryGun
         if (camera != null)
         {
             camera.Lock();
-            camera.MotionDetector = detector;
-
+            camera.MotionDetector = detector;            
             // reset statistics
             statIndex = statReady = 0;
             camera.Unlock();
@@ -203,22 +231,49 @@ namespace AutonomousSentryGun
 
     private void onOffToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (!onOffToolStripMenuItem.Checked)
+        if (cameraWindow1.Camera != null)
         {
-            CountingMotionDetector cmd = new CountingMotionDetector(true);
-            cmd.MinObjectsWidth = 80;
-            cmd.MinObjectsHeight = 80;
-            SetMotionDetector(cmd);
-            onOffToolStripMenuItem.Checked = true;
+            if (!onOffToolStripMenuItem.Checked)
+            {
+                CountingMotionDetector cmd = new CountingMotionDetector(true);
+                cmd.MinObjectsWidth = 80;
+                cmd.MinObjectsHeight = 80;
+                cmd.MaxObjectsWidth = cameraWindow1.Width;
+                cmd.MaxObjectsHeight = cameraWindow1.Height;
+                SetMotionDetector(cmd);
+                onOffToolStripMenuItem.Checked = true;
+                //MessageBox.Show(String.Concat(cameraWindow1.Height.ToString(), cameraWindow1.Width.ToString()));
+            }
+            else
+            {
+                SetMotionDetector(null);
+                onOffToolStripMenuItem.Checked = false;
+            }
         }
         else
         {
-            SetMotionDetector(null);
-            onOffToolStripMenuItem.Checked = false;
+            MessageBox.Show("No Active Camera!");
         }
     }
 
-#endregion
+    private void motionDetectionSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        MotionSettings MSdialog = new MotionSettings();
+        if (cameraWindow1.Camera != null && cameraWindow1.Camera.MotionDetector != null)
+        {
+            MSdialog.setActiveCamera(cameraWindow1.Camera);
+            MSdialog.Show();
+        }
+        else
+        {
+            MessageBox.Show("No Active Camera w/ Active Motion Detector!");
+        }
+        
+    }
+
+#endregion   
+
+    
           
   }
 }

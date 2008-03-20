@@ -38,22 +38,23 @@
         this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.transmitPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.cameraFeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.onOffCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.motionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.onOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.gunTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.gunAimAndShootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.calibrateGunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.motionDetectionThresholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.motionDetectionSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.gunTriggerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         this.dataTransmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.servosRangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.timer = new System.Windows.Forms.Timer(this.components);
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         this.statusBar.SuspendLayout();
@@ -129,10 +130,18 @@
         // 
         // cameraFeedToolStripMenuItem
         // 
+        this.cameraFeedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onOffCameraToolStripMenuItem});
         this.cameraFeedToolStripMenuItem.Name = "cameraFeedToolStripMenuItem";
         this.cameraFeedToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
         this.cameraFeedToolStripMenuItem.Text = "Camera Feed";
-        this.cameraFeedToolStripMenuItem.Click += new System.EventHandler(this.cameraFeedToolStripMenuItem_Click);
+        // 
+        // onOffCameraToolStripMenuItem
+        // 
+        this.onOffCameraToolStripMenuItem.Name = "onOffCameraToolStripMenuItem";
+        this.onOffCameraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        this.onOffCameraToolStripMenuItem.Text = "On/Off";
+        this.onOffCameraToolStripMenuItem.Click += new System.EventHandler(this.onOffCameraToolStripMenuItem_Click);
         // 
         // motionDetectionToolStripMenuItem
         // 
@@ -165,7 +174,7 @@
         // 
         this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.calibrateGunToolStripMenuItem,
-            this.motionDetectionThresholdToolStripMenuItem,
+            this.motionDetectionSettingsToolStripMenuItem,
             this.gunTriggerToolStripMenuItem1,
             this.dataTransmissionToolStripMenuItem,
             this.servosRangeToolStripMenuItem});
@@ -176,31 +185,32 @@
         // calibrateGunToolStripMenuItem
         // 
         this.calibrateGunToolStripMenuItem.Name = "calibrateGunToolStripMenuItem";
-        this.calibrateGunToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+        this.calibrateGunToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
         this.calibrateGunToolStripMenuItem.Text = "Calibrate Gun";
         // 
-        // motionDetectionThresholdToolStripMenuItem
+        // motionDetectionSettingsToolStripMenuItem
         // 
-        this.motionDetectionThresholdToolStripMenuItem.Name = "motionDetectionThresholdToolStripMenuItem";
-        this.motionDetectionThresholdToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-        this.motionDetectionThresholdToolStripMenuItem.Text = "Motion Detection Threshold";
+        this.motionDetectionSettingsToolStripMenuItem.Name = "motionDetectionSettingsToolStripMenuItem";
+        this.motionDetectionSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+        this.motionDetectionSettingsToolStripMenuItem.Text = "Motion Detection Settings";
+        this.motionDetectionSettingsToolStripMenuItem.Click += new System.EventHandler(this.motionDetectionSettingsToolStripMenuItem_Click);
         // 
         // gunTriggerToolStripMenuItem1
         // 
         this.gunTriggerToolStripMenuItem1.Name = "gunTriggerToolStripMenuItem1";
-        this.gunTriggerToolStripMenuItem1.Size = new System.Drawing.Size(216, 22);
+        this.gunTriggerToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
         this.gunTriggerToolStripMenuItem1.Text = "Gun Trigger";
         // 
         // dataTransmissionToolStripMenuItem
         // 
         this.dataTransmissionToolStripMenuItem.Name = "dataTransmissionToolStripMenuItem";
-        this.dataTransmissionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+        this.dataTransmissionToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
         this.dataTransmissionToolStripMenuItem.Text = "Data Transmission";
         // 
         // servosRangeToolStripMenuItem
         // 
         this.servosRangeToolStripMenuItem.Name = "servosRangeToolStripMenuItem";
-        this.servosRangeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+        this.servosRangeToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
         this.servosRangeToolStripMenuItem.Text = "Servos Range";
         // 
         // panel1
@@ -210,6 +220,17 @@
         this.panel1.Name = "panel1";
         this.panel1.Size = new System.Drawing.Size(432, 300);
         this.panel1.TabIndex = 2;
+        // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // statusBar
         // 
@@ -247,17 +268,6 @@
         // 
         this.timer.Interval = 1000;
         this.timer.Tick += new System.EventHandler(this.timer_Tick);
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // MainForm
         // 
@@ -297,7 +307,7 @@
     private System.Windows.Forms.ToolStripMenuItem gunTriggerToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem gunAimAndShootToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem calibrateGunToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem motionDetectionThresholdToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem motionDetectionSettingsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem gunTriggerToolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem dataTransmissionToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem servosRangeToolStripMenuItem;
@@ -308,6 +318,7 @@
     private System.Windows.Forms.ToolStripStatusLabel objectsCountLabel;
     private System.Windows.Forms.Timer timer;
     private System.Windows.Forms.ToolStripMenuItem onOffToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem onOffCameraToolStripMenuItem;
   }
 }
 
