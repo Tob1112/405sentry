@@ -7,8 +7,10 @@ namespace AutonomousSentryGun.Functions
 {
   class ServoController
   {
-    public const int MIN_INTEGER_INPUT = 1000;
-    public const int MAX_INTEGER_INPUT = 2000;
+    public const int MIN_X_INTEGER_INPUT = 1000;
+    public const int MAX_X_INTEGER_INPUT = 2000;
+    public const int MIN_Y_INTEGER_INPUT = 1200;
+    public const int MAX_Y_INTEGER_INPUT = 1600;
     public const double MAX_H_ANGLE = 90;
     public const double MIN_H_ANGLE = -90;
     public const double MAX_V_ANGLE = 45;

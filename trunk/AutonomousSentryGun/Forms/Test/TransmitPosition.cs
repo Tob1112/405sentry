@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using usb_api;
 
 using AutonomousSentryGun.Functions;
+using AutonomousSentryGun.Objects;
 
 namespace AutonomousSentryGun.Forms.Test
 {
@@ -59,7 +60,7 @@ namespace AutonomousSentryGun.Forms.Test
       Y_CENTER = dotPosition.Y;
       HTextBox.Text = (dotPosition.HAngle).ToString();
       VTextBox.Text = (dotPosition.VAngle).ToString();
-      label1.Text = "(" + ServoController.MIN_INTEGER_INPUT + "," + ServoController.MIN_INTEGER_INPUT + ")" + "\n" +
+      label1.Text = "(" + ServoController.MIN_X_INTEGER_INPUT + "," + ServoController.MIN_Y_INTEGER_INPUT + ")" + "\n" +
                       "(" + ServoController.MIN_H_ANGLE + "°," + ServoController.MIN_V_ANGLE + "°)";
     }
 
@@ -93,7 +94,9 @@ namespace AutonomousSentryGun.Forms.Test
         dotPosition.X = x;
         redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
         HTextBox.Text = (dotPosition.HAngle).ToString();
-        //ServoController.sendPosition(dotPosition);
+        Packet packet = new Packet(dotPosition);
+        packet.setFireOn();
+        this.sendData(packet);
       }
     }
 
@@ -128,7 +131,9 @@ namespace AutonomousSentryGun.Forms.Test
         dotPosition.Y = y;
         redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
         VTextBox.Text = (dotPosition.VAngle).ToString();
-        //ServoController.sendPosition(dotPosition);
+        Packet packet = new Packet(dotPosition);
+        packet.setFireOn();
+        this.sendData(packet);
       }
     }
 
@@ -162,7 +167,9 @@ namespace AutonomousSentryGun.Forms.Test
         dotPosition.HAngle = hAngle;
         redDot.Location = new Point((dotPosition.X - X_CENTER) + CENTER_GRID_X, redDot.Location.Y);
         XTextBox.Text = (dotPosition.X).ToString();
-        //ServoController.sendPosition(dotPosition);
+        Packet packet = new Packet(dotPosition);
+        packet.setFireOn();
+        this.sendData(packet);
       }
     }
 
@@ -196,27 +203,21 @@ namespace AutonomousSentryGun.Forms.Test
         dotPosition.VAngle = vAngle;
         redDot.Location = new Point(redDot.Location.X, CENTER_GRID_Y - (dotPosition.Y - Y_CENTER));
         YTextBox.Text = (dotPosition.Y).ToString();
-        //ServoController.sendPosition(dotPosition);
+        Packet packet = new Packet(dotPosition);
+        packet.setFireOn();
+        this.sendData(packet);
       }
     }
-
+    
     private void upButton_Click(object sender, EventArgs e)
     {
-        //increment the Y value stored in the sd21 registers
-        if (currentY + 50 < 2000)
-        {
-            currentY = currentY + 50;
+        
+        
+    }
 
-            //num = (char)currentY;
-            usbSendBuff[0] = 0x01;
-            usbSendBuff[1] = currentXL;
-            usbSendBuff[2] = currentXH;
-            usbSendBuff[3] = 0x4C;
-            usbSendBuff[4] = 0x04;
-            usbRcvBuff = usbHub.getdata(usbSendBuff);
-        }
-        else
-            return;
+    private void sendData(Packet packet)
+    {
+        usbRcvBuff = usbHub.getdata(packet.Data);
     }
 
     private void downButton_Click(object sender, EventArgs e)
@@ -260,10 +261,10 @@ namespace AutonomousSentryGun.Forms.Test
         {
             currentX = currentX - 50;
             usbSendBuff[0] = 0x01;
-            usbSendBuff[1] = 0x01;
-            usbSendBuff[2] = 0x01;
-            usbSendBuff[3] = currentYL;
-            usbSendBuff[4] = currentYH;
+            usbSendBuff[1] = 0x4c;
+            usbSendBuff[2] = 0x04;
+            usbSendBuff[3] = 0x4c;
+            usbSendBuff[4] = 0x04;
             usbRcvBuff = usbHub.getdata(usbSendBuff);
         }
         else

@@ -18,7 +18,12 @@ namespace AutonomousSentryGun.Functions
       }
       set
       {
-        x = value;
+          if (value > ServoController.MAX_INTEGER_INPUT)
+              x = ServoController.MAX_INTEGER_INPUT;
+          else if (value < ServoController.MIN_INTEGER_INPUT)
+              x = ServoController.MIN_INTEGER_INPUT;
+          else 
+            x = value;
         hAngle = CoordinateToHAngle(value);
       }
     }
@@ -31,7 +36,12 @@ namespace AutonomousSentryGun.Functions
       }
       set
       {
-        y = value;
+        if (value > ServoController.MAX_INTEGER_INPUT)
+            y = ServoController.MAX_INTEGER_INPUT;
+        else if (value < ServoController.MIN_INTEGER_INPUT)
+            y = ServoController.MIN_INTEGER_INPUT;
+        else
+            y = value;
         vAngle = CoordinateToVAngle(value);
       }
     }
@@ -64,8 +74,10 @@ namespace AutonomousSentryGun.Functions
     
     public Position()
     {
-      this.x = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
-      this.y = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
+      //this.x = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
+      //this.y = (ServoController.MAX_INTEGER_INPUT - ServoController.MIN_INTEGER_INPUT) / 2 + ServoController.MIN_INTEGER_INPUT;
+        this.x = 1600;
+        this.y = 1477;
       this.hAngle = this.CoordinateToHAngle(this.x);
       this.vAngle = this.CoordinateToVAngle(this.y);
     }
