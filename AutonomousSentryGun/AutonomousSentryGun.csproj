@@ -94,8 +94,7 @@
     <Compile Include="Forms\Test\TransmitPosition.Designer.cs">
       <DependentUpon>TransmitPosition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Functions\Position.cs" />
-    <Compile Include="Functions\ServoController.cs" />
+    <Compile Include="Functions\Servos.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
