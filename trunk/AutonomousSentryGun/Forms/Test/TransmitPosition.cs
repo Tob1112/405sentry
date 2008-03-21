@@ -18,14 +18,15 @@ namespace AutonomousSentryGun.Forms.Test
   {
     //create the USB interface
     usb_interface usbHub;
-    
+
     byte[] usbRcvBuff;
-    
+
     char num;
 
     private Servos servos;
     private const int REDDOT_OFFSET_X = 3;
     private const int REDDOT_OFFSET_Y = 3;
+    private int positionIncrement = 5;
 
 
     public TransmitPosition()
@@ -39,24 +40,17 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
+      PosIncTextBox.Text = positionIncrement.ToString();
     }
 
-    private void XTextBox_KeyPress(object sender, KeyPressEventArgs e)
+    private void XTextBox_KeyDown(object sender, KeyEventArgs e)
     {
-      if (e.KeyChar.Equals('\r'))
-        XTextBox_Update(sender, e);
+      KeyDownUpProcess(e);
     }
     private void XTextBox_Leave(object sender, EventArgs e)
     {
-      int x;
-      if (int.TryParse(XTextBox.Text, out x))
-        XTextBox_Update(sender, e);
-    }
-    
-    private void XTextBox_Update(object sender, EventArgs e)
-    {
-      transmitPosition();
-      
+      int x, y;
+      if (int.TryParse(XTextBox.Text, out x) && int.TryParse(YTextBox.Text, out y)) transmitPosition();
     }
 
     private void transmitPosition()
@@ -73,26 +67,53 @@ namespace AutonomousSentryGun.Forms.Test
       this.sendData(packet);
     }
 
-    private void YTextBox_KeyPress(object sender, KeyPressEventArgs e)
+    private void YTextBox_KeyDown(object sender, KeyEventArgs e)
     {
-      if (e.KeyChar.Equals('\r'))
-        YTextBox_Update(sender, e);
+      KeyDownUpProcess(e);
+
+
+    }
+
+    private void KeyDownUpProcess(KeyEventArgs e)
+    {
+      switch (e.KeyCode)
+      {
+        case Keys.Enter:
+          {
+            int x, y;
+            if (int.TryParse(XTextBox.Text, out x) && int.TryParse(YTextBox.Text, out y)) transmitPosition(); break;
+          }
+        case Keys.Up:
+          {
+            YTextBox.Text = (Convert.ToInt32(YTextBox.Text) + positionIncrement).ToString();
+            transmitPosition(); break;
+          }
+        case Keys.Down:
+          {
+            YTextBox.Text = (Convert.ToInt32(YTextBox.Text) - positionIncrement).ToString();
+            transmitPosition(); break;
+          }
+        case Keys.Left:
+          {
+            XTextBox.Text = (Convert.ToInt32(XTextBox.Text) - positionIncrement).ToString();
+            transmitPosition(); break;
+          }
+        case Keys.Right:
+          {
+            XTextBox.Text = (Convert.ToInt32(XTextBox.Text) + positionIncrement).ToString();
+            transmitPosition(); break;
+          }
+
+      }
     }
     private void YTextBox_Leave(object sender, EventArgs e)
     {
-      int y;
-      if (int.TryParse(YTextBox.Text, out y))
-        YTextBox_Update(sender, e);
+      int x, y;
+      if (int.TryParse(XTextBox.Text, out x) && int.TryParse(YTextBox.Text, out y)) transmitPosition();
     }
     private void YTextBox_Update(object sender, EventArgs e)
     {
       transmitPosition();
-    }
-    
-    private void upButton_Click(object sender, EventArgs e)
-    {
-        
-        
     }
 
     private void sendData(Packet packet)
@@ -100,24 +121,38 @@ namespace AutonomousSentryGun.Forms.Test
       //usbRcvBuff = usbHub.getdata(packet.Data);
     }
 
-    private void downButton_Click(object sender, EventArgs e)
-    {
-        
-    }
-
-    private void leftButton_Click(object sender, EventArgs e)
-    {
-        
-    }
-
-    private void rightButton_Click(object sender, EventArgs e)
-    {
-        
-    }
 
     private void centerButton_Click(object sender, EventArgs e)
     {
-   
+      int x = 0;
+      int y = 0;
+      servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));
+      XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
+      YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
+      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
+      Packet packet = new Packet(servos.PositionToServosController);
+      packet.setFireOn();
+      this.sendData(packet);
+    }
+
+    private void TransmitPosition_KeyDown(object sender, KeyEventArgs e)
+    {
+      KeyDownUpProcess(e);
+
+    }
+
+    private void PosIncTextBox_TextChanged(object sender, EventArgs e)
+    {
+      int x;
+      if (int.TryParse(PosIncTextBox.Text, out x))
+        positionIncrement = Convert.ToInt32(PosIncTextBox.Text);
+    }
+
+    private void PosIncTextBox_KeyDown(object sender, KeyEventArgs e)
+    {
+      KeyDownUpProcess(e);
+
     }
 
   }
