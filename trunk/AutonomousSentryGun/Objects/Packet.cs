@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using AutonomousSentryGun.Functions;
+using System.Drawing;
 
 namespace AutonomousSentryGun.Objects
 {
@@ -22,9 +23,9 @@ namespace AutonomousSentryGun.Objects
         {
             data = new byte[PACKET_BYTE_LENGTH];
         }
-        public Packet(Position position):this()
+        public Packet(Point point):this()
         {
-            this.setPosition(position);
+            this.setPosition(point);
         }
         public byte[] Data
         {
@@ -41,10 +42,10 @@ namespace AutonomousSentryGun.Objects
         {
             data[FIRE_IDX] = 0x00;
         }
-        public void setPosition(Position position)
+        public void setPosition(Point point)
         {
-            this.setXPosition(position.X);
-            this.setYPosition(position.Y);
+            this.setXPosition(point.X);
+            this.setYPosition(point.Y);
         }
         public void setXPosition(int position)
         {
