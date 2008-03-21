@@ -24,6 +24,10 @@ namespace AutonomousSentryGun.Forms.Test
     char num;
 
     private Servos servos;
+    private const int REDDOT_OFFSET_X = 3;
+    private const int REDDOT_OFFSET_Y = 3;
+
+
     public TransmitPosition()
     {
       InitializeComponent();
@@ -32,7 +36,8 @@ namespace AutonomousSentryGun.Forms.Test
       servos = new Servos(1600, 1477);
       XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
       YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
-      redDot.Location = servos.getPorportionalPosition(gridBox.ClientRectangle);
+      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
     }
 
@@ -61,7 +66,8 @@ namespace AutonomousSentryGun.Forms.Test
       servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));
       XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
       YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
-      redDot.Location = servos.getPorportionalPosition(gridBox.ClientRectangle);
+      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       Packet packet = new Packet(servos.PositionToServosController);
       packet.setFireOn();
       this.sendData(packet);
