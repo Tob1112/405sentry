@@ -37,11 +37,13 @@
         this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.transmitPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.gunTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.cameraFeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.onOffCameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.motionDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.onOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.gunTriggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.gunTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.onOffTrackingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         this.gunAimAndShootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.calibrateGunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,14 +52,17 @@
         this.dataTransmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.servosRangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.timer = new System.Windows.Forms.Timer(this.components);
+        this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
+        this.aimDot = new System.Windows.Forms.PictureBox();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         this.statusBar.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
         this.SuspendLayout();
         // 
         // menuStrip1
@@ -113,9 +118,10 @@
         // 
         this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.transmitPositionToolStripMenuItem,
+            this.gunTriggerToolStripMenuItem,
             this.cameraFeedToolStripMenuItem,
             this.motionDetectionToolStripMenuItem,
-            this.gunTriggerToolStripMenuItem,
+            this.gunTrackingToolStripMenuItem,
             this.gunAimAndShootToolStripMenuItem});
         this.testToolStripMenuItem.Name = "testToolStripMenuItem";
         this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
@@ -128,6 +134,12 @@
         this.transmitPositionToolStripMenuItem.Text = "Transmit Position";
         this.transmitPositionToolStripMenuItem.Click += new System.EventHandler(this.transmitPositionToolStripMenuItem_Click);
         // 
+        // gunTriggerToolStripMenuItem
+        // 
+        this.gunTriggerToolStripMenuItem.Name = "gunTriggerToolStripMenuItem";
+        this.gunTriggerToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+        this.gunTriggerToolStripMenuItem.Text = "Gun Trigger";
+        // 
         // cameraFeedToolStripMenuItem
         // 
         this.cameraFeedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,7 +151,7 @@
         // onOffCameraToolStripMenuItem
         // 
         this.onOffCameraToolStripMenuItem.Name = "onOffCameraToolStripMenuItem";
-        this.onOffCameraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+        this.onOffCameraToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
         this.onOffCameraToolStripMenuItem.Text = "On/Off";
         this.onOffCameraToolStripMenuItem.Click += new System.EventHandler(this.onOffCameraToolStripMenuItem_Click);
         // 
@@ -158,11 +170,20 @@
         this.onOffToolStripMenuItem.Text = "On/Off";
         this.onOffToolStripMenuItem.Click += new System.EventHandler(this.onOffToolStripMenuItem_Click);
         // 
-        // gunTriggerToolStripMenuItem
+        // gunTrackingToolStripMenuItem
         // 
-        this.gunTriggerToolStripMenuItem.Name = "gunTriggerToolStripMenuItem";
-        this.gunTriggerToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-        this.gunTriggerToolStripMenuItem.Text = "Gun Trigger";
+        this.gunTrackingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onOffTrackingToolStripMenuItem1});
+        this.gunTrackingToolStripMenuItem.Name = "gunTrackingToolStripMenuItem";
+        this.gunTrackingToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+        this.gunTrackingToolStripMenuItem.Text = "Gun Tracking";
+        // 
+        // onOffTrackingToolStripMenuItem1
+        // 
+        this.onOffTrackingToolStripMenuItem1.Name = "onOffTrackingToolStripMenuItem1";
+        this.onOffTrackingToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
+        this.onOffTrackingToolStripMenuItem1.Text = "On/Off";
+        this.onOffTrackingToolStripMenuItem1.Click += new System.EventHandler(this.onOffTrackingToolStripMenuItem1_Click);
         // 
         // gunAimAndShootToolStripMenuItem
         // 
@@ -215,22 +236,12 @@
         // 
         // panel1
         // 
+        this.panel1.Controls.Add(this.aimDot);
         this.panel1.Controls.Add(this.cameraWindow1);
         this.panel1.Location = new System.Drawing.Point(0, 27);
         this.panel1.Name = "panel1";
         this.panel1.Size = new System.Drawing.Size(432, 300);
         this.panel1.TabIndex = 2;
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // statusBar
         // 
@@ -269,6 +280,32 @@
         this.timer.Interval = 1000;
         this.timer.Tick += new System.EventHandler(this.timer_Tick);
         // 
+        // TrackingTimer
+        // 
+        this.TrackingTimer.Interval = 50;
+        this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
+        // 
+        // aimDot
+        // 
+        this.aimDot.BackColor = System.Drawing.Color.Red;
+        this.aimDot.Location = new System.Drawing.Point(208, 145);
+        this.aimDot.Name = "aimDot";
+        this.aimDot.Size = new System.Drawing.Size(5, 5);
+        this.aimDot.TabIndex = 2;
+        this.aimDot.TabStop = false;
+        this.aimDot.Visible = false;
+        // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
+        // 
         // MainForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +323,7 @@
         this.panel1.ResumeLayout(false);
         this.statusBar.ResumeLayout(false);
         this.statusBar.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.aimDot)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
 
@@ -319,6 +357,10 @@
     private System.Windows.Forms.Timer timer;
     private System.Windows.Forms.ToolStripMenuItem onOffToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem onOffCameraToolStripMenuItem;
+    private System.Windows.Forms.Timer TrackingTimer;
+    private System.Windows.Forms.ToolStripMenuItem gunTrackingToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem onOffTrackingToolStripMenuItem1;
+    private System.Windows.Forms.PictureBox aimDot;
   }
 }
 

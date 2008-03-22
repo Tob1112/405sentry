@@ -11,7 +11,10 @@ using AForge.Video;
 using AForge.Video.VFW;
 using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
+using usb_api;
 
+using AutonomousSentryGun.Functions;
+using AutonomousSentryGun.Objects;
 using AutonomousSentryGun.Forms.Test;
 
 
@@ -30,6 +33,13 @@ namespace AutonomousSentryGun
       private int statReady = 0;
       // statistics array
       private int[] statCount = new int[statLength];
+      
+      // servo coordinates object
+      private Servos servos;
+      //create the USB interface
+      private usb_interface usbHub;
+      //usb buffer
+      private byte[] usbRcvBuff;
 
     public MainForm()
     {
@@ -55,7 +65,18 @@ namespace AutonomousSentryGun
     #region Motion Functions/Events
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-    {        
+    {
+        if (onOffToolStripMenuItem.Checked)
+        {
+            SetMotionDetector(null);
+            onOffToolStripMenuItem.Checked = false;
+        }
+        if (onOffTrackingToolStripMenuItem1.Checked)
+        {
+            TrackingTimer.Stop();
+            aimDot.Visible = false;
+            onOffTrackingToolStripMenuItem1.Checked = false;
+        }
         CloseVideoSource();
     }
 
@@ -83,24 +104,16 @@ namespace AutonomousSentryGun
                 SetMotionDetector(null);
                 onOffToolStripMenuItem.Checked = false;
             }
+            if (onOffTrackingToolStripMenuItem1.Checked)
+            {
+                TrackingTimer.Stop();
+                aimDot.Visible = false;
+                onOffTrackingToolStripMenuItem1.Checked = false;
+            }
             CloseVideoSource();
             onOffCameraToolStripMenuItem.Checked = false;
         }
-    }
-
-    /*private void cameraFeedToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
-
-        if (form.ShowDialog(this) == DialogResult.OK)
-        {
-            // create video source
-            VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice);
-
-            // open it
-            OpenVideoSource(videoSource);
-        }
-    }*/
+    }    
 
     // Open video source
     private void OpenVideoSource(AForge.Video.IVideoSource source)
@@ -118,7 +131,7 @@ namespace AutonomousSentryGun
         camera.Start();
 
         // attach camera to camera window
-        cameraWindow1.Camera = camera;
+        cameraWindow1.Camera = camera;        
 
         // reset statistics
         statIndex = statReady = 0;
@@ -191,6 +204,50 @@ namespace AutonomousSentryGun
         }
     }
 
+    //Timer that tracks refresh of position tracking
+    private void TrackingTimer_Tick(object sender, EventArgs e) //50ms refresh rate
+    {
+        if (cameraWindow1.Camera != null && cameraWindow1.Camera.MotionDetector != null)
+        {
+            CountingMotionDetector cmd = (CountingMotionDetector)cameraWindow1.Camera.MotionDetector;
+            Rectangle[] rectmotion = cmd.ObjectRectangles;
+            
+            if (rectmotion.Length != 0)
+            {
+                aimDot.Visible = true;
+                //calculate largest detected motion area
+                Rectangle largest = rectmotion[0];
+                for (int i = 1; i < rectmotion.Length; i++)
+                {
+                    if (rectmotion[i].Width*rectmotion[i].Height > largest.Width*largest.Height)
+                    {
+                        largest = rectmotion[i];
+                    }
+                }
+
+                //draw dot on center of largest motion area
+                int x = largest.X + largest.Width / 2 - 2 + cameraWindow1.Location.X;
+                int y = largest.Y + largest.Height / 2 - 2 + cameraWindow1.Location.Y;
+                aimDot.Location = new Point(x, y);
+
+                //send dot position to servos for aiming
+                servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));                
+                Packet packet = new Packet(servos.PositionToServosController);
+                packet.setFireOn();
+                sendData(packet);               
+            }
+            else if (rectmotion.Length == 0)
+            {
+                aimDot.Visible = false;
+            }
+        }
+        else
+        {
+            MessageBox.Show("No Active Camera w/ Active Motion Detector!");
+            TrackingTimer.Stop();
+        }
+    }
+
     // Main window resized
     private void MainForm_SizeChanged(object sender, EventArgs e)
     {
@@ -236,8 +293,8 @@ namespace AutonomousSentryGun
             if (!onOffToolStripMenuItem.Checked)
             {
                 CountingMotionDetector cmd = new CountingMotionDetector(true);
-                cmd.MinObjectsWidth = 80;
-                cmd.MinObjectsHeight = 80;
+                cmd.MinObjectsWidth = 50;
+                cmd.MinObjectsHeight = 50;
                 cmd.MaxObjectsWidth = cameraWindow1.Width;
                 cmd.MaxObjectsHeight = cameraWindow1.Height;
                 SetMotionDetector(cmd);
@@ -247,6 +304,12 @@ namespace AutonomousSentryGun
             else
             {
                 SetMotionDetector(null);
+                if (onOffTrackingToolStripMenuItem1.Checked)
+                {
+                    TrackingTimer.Stop();
+                    aimDot.Visible = false;
+                    onOffTrackingToolStripMenuItem1.Checked = false;
+                }
                 onOffToolStripMenuItem.Checked = false;
             }
         }
@@ -267,13 +330,40 @@ namespace AutonomousSentryGun
         else
         {
             MessageBox.Show("No Active Camera w/ Active Motion Detector!");
-        }
-        
+        }        
     }
 
-#endregion   
+    private void onOffTrackingToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        if (cameraWindow1.Camera != null && cameraWindow1.Camera.MotionDetector != null)
+        {
+            if (!onOffTrackingToolStripMenuItem1.Checked)
+            {
+                TrackingTimer.Start();
+                aimDot.Visible = true;
+                servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);
+                //servos = new Servos(1600, 1477);
+                onOffTrackingToolStripMenuItem1.Checked = true;                
+            }
+            else
+            {
+                TrackingTimer.Stop();
+                aimDot.Visible = false;
+                onOffTrackingToolStripMenuItem1.Checked = false;
+            }
+        }
+        else
+        {
+            MessageBox.Show("No Active Camera w/ Active Motion Detector!");
+        }
+    }
 
-    
-          
+    private void sendData(Packet packet)
+    {
+        //usbRcvBuff = usbHub.getdata(packet.Data);        
+    }
+
+#endregion    
+         
   }
 }
