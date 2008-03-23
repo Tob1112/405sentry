@@ -41,6 +41,9 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
       PosIncTextBox.Text = positionIncrement.ToString();
+      Packet packet = new Packet(servos.PositionToServosController);
+      packet.setFireOn();
+      this.sendData(packet);
     }
 
     private void XTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -118,7 +121,7 @@ namespace AutonomousSentryGun.Forms.Test
 
     private void sendData(Packet packet)
     {
-      //usbRcvBuff = usbHub.getdata(packet.Data);
+      usbRcvBuff = usbHub.getdata(packet.Data);
     }
 
 
