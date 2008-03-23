@@ -32,7 +32,7 @@ namespace AutonomousSentryGun.Forms.Test
     public TransmitPosition()
     {
       InitializeComponent();
-
+      usbHub = new usb_interface();
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
       servos = new Servos(1600, 1477);
       XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
