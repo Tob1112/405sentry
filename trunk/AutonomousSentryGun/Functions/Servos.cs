@@ -8,7 +8,7 @@ namespace AutonomousSentryGun.Functions
 {
   class Servos
   {
-    private readonly Size SHOOTING_RANGE_SIZE = new Size(600,400);
+    private readonly Size SHOOTING_RANGE_SIZE = new Size(250,250);
     private readonly Point CENTER_POSITION = new Point(1500,1500);
     private readonly Rectangle SHOOTING_RANGE;
     private Point position;
@@ -44,14 +44,14 @@ namespace AutonomousSentryGun.Functions
     public Servos()
     {
       SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
     }
 
     public Servos(int xCenterPosition, int yCenterPosition)
     {
       CENTER_POSITION = new Point(xCenterPosition, yCenterPosition);
       SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
       
     }
    
@@ -60,7 +60,7 @@ namespace AutonomousSentryGun.Functions
       CENTER_POSITION = new Point(xCenterPosition, yCenterPosition);
       SHOOTING_RANGE_SIZE = new Size(xLengthFromCenter, yLengthFromCenter);
       SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
     }
 
     private int getValidXCoordinate(int x)
@@ -81,8 +81,7 @@ namespace AutonomousSentryGun.Functions
     }
     public void setPorportionalPosition(Rectangle grid, Point position)
     {
-      this.position.X = Convert.ToInt32(Math.Round((double)(position.X - grid.Left) / grid.Width * SHOOTING_RANGE.Width + SHOOTING_RANGE.Left, 0));
-      this.position.Y = Convert.ToInt32(Math.Round((double)(position.Y - grid.Top) / grid.Height * SHOOTING_RANGE.Height + SHOOTING_RANGE.Top, 0));
+      this.Position = new Point(Convert.ToInt32(Math.Round((double)(position.X - grid.Left) / grid.Width * SHOOTING_RANGE.Width + SHOOTING_RANGE.Left, 0)),Convert.ToInt32(Math.Round((double)(position.Y - grid.Top) / grid.Height * SHOOTING_RANGE.Height + SHOOTING_RANGE.Top, 0)));
     }
     public Point getPorportionalPosition(Rectangle grid)
     {

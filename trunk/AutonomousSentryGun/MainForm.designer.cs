@@ -52,17 +52,17 @@
         this.dataTransmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.servosRangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
+        this.aimDot = new System.Windows.Forms.PictureBox();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.timer = new System.Windows.Forms.Timer(this.components);
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
-        this.aimDot = new System.Windows.Forms.PictureBox();
         this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
-        this.statusBar.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
+        this.statusBar.SuspendLayout();
         this.SuspendLayout();
         // 
         // menuStrip1
@@ -243,6 +243,16 @@
         this.panel1.Size = new System.Drawing.Size(432, 300);
         this.panel1.TabIndex = 2;
         // 
+        // aimDot
+        // 
+        this.aimDot.BackColor = System.Drawing.Color.Red;
+        this.aimDot.Location = new System.Drawing.Point(208, 145);
+        this.aimDot.Name = "aimDot";
+        this.aimDot.Size = new System.Drawing.Size(5, 5);
+        this.aimDot.TabIndex = 2;
+        this.aimDot.TabStop = false;
+        this.aimDot.Visible = false;
+        // 
         // statusBar
         // 
         this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -282,18 +292,8 @@
         // 
         // TrackingTimer
         // 
-        this.TrackingTimer.Interval = 50;
+        this.TrackingTimer.Interval = 350;
         this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
-        // 
-        // aimDot
-        // 
-        this.aimDot.BackColor = System.Drawing.Color.Red;
-        this.aimDot.Location = new System.Drawing.Point(208, 145);
-        this.aimDot.Name = "aimDot";
-        this.aimDot.Size = new System.Drawing.Size(5, 5);
-        this.aimDot.TabIndex = 2;
-        this.aimDot.TabStop = false;
-        this.aimDot.Visible = false;
         // 
         // cameraWindow1
         // 
@@ -321,9 +321,9 @@
         this.menuStrip1.ResumeLayout(false);
         this.menuStrip1.PerformLayout();
         this.panel1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)(this.aimDot)).EndInit();
         this.statusBar.ResumeLayout(false);
         this.statusBar.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)(this.aimDot)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
 
