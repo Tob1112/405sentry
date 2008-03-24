@@ -37,7 +37,7 @@ namespace AutonomousSentryGun
       // servo coordinates object
       private Servos servos;
       //create the USB interface
-      private usb_interface usbHub;
+      //private usb_interface usbHub = new usb_interface();
       //usb buffer
       private byte[] usbRcvBuff;
 
@@ -231,8 +231,10 @@ namespace AutonomousSentryGun
                 aimDot.Location = new Point(x, y);
 
                 //send dot position to servos for aiming
-                servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));                
+                servos.setPorportionalPosition(cameraWindow1.Bounds, aimDot.Location);                
                 Packet packet = new Packet(servos.PositionToServosController);
+                //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
+                //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 packet.setFireOn();
                 sendData(packet);               
             }
@@ -340,9 +342,10 @@ namespace AutonomousSentryGun
             if (!onOffTrackingToolStripMenuItem1.Checked)
             {
                 TrackingTimer.Start();
-                aimDot.Visible = true;
-                servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);
-                //servos = new Servos(1600, 1477);
+                aimDot.Visible = true;                
+                //servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);
+                servos = new Servos(1600, 1477);
+
                 onOffTrackingToolStripMenuItem1.Checked = true;                
             }
             else
@@ -360,7 +363,7 @@ namespace AutonomousSentryGun
 
     private void sendData(Packet packet)
     {
-        //usbRcvBuff = usbHub.getdata(packet.Data);        
+        usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);        
     }
 
 #endregion    

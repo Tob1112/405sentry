@@ -17,7 +17,7 @@ namespace AutonomousSentryGun.Forms.Test
   public partial class TransmitPosition : Form
   {
     //create the USB interface
-    usb_interface usbHub;
+    //usb_interface usbHub;
 
     byte[] usbRcvBuff;
 
@@ -26,13 +26,13 @@ namespace AutonomousSentryGun.Forms.Test
     private Servos servos;
     private const int REDDOT_OFFSET_X = 3;
     private const int REDDOT_OFFSET_Y = 3;
-    private int positionIncrement = 5;
+    private int positionIncrement = 25;
 
 
     public TransmitPosition()
     {
       InitializeComponent();
-      usbHub = new usb_interface();
+      //usbHub = new usb_interface();
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
       servos = new Servos(1600, 1477);
       XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
@@ -121,7 +121,7 @@ namespace AutonomousSentryGun.Forms.Test
 
     private void sendData(Packet packet)
     {
-      usbRcvBuff = usbHub.getdata(packet.Data);
+        usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);
     }
 
 
