@@ -53,12 +53,12 @@
         this.servosRangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
         this.aimDot = new System.Windows.Forms.PictureBox();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.timer = new System.Windows.Forms.Timer(this.components);
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
@@ -253,6 +253,17 @@
         this.aimDot.TabStop = false;
         this.aimDot.Visible = false;
         // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
+        // 
         // statusBar
         // 
         this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -292,19 +303,8 @@
         // 
         // TrackingTimer
         // 
-        this.TrackingTimer.Interval = 350;
+        this.TrackingTimer.Interval = 200;
         this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(55, 29);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // MainForm
         // 
