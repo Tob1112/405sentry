@@ -22,6 +22,7 @@ namespace AutonomousSentryGun.Forms.Test
     byte[] usbRcvBuff;
 
     char num;
+    bool fireOK = false;
 
     private Servos servos;
     private const int REDDOT_OFFSET_X = 3;
@@ -66,7 +67,10 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       Packet packet = new Packet(servos.PositionToServosController);
-      packet.setFireOn();
+      if (fireOK == true)
+          packet.setFireOn();
+      else
+          packet.setFireOff();
       this.sendData(packet);
     }
 
@@ -156,6 +160,19 @@ namespace AutonomousSentryGun.Forms.Test
     {
       KeyDownUpProcess(e);
 
+    }
+
+    private void fireBox_CheckedChanged(object sender, EventArgs e)
+    {  
+        //now fire
+        if (fireOK == false)
+            fireOK = true;
+        //firing before so dont fire
+        else
+            fireOK = false;
+        transmitPosition();
+            
+               
     }
 
   }
