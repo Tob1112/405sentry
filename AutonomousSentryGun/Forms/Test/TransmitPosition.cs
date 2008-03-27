@@ -43,7 +43,7 @@ namespace AutonomousSentryGun.Forms.Test
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
       PosIncTextBox.Text = positionIncrement.ToString();
       Packet packet = new Packet(servos.PositionToServosController);
-      packet.setFireOn();
+      packet.setFireOff();
       this.sendData(packet);
     }
 
@@ -139,7 +139,6 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       Packet packet = new Packet(servos.PositionToServosController);
-      packet.setFireOn();
       this.sendData(packet);
     }
 

@@ -235,7 +235,7 @@ namespace AutonomousSentryGun
                 Packet packet = new Packet(servos.PositionToServosController);
                 //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
-                packet.setFireOn();
+                packet.setFireOff();
                 sendData(packet);               
             }
             else if (rectmotion.Length == 0)
