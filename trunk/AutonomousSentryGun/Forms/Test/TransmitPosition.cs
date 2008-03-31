@@ -125,7 +125,14 @@ namespace AutonomousSentryGun.Forms.Test
 
     private void sendData(Packet packet)
     {
+      try
+      {
         usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);
+      }
+      catch (Exception e)
+      {
+        MessageBox.Show("The zigbee module is not plugged into the usb.");
+      }
     }
 
 
