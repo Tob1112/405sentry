@@ -16,6 +16,7 @@ using usb_api;
 using AutonomousSentryGun.Functions;
 using AutonomousSentryGun.Objects;
 using AutonomousSentryGun.Forms.Test;
+using AutonomousSentryGun.Forms.Setup;
 
 
 namespace AutonomousSentryGun
@@ -367,6 +368,22 @@ namespace AutonomousSentryGun
     }
 
 #endregion    
+
+    private void dataTransmissionToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      DataTransmission dtForm = new DataTransmission();
+      dtForm.Show();
+    }
+
+    private void loadSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      openFileDialog1.ShowDialog();
+    }
+
+    private void saveSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      saveFileDialog1.ShowDialog();
+    }
          
   }
 }
