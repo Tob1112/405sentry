@@ -146,6 +146,7 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       Packet packet = new Packet(servos.PositionToServosController);
+      packet.setFireOff();
       this.sendData(packet);
     }
 
