@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C# Express 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousSentryGun", "AutonomousSentryGun.csproj", "{B8EE6EF7-447A-4DBD-AC23-BF3E4F3A9C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Video.DirectShow", "Video.DirectShow\Video.DirectShow.csproj", "{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B8EE6EF7-447A-4DBD-AC23-BF3E4F3A9C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8EE6EF7-447A-4DBD-AC23-BF3E4F3A9C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8EE6EF7-447A-4DBD-AC23-BF3E4F3A9C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

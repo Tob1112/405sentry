@@ -45,10 +45,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\AForge.Video.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=1.6.0.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\AForge.Video.DirectShow.dll</HintPath>
-    </Reference>
     <Reference Include="AForge.Video.VFW, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a82f807c999637c8, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\AForge.Video.VFW.dll</HintPath>
@@ -163,6 +159,12 @@
   <ItemGroup>
     <Content Include="Images\Grid.jpg" />
     <Content Include="Images\RedDot.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Video.DirectShow\Video.DirectShow.csproj">
+      <Project>{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}</Project>
+      <Name>Video.DirectShow</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
