@@ -53,8 +53,8 @@ namespace AForge.Video.DirectShow
         // recieved byte count
         private int bytesReceived;
         // prevent freezing
-        private bool preventFreezing = true;        
-
+        private bool preventFreezing = true;
+        
         // Configuration streams
         private DShowNET.IAMStreamConfig videoStreamConfig = null;
 
@@ -512,7 +512,6 @@ namespace AForge.Video.DirectShow
             }
         }
 
-
         /*
 
         /// <summary>
@@ -702,7 +701,8 @@ namespace AForge.Video.DirectShow
         private class Grabber : ISampleGrabberCB
         {
             private VideoCaptureDevice parent;
-            private int width, height;
+            private int width, height;            
+            private AForge.Imaging.Filters.Erosion erosionFilter = new AForge.Imaging.Filters.Erosion();
 
             // Width property
             public int Width
@@ -801,8 +801,7 @@ namespace AForge.Video.DirectShow
                 }
 
                 else if (!YUYV)
-                {
-                    
+                {                    
                     // copy image data
                     int srcStride = imageData.Stride;
                     int dstStride = imageData.Stride;
@@ -818,13 +817,24 @@ namespace AForge.Video.DirectShow
                     }
                 }
                 // unlock bitmap data
-                image.UnlockBits( imageData );                
+                image.UnlockBits( imageData );
 
                 // notify parent
-                parent.OnNewFrame( image);
-
-                // release the image
-                image.Dispose( );
+                bool erode = false;                
+                if (erode)
+                {
+                    Bitmap ErodedImage = erosionFilter.Apply(image);
+                    parent.OnNewFrame(ErodedImage);
+                    ErodedImage.Dispose();
+                    image.Dispose();
+                }
+                else if (!erode)
+                {
+                    parent.OnNewFrame(image);
+                    // release the image
+                    image.Dispose(); 
+                }
+                
                 return 0;
             }
         }
