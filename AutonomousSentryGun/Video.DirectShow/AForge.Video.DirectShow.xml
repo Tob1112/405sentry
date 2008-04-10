@@ -45,279 +45,6 @@
             <returns>Filter information object.</returns>
             
         </member>
-        <member name="T:AForge.Video.DirectShow.Internals.IMediaControl">
-            <summary>
-            The interface provides methods for controlling the flow of data through the filter graph.
-            It includes methods for running, pausing, and stopping the graph.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Run">
-            <summary>
-            Runs all the filters in the filter graph.
-            </summary>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Pause">
-            <summary>
-            Pauses all filters in the filter graph.
-            </summary>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Stop">
-            <summary>
-            Stops all the filters in the filter graph.
-            </summary>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.GetState(System.Int32,System.Int32@)">
-            <summary>
-            Retrieves the state of the filter graph.
-            </summary>
-            
-            <param name="timeout">Duration of the time-out, in milliseconds, or INFINITE to specify an infinite time-out.</param>
-            <param name="filterState">Ìariable that receives a member of the <b>FILTER_STATE</b> enumeration.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.RenderFile(System.String)">
-            <summary>
-            Builds a filter graph that renders the specified file.
-            </summary>
-            
-            <param name="fileName">Name of the file to render</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.AddSourceFilter(System.String,System.Object@)">
-            <summary>
-            Adds a source filter to the filter graph, for a specified file.
-            </summary>
-            
-            <param name="fileName">Name of the file containing the source video.</param>
-            <param name="filterInfo">Receives interface of filter information object.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.get_FilterCollection(System.Object@)">
-            <summary>
-            Retrieves a collection of the filters in the filter graph.
-            </summary>
-            
-            <param name="collection">Receives the <b>IAMCollection</b> interface.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.get_RegFilterCollection(System.Object@)">
-            <summary>
-            Retrieves a collection of all the filters listed in the registry.
-            </summary>
-            
-            <param name="collection">Receives the <b>IDispatch</b> interface of <b>IAMCollection</b> object.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.StopWhenReady">
-            <summary>
-            Pauses the filter graph, allowing filters to queue data, and then stops the filter graph.
-            </summary>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.FileVideoSource">
-            <summary>
-            Video source for video files.
-            </summary>
-            
-            <remarks><para>The video source provides access to video files. DirectShow is used to access video
-            files.</para>
-            <para>Sample usage:</para>
-            <code>
-            // create video source
-            FileVideoSource videoSource = new FileVideoSource( fileName );
-            // set NewFrame event handler
-            videoSource.NewFrame += new NewFrameEventHandler( video_NewFrame );
-            // start the video source
-            videoSource.Start( );
-            // ...
-            // signal to stop
-            videoSource.SignalToStop( );
-            // ...
-            
-            private void video_NewFrame( object sender, NewFrameEventArgs eventArgs )
-            {
-                // get new frame
-                Bitmap bitmap = eventArgs.Frame;
-                // process the frame
-            }
-            </code>
-            </remarks>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FileVideoSource"/> class.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FileVideoSource"/> class.
-            </summary>
-            
-            <param name="fileName">Video file name.</param>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.Start">
-            <summary>
-            Start video source.
-            </summary>
-            
-            <remarks>Start video source and return execution to caller. Video source
-            object creates background thread and notifies about new frames with the
-            help of <see cref="E:AForge.Video.DirectShow.FileVideoSource.NewFrame"/> event.</remarks>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.SignalToStop">
-            <summary>
-            Signal video source to stop its work.
-            </summary>
-            
-            <remarks>Signals video source to stop its background thread, stop to
-            provide new frames and free resources.</remarks>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.WaitForStop">
-            <summary>
-            Wait for video source has stopped.
-            </summary>
-            
-            <remarks>Waits for source stopping after it was signalled to stop using
-            <see cref="M:AForge.Video.DirectShow.FileVideoSource.SignalToStop"/> method.</remarks>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.Stop">
-            <summary>
-            Stop video source.
-            </summary>
-            
-            <remarks>Stops video source aborting its thread.</remarks>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.Free">
-            <summary>
-            Free resource.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.WorkerThread">
-            <summary>
-            Worker thread.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FileVideoSource.OnNewFrame(System.Drawing.Bitmap)">
-            <summary>
-            Notifies client about new frame.
-            </summary>
-            
-            <param name="image">New frame's image.</param>
-            
-        </member>
-        <member name="E:AForge.Video.DirectShow.FileVideoSource.NewFrame">
-            <summary>
-            New frame event.
-            </summary>
-            
-            <remarks>Notifies client about new available frame from video source.</remarks>
-            
-        </member>
-        <member name="E:AForge.Video.DirectShow.FileVideoSource.VideoSourceError">
-            <summary>
-            Video source error event.
-            </summary>
-            
-            <remarks>The event is used to notify client about any type error occurred in
-            video source object, for example exceptions.</remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.Source">
-            <summary>
-            Video source.
-            </summary>
-            
-            <remarks>Video source is represented by video file name.</remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.FramesReceived">
-            <summary>
-            Received frames count.
-            </summary>
-            
-            <remarks>Number of frames the video source provided from the moment of the last
-            access to the property.
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.BytesReceived">
-            <summary>
-            Received bytes count.
-            </summary>
-            
-            <remarks>Number of bytes the video source provided from the moment of the last
-            access to the property.
-            </remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.UserData">
-            <summary>
-            User data.
-            </summary>
-            
-            <remarks>The property allows to associate user data with video source object.</remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.IsRunning">
-            <summary>
-            State of the video source.
-            </summary>
-            
-            <remarks>Current state of video source object.</remarks>
-            
-        </member>
-        <member name="P:AForge.Video.DirectShow.FileVideoSource.PreventFreezing">
-            <summary>
-            Prevent video freezing after screen saver and workstation lock or not.
-            </summary>
-            
-            <remarks>
-            <para>The value specifies if the class should prevent video freezing during and
-            after screen saver or workstation lock. To prevent freezing the <i>DirectShow</i> graph
-            should not contain  <i>Renderer</i> filter, which is added by <i>Render()</i> method
-            of graph. However, in some cases it may be required to call <i>Render()</i> method of graph, since
-            it may add some more filters, which may be required for playing video. So, the property is
-            a trade off - it is possible to prevent video freezing skipping adding renderer filter or
-            it is possible to keep renderer filter, but video may freeze during screen saver.</para>
-            <para>Default value of this property is set to <b>false</b> for file video source.</para>
-            <para><note>The property may become obsolete in the future if approach to disable freezing
-            and adding all required filters is found.</note></para>
-            <para><note>The property should be set before calling <see cref="M:AForge.Video.DirectShow.FileVideoSource.Start"/> method
-            of the class.</note></para>
-            </remarks>
-            
-        </member>
         <member name="T:AForge.Video.DirectShow.Internals.ISampleGrabberCB">
             <summary>
             The interface provides callback methods for the <see cref="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetCallback(AForge.Video.DirectShow.Internals.ISampleGrabberCB,System.Int32)"/> method.
@@ -343,6 +70,34 @@
             <param name="sampleTime">Starting time of the sample, in seconds.</param>
             <param name="buffer">Pointer to a buffer that contains the sample data.</param>
             <param name="bufferLen">Length of the buffer pointed to by <b>buffer</b>, in bytes</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.Internals.IFileSourceFilter">
+            <summary>
+            The interface is exposed by source filters to set the file name and media type of the media file that they are to render.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IFileSourceFilter.Load(System.String,AForge.Video.DirectShow.Internals.AMMediaType)">
+            <summary>
+            Loads the source filter with the file.
+            </summary>
+            
+            <param name="fileName">The name of the file to open.</param>
+            <param name="mediaType">Media type of the file. This can be null.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IFileSourceFilter.GetCurFile(System.String@,AForge.Video.DirectShow.Internals.AMMediaType)">
+            <summary>
+            Retrieves the current file.
+            </summary>
+            
+            <param name="fileName">Name of media file.</param>
+            <param name="mediaType">Receives media type.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
@@ -836,152 +591,102 @@
             
             
         </member>
-        <member name="T:AForge.Video.DirectShow.Internals.Tools">
+        <member name="T:AForge.Video.DirectShow.Internals.Win32">
             <summary>
-            Some miscellaneous functions.
+            Some Win32 API used internally.
             </summary>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetPin(AForge.Video.DirectShow.Internals.IBaseFilter,AForge.Video.DirectShow.Internals.PinDirection,System.Int32)">
+        <member name="M:AForge.Video.DirectShow.Internals.Win32.CreateBindCtx(System.Int32,System.Runtime.InteropServices.ComTypes.IBindCtx@)">
             <summary>
-            Get filter's pin.
+            Supplies a pointer to an implementation of <b>IBindCtx</b> (a bind context object).
+            This object stores information about a particular moniker-binding operation.
             </summary>
             
-            <param name="filter">Filter to get pin of.</param>
-            <param name="dir">Pin's direction.</param>
-            <param name="num">Pin's number.</param>
+            <param name="reserved">Reserved for future use; must be zero.</param>
+            <param name="ppbc">Address of <b>IBindCtx*</b> pointer variable that receives the
+            interface pointer to the new bind context object.</param>
             
-            <returns>Returns filter's pin.</returns>
+            <returns>Returns <b>S_OK</b> on success.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetInPin(AForge.Video.DirectShow.Internals.IBaseFilter,System.Int32)">
+        <member name="M:AForge.Video.DirectShow.Internals.Win32.MkParseDisplayName(System.Runtime.InteropServices.ComTypes.IBindCtx,System.String,System.Int32@,System.Runtime.InteropServices.ComTypes.IMoniker@)">
             <summary>
-            Get filter's input pin.
+            Converts a string into a moniker that identifies the object named by the string.
             </summary>
             
-            <param name="filter">Filter to get pin of.</param>
-            <param name="num">Pin's number.</param>
+            <param name="pbc">Pointer to the IBindCtx interface on the bind context object to be used in this binding operation.</param>
+            <param name="szUserName">Pointer to a zero-terminated wide character string containing the display name to be parsed. </param>
+            <param name="pchEaten">Pointer to the number of characters of szUserName that were consumed.</param>
+            <param name="ppmk">Address of <b>IMoniker*</b> pointer variable that receives the interface pointer
+            to the moniker that was built from <b>szUserName</b>.</param>
             
-            <returns>Returns filter's pin.</returns>
+            <returns>Returns <b>S_OK</b> on success.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetOutPin(AForge.Video.DirectShow.Internals.IBaseFilter,System.Int32)">
+        <member name="M:AForge.Video.DirectShow.Internals.Win32.memcpy(System.Int32,System.Int32,System.Int32)">
             <summary>
-            Get filter's output pin.
+            Copy a block of memory.
             </summary>
             
-            <param name="filter">Filter to get pin of.</param>
-            <param name="num">Pin's number.</param>
+            <param name="dst">Destination pointer.</param>
+            <param name="src">Source pointer.</param>
+            <param name="count">Memory block's length to copy.</param>
             
-            <returns>Returns filter's pin.</returns>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.IFileSourceFilter">
-            <summary>
-            The interface is exposed by source filters to set the file name and media type of the media file that they are to render.
-            </summary>
+            <returns>Return's the value of <b>dst</b> - pointer to destination.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IFileSourceFilter.Load(System.String,AForge.Video.DirectShow.Internals.AMMediaType)">
+        <member name="T:AForge.Video.DirectShow.FilterInfo">
             <summary>
-            Loads the source filter with the file.
-            </summary>
-            
-            <param name="fileName">The name of the file to open.</param>
-            <param name="mediaType">Media type of the file. This can be null.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IFileSourceFilter.GetCurFile(System.String@,AForge.Video.DirectShow.Internals.AMMediaType)">
-            <summary>
-            Retrieves the current file.
-            </summary>
-            
-            <param name="fileName">Name of media file.</param>
-            <param name="mediaType">Receives media type.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.ISampleGrabber">
-            <summary>
-            The interface is exposed by the Sample Grabber Filter. It enables an application to retrieve
-            individual media samples as they move through the filter graph.
+            DirectShow filter information.
             </summary>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetOneShot(System.Boolean)">
+        <member name="F:AForge.Video.DirectShow.FilterInfo.Name">
             <summary>
-            Specifies whether the filter should stop the graph after receiving one sample.
+            Filter name.
             </summary>
-            
-            <param name="oneShot">Boolean value specifying whether the filter should stop the graph after receiving one sample.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
+        </member>
+        <member name="F:AForge.Video.DirectShow.FilterInfo.MonikerString">
+            <summary>
+            Filters's moniker string.
+            </summary>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetMediaType(AForge.Video.DirectShow.Internals.AMMediaType)">
+        <member name="M:AForge.Video.DirectShow.FilterInfo.#ctor(System.String)">
             <summary>
-            Specifies the media type for the connection on the Sample Grabber's input pin.
+            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FilterInfo"/> class.
             </summary>
             
-            <param name="mediaType">Specifies the required media type.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
+            <param name="monikerString">Filters's moniker string</param>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetConnectedMediaType(AForge.Video.DirectShow.Internals.AMMediaType)">
+        <member name="M:AForge.Video.DirectShow.FilterInfo.#ctor(System.Runtime.InteropServices.ComTypes.IMoniker)">
             <summary>
-            Retrieves the media type for the connection on the Sample Grabber's input pin.
+            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FilterInfo"/> class.
             </summary>
             
-            <param name="mediaType"><see cref="T:AForge.Video.DirectShow.Internals.AMMediaType"/> structure, which receives media type.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
+            <param name="moniker">Filter's moniker object.</param>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetBufferSamples(System.Boolean)">
+        <member name="M:AForge.Video.DirectShow.FilterInfo.CompareTo(System.Object)">
             <summary>
-            Specifies whether to copy sample data into a buffer as it goes through the filter.
+            Compare the object with another instance of this class.
             </summary>
             
-            <param name="bufferThem">Boolean value specifying whether to buffer sample data.
-            If <b>true</b>, the filter copies sample data into an internal buffer.</param>
+            <param name="value">Object to compare with.</param>
             
-            <returns>Return's <b>HRESULT</b> error code.</returns>
+            <returns>A signed number indicating the relative values of this instance and <b>value</b>.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetCurrentBuffer(System.Int32@,System.IntPtr)">
+        <member name="M:AForge.Video.DirectShow.FilterInfo.CreateFilter(System.String)">
             <summary>
-            Retrieves a copy of the sample that the filter received most recently.
+            Create an instance of the filter.
             </summary>
             
-            <param name="bufferSize">Pointer to the size of the buffer. If pBuffer is NULL, this parameter receives the required size.</param>
-            <param name="buffer">Pointer to a buffer to receive a copy of the sample, or NULL.</param>
+            <returns>Returns filter's object, which implements <b>IBaseFilter</b> interface.</returns>
             
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetCurrentSample(System.IntPtr)">
-            <summary>
-            Not currently implemented.
-            </summary>
-            
-            <param name="sample"></param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetCallback(AForge.Video.DirectShow.Internals.ISampleGrabberCB,System.Int32)">
-            <summary>
-            Specifies a callback method to call on incoming samples.
-            </summary>
-            
-            <param name="callback"><see cref="T:AForge.Video.DirectShow.Internals.ISampleGrabberCB"/> interface containing the callback method, or NULL to cancel the callback.</param>
-            <param name="whichMethodToCallback">Index specifying the callback method.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
+            <remarks>The returned filter's object should be released using <b>Marshal.ReleaseComObject()</b>.</remarks>
             
         </member>
         <member name="T:AForge.Video.DirectShow.Internals.IPin">
@@ -1141,6 +846,501 @@
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
+        <member name="T:AForge.Video.DirectShow.Internals.Clsid">
+            <summary>
+            DirectShow class IDs.
+            </summary>
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.Clsid.SystemDeviceEnum">
+            <summary>
+            System device enumerator.
+            </summary>
+            
+            <remarks>Equals to CLSID_SystemDeviceEnum.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.Clsid.FilterGraph">
+            <summary>
+            Filter graph.
+            </summary>
+            
+            <remarks>Equals to CLSID_FilterGraph.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.Clsid.SampleGrabber">
+            <summary>
+            Sample grabber.
+            </summary>
+            
+            <remarks>Equals to CLSID_SampleGrabber.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.Clsid.AsyncReader">
+            <summary>
+            Async reader.
+            </summary>
+            
+            <remarks>Equals to CLSID_AsyncReader.</remarks>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.Internals.MediaType">
+            <summary>
+            DirectShow media typesþ
+            </summary>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Video">
+            <summary>
+            Video.
+            </summary>
+            
+            <remarks>Equals to MEDIATYPE_Video.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Interleaved">
+            <summary>
+            Interleaved. Used by Digital Video (DV).
+            </summary>
+            
+            <remarks>Equals to MEDIATYPE_Interleaved.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Audio">
+            <summary>
+            Audio.
+            </summary>
+            
+            <remarks>Equals to MEDIATYPE_Audio.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Text">
+            <summary>
+            Text.
+            </summary>
+            
+            <remarks>Equals to MEDIATYPE_Text.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Stream">
+            <summary>
+            Byte stream with no time stamps.
+            </summary>
+            
+            <remarks>Equals to MEDIATYPE_Stream.</remarks>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.Internals.MediaSubType">
+            <summary>
+            DirectShow media subtypes.
+            </summary>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.YUYV">
+            <summary>
+            YUY2 (packed 4:2:2).
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_YUYV.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.IYUV">
+            <summary>
+            IYUV.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_IYUV.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.DVSD">
+            <summary>
+            A DV encoding format. (FOURCC 'DVSD')
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_DVSD.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB1">
+            <summary>
+            RGB, 1 bit per pixel (bpp), palettized.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB1.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB4">
+            <summary>
+            RGB, 4 bpp, palettized.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB4.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB8">
+            <summary>
+            RGB, 8 bpp.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB8.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB565">
+            <summary>
+            RGB 565, 16 bpp.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB565.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB555">
+            <summary>
+            RGB 555, 16 bpp.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB555.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB24">
+            <summary>
+            RGB, 24 bpp.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB24.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB32">
+            <summary>
+            RGB, 32 bpp, no alpha channel.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_RGB32.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.Avi">
+            <summary>
+            Data from AVI file.
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_Avi.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.Asf">
+            <summary>
+            Advanced Streaming Format (ASF).
+            </summary>
+            
+            <remarks>Equals to MEDIASUBTYPE_Asf.</remarks>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.Internals.IMediaControl">
+            <summary>
+            The interface provides methods for controlling the flow of data through the filter graph.
+            It includes methods for running, pausing, and stopping the graph.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Run">
+            <summary>
+            Runs all the filters in the filter graph.
+            </summary>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Pause">
+            <summary>
+            Pauses all filters in the filter graph.
+            </summary>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.Stop">
+            <summary>
+            Stops all the filters in the filter graph.
+            </summary>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.GetState(System.Int32,System.Int32@)">
+            <summary>
+            Retrieves the state of the filter graph.
+            </summary>
+            
+            <param name="timeout">Duration of the time-out, in milliseconds, or INFINITE to specify an infinite time-out.</param>
+            <param name="filterState">Ìariable that receives a member of the <b>FILTER_STATE</b> enumeration.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.RenderFile(System.String)">
+            <summary>
+            Builds a filter graph that renders the specified file.
+            </summary>
+            
+            <param name="fileName">Name of the file to render</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.AddSourceFilter(System.String,System.Object@)">
+            <summary>
+            Adds a source filter to the filter graph, for a specified file.
+            </summary>
+            
+            <param name="fileName">Name of the file containing the source video.</param>
+            <param name="filterInfo">Receives interface of filter information object.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.get_FilterCollection(System.Object@)">
+            <summary>
+            Retrieves a collection of the filters in the filter graph.
+            </summary>
+            
+            <param name="collection">Receives the <b>IAMCollection</b> interface.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.get_RegFilterCollection(System.Object@)">
+            <summary>
+            Retrieves a collection of all the filters listed in the registry.
+            </summary>
+            
+            <param name="collection">Receives the <b>IDispatch</b> interface of <b>IAMCollection</b> object.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IMediaControl.StopWhenReady">
+            <summary>
+            Pauses the filter graph, allowing filters to queue data, and then stops the filter graph.
+            </summary>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.FilterCategory">
+            <summary>
+            DirectShow filter categories.
+            </summary>
+        </member>
+        <member name="F:AForge.Video.DirectShow.FilterCategory.AudioInputDevice">
+            <summary>
+            Audio input device category.
+            </summary>
+            
+            <remarks>Equals to CLSID_AudioInputDeviceCategory.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.FilterCategory.VideoInputDevice">
+            <summary>
+            Video input device category.
+            </summary>
+            
+            <remarks>Equals to CLSID_VideoInputDeviceCategory.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.FilterCategory.VideoCompressorCategory">
+            <summary>
+            Video compressor category.
+            </summary>
+            
+            <remarks>Equals to CLSID_VideoCompressorCategory.</remarks>
+            
+        </member>
+        <member name="F:AForge.Video.DirectShow.FilterCategory.AudioCompressorCategory">
+            <summary>
+            Audio compressor category
+            </summary>
+            
+            <remarks>Equals to CLSID_AudioCompressorCategory.</remarks>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.FileVideoSource">
+            <summary>
+            Video source for video files.
+            </summary>
+            
+            <remarks><para>The video source provides access to video files. DirectShow is used to access video
+            files.</para>
+            <para>Sample usage:</para>
+            <code>
+            // create video source
+            FileVideoSource videoSource = new FileVideoSource( fileName );
+            // set NewFrame event handler
+            videoSource.NewFrame += new NewFrameEventHandler( video_NewFrame );
+            // start the video source
+            videoSource.Start( );
+            // ...
+            // signal to stop
+            videoSource.SignalToStop( );
+            // ...
+            
+            private void video_NewFrame( object sender, NewFrameEventArgs eventArgs )
+            {
+                // get new frame
+                Bitmap bitmap = eventArgs.Frame;
+                // process the frame
+            }
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FileVideoSource"/> class.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FileVideoSource"/> class.
+            </summary>
+            
+            <param name="fileName">Video file name.</param>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.Start">
+            <summary>
+            Start video source.
+            </summary>
+            
+            <remarks>Start video source and return execution to caller. Video source
+            object creates background thread and notifies about new frames with the
+            help of <see cref="E:AForge.Video.DirectShow.FileVideoSource.NewFrame"/> event.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.SignalToStop">
+            <summary>
+            Signal video source to stop its work.
+            </summary>
+            
+            <remarks>Signals video source to stop its background thread, stop to
+            provide new frames and free resources.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.WaitForStop">
+            <summary>
+            Wait for video source has stopped.
+            </summary>
+            
+            <remarks>Waits for source stopping after it was signalled to stop using
+            <see cref="M:AForge.Video.DirectShow.FileVideoSource.SignalToStop"/> method.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.Stop">
+            <summary>
+            Stop video source.
+            </summary>
+            
+            <remarks>Stops video source aborting its thread.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.Free">
+            <summary>
+            Free resource.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.WorkerThread">
+            <summary>
+            Worker thread.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.FileVideoSource.OnNewFrame(System.Drawing.Bitmap)">
+            <summary>
+            Notifies client about new frame.
+            </summary>
+            
+            <param name="image">New frame's image.</param>
+            
+        </member>
+        <member name="E:AForge.Video.DirectShow.FileVideoSource.NewFrame">
+            <summary>
+            New frame event.
+            </summary>
+            
+            <remarks>Notifies client about new available frame from video source.</remarks>
+            
+        </member>
+        <member name="E:AForge.Video.DirectShow.FileVideoSource.VideoSourceError">
+            <summary>
+            Video source error event.
+            </summary>
+            
+            <remarks>The event is used to notify client about any type error occurred in
+            video source object, for example exceptions.</remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.Source">
+            <summary>
+            Video source.
+            </summary>
+            
+            <remarks>Video source is represented by video file name.</remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.FramesReceived">
+            <summary>
+            Received frames count.
+            </summary>
+            
+            <remarks>Number of frames the video source provided from the moment of the last
+            access to the property.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.BytesReceived">
+            <summary>
+            Received bytes count.
+            </summary>
+            
+            <remarks>Number of bytes the video source provided from the moment of the last
+            access to the property.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.UserData">
+            <summary>
+            User data.
+            </summary>
+            
+            <remarks>The property allows to associate user data with video source object.</remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.IsRunning">
+            <summary>
+            State of the video source.
+            </summary>
+            
+            <remarks>Current state of video source object.</remarks>
+            
+        </member>
+        <member name="P:AForge.Video.DirectShow.FileVideoSource.PreventFreezing">
+            <summary>
+            Prevent video freezing after screen saver and workstation lock or not.
+            </summary>
+            
+            <remarks>
+            <para>The value specifies if the class should prevent video freezing during and
+            after screen saver or workstation lock. To prevent freezing the <i>DirectShow</i> graph
+            should not contain  <i>Renderer</i> filter, which is added by <i>Render()</i> method
+            of graph. However, in some cases it may be required to call <i>Render()</i> method of graph, since
+            it may add some more filters, which may be required for playing video. So, the property is
+            a trade off - it is possible to prevent video freezing skipping adding renderer filter or
+            it is possible to keep renderer filter, but video may freeze during screen saver.</para>
+            <para>Default value of this property is set to <b>false</b> for file video source.</para>
+            <para><note>The property may become obsolete in the future if approach to disable freezing
+            and adding all required filters is found.</note></para>
+            <para><note>The property should be set before calling <see cref="M:AForge.Video.DirectShow.FileVideoSource.Start"/> method
+            of the class.</note></para>
+            </remarks>
+            
+        </member>
         <member name="T:AForge.Video.DirectShow.Internals.IFilterGraph">
             <summary>
             The interface provides methods for building a filter graph. An application can use it to add filters to
@@ -1230,48 +1430,82 @@
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="T:AForge.Video.DirectShow.Internals.IEnumPins">
+        <member name="T:AForge.Video.DirectShow.Internals.ISampleGrabber">
             <summary>
-            Enumerates pins on a filter.
+            The interface is exposed by the Sample Grabber Filter. It enables an application to retrieve
+            individual media samples as they move through the filter graph.
             </summary>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Next(System.Int32,AForge.Video.DirectShow.Internals.IPin[],System.Int32@)">
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetOneShot(System.Boolean)">
             <summary>
-            Retrieves a specified number of pins.
+            Specifies whether the filter should stop the graph after receiving one sample.
             </summary>
             
-            <param name="cPins">Number of pins to retrieve.</param>
-            <param name="pins">Array of size <b>cPins</b> that is filled with <b>IPin</b> pointers.</param>
-            <param name="pinsFetched">Receives the number of pins retrieved.</param>
+            <param name="oneShot">Boolean value specifying whether the filter should stop the graph after receiving one sample.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Skip(System.Int32)">
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetMediaType(AForge.Video.DirectShow.Internals.AMMediaType)">
             <summary>
-            Skips a specified number of pins in the enumeration sequence.
+            Specifies the media type for the connection on the Sample Grabber's input pin.
             </summary>
             
-            <param name="cPins">Number of pins to skip.</param>
+            <param name="mediaType">Specifies the required media type.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Reset">
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetConnectedMediaType(AForge.Video.DirectShow.Internals.AMMediaType)">
             <summary>
-            Resets the enumeration sequence to the beginning.
+            Retrieves the media type for the connection on the Sample Grabber's input pin.
             </summary>
+            
+            <param name="mediaType"><see cref="T:AForge.Video.DirectShow.Internals.AMMediaType"/> structure, which receives media type.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Clone(AForge.Video.DirectShow.Internals.IEnumPins@)">
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetBufferSamples(System.Boolean)">
             <summary>
-            Makes a copy of the enumerator with the same enumeration state. 
+            Specifies whether to copy sample data into a buffer as it goes through the filter.
             </summary>
             
-            <param name="enumPins">Duplicate of the enumerator.</param>
+            <param name="bufferThem">Boolean value specifying whether to buffer sample data.
+            If <b>true</b>, the filter copies sample data into an internal buffer.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetCurrentBuffer(System.Int32@,System.IntPtr)">
+            <summary>
+            Retrieves a copy of the sample that the filter received most recently.
+            </summary>
+            
+            <param name="bufferSize">Pointer to the size of the buffer. If pBuffer is NULL, this parameter receives the required size.</param>
+            <param name="buffer">Pointer to a buffer to receive a copy of the sample, or NULL.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.GetCurrentSample(System.IntPtr)">
+            <summary>
+            Not currently implemented.
+            </summary>
+            
+            <param name="sample"></param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.ISampleGrabber.SetCallback(AForge.Video.DirectShow.Internals.ISampleGrabberCB,System.Int32)">
+            <summary>
+            Specifies a callback method to call on incoming samples.
+            </summary>
+            
+            <param name="callback"><see cref="T:AForge.Video.DirectShow.Internals.ISampleGrabberCB"/> interface containing the callback method, or NULL to cancel the callback.</param>
+            <param name="whichMethodToCallback">Index specifying the callback method.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
@@ -1454,213 +1688,175 @@
             </remarks>
             
         </member>
-        <member name="T:AForge.Video.DirectShow.FilterInfo">
+        <member name="T:AForge.Video.DirectShow.Internals.IEnumPins">
             <summary>
-            DirectShow filter information.
+            Enumerates pins on a filter.
             </summary>
             
         </member>
-        <member name="F:AForge.Video.DirectShow.FilterInfo.Name">
+        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Next(System.Int32,AForge.Video.DirectShow.Internals.IPin[],System.Int32@)">
             <summary>
-            Filter name.
-            </summary>
-        </member>
-        <member name="F:AForge.Video.DirectShow.FilterInfo.MonikerString">
-            <summary>
-            Filters's moniker string.
+            Retrieves a specified number of pins.
             </summary>
             
-        </member>
-        <member name="M:AForge.Video.DirectShow.FilterInfo.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FilterInfo"/> class.
-            </summary>
-            
-            <param name="monikerString">Filters's moniker string</param>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FilterInfo.#ctor(System.Runtime.InteropServices.ComTypes.IMoniker)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AForge.Video.DirectShow.FilterInfo"/> class.
-            </summary>
-            
-            <param name="moniker">Filter's moniker object.</param>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FilterInfo.CompareTo(System.Object)">
-            <summary>
-            Compare the object with another instance of this class.
-            </summary>
-            
-            <param name="value">Object to compare with.</param>
-            
-            <returns>A signed number indicating the relative values of this instance and <b>value</b>.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.FilterInfo.CreateFilter(System.String)">
-            <summary>
-            Create an instance of the filter.
-            </summary>
-            
-            <returns>Returns filter's object, which implements <b>IBaseFilter</b> interface.</returns>
-            
-            <remarks>The returned filter's object should be released using <b>Marshal.ReleaseComObject()</b>.</remarks>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.IGraphBuilder">
-            <summary>
-            This interface provides methods that enable an application to build a filter graph.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.AddFilter(AForge.Video.DirectShow.Internals.IBaseFilter,System.String)">
-            <summary>
-            Adds a filter to the graph and gives it a name.
-            </summary>
-            
-            <param name="filter">Filter to add to the graph.</param>
-            <param name="name">Name of the filter.</param>
+            <param name="cPins">Number of pins to retrieve.</param>
+            <param name="pins">Array of size <b>cPins</b> that is filled with <b>IPin</b> pointers.</param>
+            <param name="pinsFetched">Receives the number of pins retrieved.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.RemoveFilter(AForge.Video.DirectShow.Internals.IBaseFilter)">
+        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Skip(System.Int32)">
             <summary>
-            Removes a filter from the graph.
+            Skips a specified number of pins in the enumeration sequence.
             </summary>
             
-            <param name="filter">Filter to be removed from the graph.</param>
+            <param name="cPins">Number of pins to skip.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.EnumFilters(AForge.Video.DirectShow.Internals.IEnumFilters@)">
+        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Reset">
             <summary>
-            Provides an enumerator for all filters in the graph.
-            </summary>
-            
-            <param name="enumerator">Filter enumerator.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.FindFilterByName(System.String,AForge.Video.DirectShow.Internals.IBaseFilter@)">
-            <summary>
-            Finds a filter that was added with a specified name.
-            </summary>
-            
-            <param name="name">Name of filter to search for.</param>
-            <param name="filter">Interface of found filter.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.ConnectDirect(AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.AMMediaType)">
-            <summary>
-            Connects two pins directly (without intervening filters).
-            </summary>
-            
-            <param name="pinOut">Output pin.</param>
-            <param name="pinIn">Input pin.</param>
-            <param name="mediaType">Media type to use for the connection.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Reconnect(AForge.Video.DirectShow.Internals.IPin)">
-            <summary>
-            Breaks the existing pin connection and reconnects it to the same pin.
-            </summary>
-            
-            <param name="pin">Pin to disconnect and reconnect.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Disconnect(AForge.Video.DirectShow.Internals.IPin)">
-            <summary>
-            Disconnects a specified pin.
-            </summary>
-            
-            <param name="pin">Pin to disconnect.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.SetDefaultSyncSource">
-            <summary>
-            Sets the reference clock to the default clock.
+            Resets the enumeration sequence to the beginning.
             </summary>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Connect(AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.IPin)">
+        <member name="M:AForge.Video.DirectShow.Internals.IEnumPins.Clone(AForge.Video.DirectShow.Internals.IEnumPins@)">
             <summary>
-            Connects two pins. If they will not connect directly, this method connects them with intervening transforms.
+            Makes a copy of the enumerator with the same enumeration state. 
             </summary>
             
-            <param name="pinOut">Output pin.</param>
-            <param name="pinIn">Input pin.</param>
+            <param name="enumPins">Duplicate of the enumerator.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Render(AForge.Video.DirectShow.Internals.IPin)">
+        <member name="T:AForge.Video.DirectShow.Internals.IBaseFilter">
             <summary>
-            Adds a chain of filters to a specified output pin to render it.
+            The IBaseFilter interface provides methods for controlling a filter.
+            All DirectShow filters expose this interface
             </summary>
             
-            <param name="pinOut">Output pin.</param>
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetClassID(System.Guid@)">
+            <summary>
+            Returns the class identifier (CLSID) for the component object.
+            </summary>
+            
+            <param name="ClassID">Points to the location of the CLSID on return.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.RenderFile(System.String,System.String)">
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Stop">
             <summary>
-            Builds a filter graph that renders the specified file.
-            </summary>
-            
-            <param name="file">Specifies a string that contains file name or device moniker.</param>
-            <param name="playList">Reserved.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.AddSourceFilter(System.String,System.String,AForge.Video.DirectShow.Internals.IBaseFilter@)">
-            <summary>
-            Adds a source filter to the filter graph for a specific file.
-            </summary>
-            
-            <param name="fileName">Specifies the name of the file to load.</param>
-            <param name="filterName">Specifies a name for the source filter.</param>
-            <param name="filter">Variable that receives the interface of the source filter.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.SetLogFile(System.IntPtr)">
-            <summary>
-            Sets the file for logging actions taken when attempting to perform an operation.
-            </summary>
-            
-            <param name="hFile">Handle to the log file.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Abort">
-            <summary>
-            Requests that the graph builder return as soon as possible from its current task.
+            Stops the filter.
             </summary>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.ShouldOperationContinue">
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Pause">
             <summary>
-            Queries whether the current operation should continue.
+            Pauses the filter.
             </summary>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Run(System.Int64)">
+            <summary>
+            Runs the filter.
+            </summary>
+            
+            <param name="start">Reference time corresponding to stream time 0.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetState(System.Int32,System.Int32@)">
+            <summary>
+            Retrieves the state of the filter (running, stopped, or paused).
+            </summary>
+            
+            <param name="milliSecsTimeout">Time-out interval, in milliseconds.</param>
+            <param name="filterState">Pointer to a variable that receives filter's state.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.SetSyncSource(System.IntPtr)">
+            <summary>
+            Sets the reference clock for the filter or the filter graph.
+            </summary>
+            
+            <param name="clock">Pointer to the clock's <b>IReferenceClock</b> interface, or NULL. </param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetSyncSource(System.IntPtr@)">
+            <summary>
+            Retrieves the current reference clock.
+            </summary>
+            
+            <param name="clock">Address of a variable that receives a pointer to the clock's IReferenceClock interface.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.EnumPins(AForge.Video.DirectShow.Internals.IEnumPins@)">
+            <summary>
+            Enumerates the pins on this filter.
+            </summary>
+            
+            <param name="enumPins">Address of a variable that receives a pointer to the IEnumPins interface.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.FindPin(System.String,AForge.Video.DirectShow.Internals.IPin@)">
+            <summary>
+            Retrieves the pin with the specified identifier.
+            </summary>
+            
+            <param name="id">Pointer to a constant wide-character string that identifies the pinþ</param>
+            <param name="pin">Address of a variable that receives a pointer to the pin's IPin interface.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.QueryFilterInfo(AForge.Video.DirectShow.Internals.FilterInfo@)">
+            <summary>
+            Notifies the filter that it has joined or left the filter graph.
+            </summary>
+            
+            <param name="filterInfo">Pointer to <b>FilterInfo</b> structure.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.JoinFilterGraph(AForge.Video.DirectShow.Internals.IFilterGraph,System.String)">
+            <summary>
+            Retrieves information about the filter.
+            </summary>
+            
+            <param name="graph">Pointer to the Filter Graph Manager's <b>IFilterGraph</b> interface, or NULL
+            if the filter is leaving the graph.</param>
+            <param name="name">String that specifies a name for the filter.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.QueryVendorInfo(System.String@)">
+            <summary>
+            Retrieves a string containing vendor information.
+            </summary>
+            
+            <param name="vendorInfo">Receives a string containing the vendor information.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
@@ -1906,398 +2102,202 @@
             Specifies the y-coordinate of the lower-right corner of the rectangle.
             </summary>
         </member>
-        <member name="T:AForge.Video.DirectShow.Internals.IBaseFilter">
+        <member name="T:AForge.Video.DirectShow.Internals.Tools">
             <summary>
-            The IBaseFilter interface provides methods for controlling a filter.
-            All DirectShow filters expose this interface
+            Some miscellaneous functions.
             </summary>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetClassID(System.Guid@)">
+        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetPin(AForge.Video.DirectShow.Internals.IBaseFilter,AForge.Video.DirectShow.Internals.PinDirection,System.Int32)">
             <summary>
-            Returns the class identifier (CLSID) for the component object.
+            Get filter's pin.
             </summary>
             
-            <param name="ClassID">Points to the location of the CLSID on return.</param>
+            <param name="filter">Filter to get pin of.</param>
+            <param name="dir">Pin's direction.</param>
+            <param name="num">Pin's number.</param>
+            
+            <returns>Returns filter's pin.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetInPin(AForge.Video.DirectShow.Internals.IBaseFilter,System.Int32)">
+            <summary>
+            Get filter's input pin.
+            </summary>
+            
+            <param name="filter">Filter to get pin of.</param>
+            <param name="num">Pin's number.</param>
+            
+            <returns>Returns filter's pin.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.Tools.GetOutPin(AForge.Video.DirectShow.Internals.IBaseFilter,System.Int32)">
+            <summary>
+            Get filter's output pin.
+            </summary>
+            
+            <param name="filter">Filter to get pin of.</param>
+            <param name="num">Pin's number.</param>
+            
+            <returns>Returns filter's pin.</returns>
+            
+        </member>
+        <member name="T:AForge.Video.DirectShow.Internals.IGraphBuilder">
+            <summary>
+            This interface provides methods that enable an application to build a filter graph.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.AddFilter(AForge.Video.DirectShow.Internals.IBaseFilter,System.String)">
+            <summary>
+            Adds a filter to the graph and gives it a name.
+            </summary>
+            
+            <param name="filter">Filter to add to the graph.</param>
+            <param name="name">Name of the filter.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Stop">
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.RemoveFilter(AForge.Video.DirectShow.Internals.IBaseFilter)">
             <summary>
-            Stops the filter.
+            Removes a filter from the graph.
+            </summary>
+            
+            <param name="filter">Filter to be removed from the graph.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.EnumFilters(AForge.Video.DirectShow.Internals.IEnumFilters@)">
+            <summary>
+            Provides an enumerator for all filters in the graph.
+            </summary>
+            
+            <param name="enumerator">Filter enumerator.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.FindFilterByName(System.String,AForge.Video.DirectShow.Internals.IBaseFilter@)">
+            <summary>
+            Finds a filter that was added with a specified name.
+            </summary>
+            
+            <param name="name">Name of filter to search for.</param>
+            <param name="filter">Interface of found filter.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.ConnectDirect(AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.AMMediaType)">
+            <summary>
+            Connects two pins directly (without intervening filters).
+            </summary>
+            
+            <param name="pinOut">Output pin.</param>
+            <param name="pinIn">Input pin.</param>
+            <param name="mediaType">Media type to use for the connection.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Reconnect(AForge.Video.DirectShow.Internals.IPin)">
+            <summary>
+            Breaks the existing pin connection and reconnects it to the same pin.
+            </summary>
+            
+            <param name="pin">Pin to disconnect and reconnect.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Disconnect(AForge.Video.DirectShow.Internals.IPin)">
+            <summary>
+            Disconnects a specified pin.
+            </summary>
+            
+            <param name="pin">Pin to disconnect.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.SetDefaultSyncSource">
+            <summary>
+            Sets the reference clock to the default clock.
             </summary>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Pause">
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Connect(AForge.Video.DirectShow.Internals.IPin,AForge.Video.DirectShow.Internals.IPin)">
             <summary>
-            Pauses the filter.
+            Connects two pins. If they will not connect directly, this method connects them with intervening transforms.
+            </summary>
+            
+            <param name="pinOut">Output pin.</param>
+            <param name="pinIn">Input pin.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Render(AForge.Video.DirectShow.Internals.IPin)">
+            <summary>
+            Adds a chain of filters to a specified output pin to render it.
+            </summary>
+            
+            <param name="pinOut">Output pin.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.RenderFile(System.String,System.String)">
+            <summary>
+            Builds a filter graph that renders the specified file.
+            </summary>
+            
+            <param name="file">Specifies a string that contains file name or device moniker.</param>
+            <param name="playList">Reserved.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.AddSourceFilter(System.String,System.String,AForge.Video.DirectShow.Internals.IBaseFilter@)">
+            <summary>
+            Adds a source filter to the filter graph for a specific file.
+            </summary>
+            
+            <param name="fileName">Specifies the name of the file to load.</param>
+            <param name="filterName">Specifies a name for the source filter.</param>
+            <param name="filter">Variable that receives the interface of the source filter.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.SetLogFile(System.IntPtr)">
+            <summary>
+            Sets the file for logging actions taken when attempting to perform an operation.
+            </summary>
+            
+            <param name="hFile">Handle to the log file.</param>
+            
+            <returns>Return's <b>HRESULT</b> error code.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.Abort">
+            <summary>
+            Requests that the graph builder return as soon as possible from its current task.
             </summary>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
             
         </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.Run(System.Int64)">
+        <member name="M:AForge.Video.DirectShow.Internals.IGraphBuilder.ShouldOperationContinue">
             <summary>
-            Runs the filter.
+            Queries whether the current operation should continue.
             </summary>
-            
-            <param name="start">Reference time corresponding to stream time 0.</param>
             
             <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetState(System.Int32,System.Int32@)">
-            <summary>
-            Retrieves the state of the filter (running, stopped, or paused).
-            </summary>
-            
-            <param name="milliSecsTimeout">Time-out interval, in milliseconds.</param>
-            <param name="filterState">Pointer to a variable that receives filter's state.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.SetSyncSource(System.IntPtr)">
-            <summary>
-            Sets the reference clock for the filter or the filter graph.
-            </summary>
-            
-            <param name="clock">Pointer to the clock's <b>IReferenceClock</b> interface, or NULL. </param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.GetSyncSource(System.IntPtr@)">
-            <summary>
-            Retrieves the current reference clock.
-            </summary>
-            
-            <param name="clock">Address of a variable that receives a pointer to the clock's IReferenceClock interface.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.EnumPins(AForge.Video.DirectShow.Internals.IEnumPins@)">
-            <summary>
-            Enumerates the pins on this filter.
-            </summary>
-            
-            <param name="enumPins">Address of a variable that receives a pointer to the IEnumPins interface.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.FindPin(System.String,AForge.Video.DirectShow.Internals.IPin@)">
-            <summary>
-            Retrieves the pin with the specified identifier.
-            </summary>
-            
-            <param name="id">Pointer to a constant wide-character string that identifies the pinþ</param>
-            <param name="pin">Address of a variable that receives a pointer to the pin's IPin interface.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.QueryFilterInfo(AForge.Video.DirectShow.Internals.FilterInfo@)">
-            <summary>
-            Notifies the filter that it has joined or left the filter graph.
-            </summary>
-            
-            <param name="filterInfo">Pointer to <b>FilterInfo</b> structure.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.JoinFilterGraph(AForge.Video.DirectShow.Internals.IFilterGraph,System.String)">
-            <summary>
-            Retrieves information about the filter.
-            </summary>
-            
-            <param name="graph">Pointer to the Filter Graph Manager's <b>IFilterGraph</b> interface, or NULL
-            if the filter is leaving the graph.</param>
-            <param name="name">String that specifies a name for the filter.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.IBaseFilter.QueryVendorInfo(System.String@)">
-            <summary>
-            Retrieves a string containing vendor information.
-            </summary>
-            
-            <param name="vendorInfo">Receives a string containing the vendor information.</param>
-            
-            <returns>Return's <b>HRESULT</b> error code.</returns>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.FilterCategory">
-            <summary>
-            DirectShow filter categories.
-            </summary>
-        </member>
-        <member name="F:AForge.Video.DirectShow.FilterCategory.AudioInputDevice">
-            <summary>
-            Audio input device category.
-            </summary>
-            
-            <remarks>Equals to CLSID_AudioInputDeviceCategory.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.FilterCategory.VideoInputDevice">
-            <summary>
-            Video input device category.
-            </summary>
-            
-            <remarks>Equals to CLSID_VideoInputDeviceCategory.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.FilterCategory.VideoCompressorCategory">
-            <summary>
-            Video compressor category.
-            </summary>
-            
-            <remarks>Equals to CLSID_VideoCompressorCategory.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.FilterCategory.AudioCompressorCategory">
-            <summary>
-            Audio compressor category
-            </summary>
-            
-            <remarks>Equals to CLSID_AudioCompressorCategory.</remarks>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.Win32">
-            <summary>
-            Some Win32 API used internally.
-            </summary>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Win32.CreateBindCtx(System.Int32,System.Runtime.InteropServices.ComTypes.IBindCtx@)">
-            <summary>
-            Supplies a pointer to an implementation of <b>IBindCtx</b> (a bind context object).
-            This object stores information about a particular moniker-binding operation.
-            </summary>
-            
-            <param name="reserved">Reserved for future use; must be zero.</param>
-            <param name="ppbc">Address of <b>IBindCtx*</b> pointer variable that receives the
-            interface pointer to the new bind context object.</param>
-            
-            <returns>Returns <b>S_OK</b> on success.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Win32.MkParseDisplayName(System.Runtime.InteropServices.ComTypes.IBindCtx,System.String,System.Int32@,System.Runtime.InteropServices.ComTypes.IMoniker@)">
-            <summary>
-            Converts a string into a moniker that identifies the object named by the string.
-            </summary>
-            
-            <param name="pbc">Pointer to the IBindCtx interface on the bind context object to be used in this binding operation.</param>
-            <param name="szUserName">Pointer to a zero-terminated wide character string containing the display name to be parsed. </param>
-            <param name="pchEaten">Pointer to the number of characters of szUserName that were consumed.</param>
-            <param name="ppmk">Address of <b>IMoniker*</b> pointer variable that receives the interface pointer
-            to the moniker that was built from <b>szUserName</b>.</param>
-            
-            <returns>Returns <b>S_OK</b> on success.</returns>
-            
-        </member>
-        <member name="M:AForge.Video.DirectShow.Internals.Win32.memcpy(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Copy a block of memory.
-            </summary>
-            
-            <param name="dst">Destination pointer.</param>
-            <param name="src">Source pointer.</param>
-            <param name="count">Memory block's length to copy.</param>
-            
-            <returns>Return's the value of <b>dst</b> - pointer to destination.</returns>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.Clsid">
-            <summary>
-            DirectShow class IDs.
-            </summary>
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.Clsid.SystemDeviceEnum">
-            <summary>
-            System device enumerator.
-            </summary>
-            
-            <remarks>Equals to CLSID_SystemDeviceEnum.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.Clsid.FilterGraph">
-            <summary>
-            Filter graph.
-            </summary>
-            
-            <remarks>Equals to CLSID_FilterGraph.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.Clsid.SampleGrabber">
-            <summary>
-            Sample grabber.
-            </summary>
-            
-            <remarks>Equals to CLSID_SampleGrabber.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.Clsid.AsyncReader">
-            <summary>
-            Async reader.
-            </summary>
-            
-            <remarks>Equals to CLSID_AsyncReader.</remarks>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.MediaType">
-            <summary>
-            DirectShow media typesþ
-            </summary>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Video">
-            <summary>
-            Video.
-            </summary>
-            
-            <remarks>Equals to MEDIATYPE_Video.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Interleaved">
-            <summary>
-            Interleaved. Used by Digital Video (DV).
-            </summary>
-            
-            <remarks>Equals to MEDIATYPE_Interleaved.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Audio">
-            <summary>
-            Audio.
-            </summary>
-            
-            <remarks>Equals to MEDIATYPE_Audio.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Text">
-            <summary>
-            Text.
-            </summary>
-            
-            <remarks>Equals to MEDIATYPE_Text.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaType.Stream">
-            <summary>
-            Byte stream with no time stamps.
-            </summary>
-            
-            <remarks>Equals to MEDIATYPE_Stream.</remarks>
-            
-        </member>
-        <member name="T:AForge.Video.DirectShow.Internals.MediaSubType">
-            <summary>
-            DirectShow media subtypes.
-            </summary>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.YUYV">
-            <summary>
-            YUY2 (packed 4:2:2).
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_YUYV.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.IYUV">
-            <summary>
-            IYUV.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_IYUV.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.DVSD">
-            <summary>
-            A DV encoding format. (FOURCC 'DVSD')
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_DVSD.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB1">
-            <summary>
-            RGB, 1 bit per pixel (bpp), palettized.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB1.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB4">
-            <summary>
-            RGB, 4 bpp, palettized.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB4.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB8">
-            <summary>
-            RGB, 8 bpp.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB8.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB565">
-            <summary>
-            RGB 565, 16 bpp.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB565.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB555">
-            <summary>
-            RGB 555, 16 bpp.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB555.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB24">
-            <summary>
-            RGB, 24 bpp.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB24.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.RGB32">
-            <summary>
-            RGB, 32 bpp, no alpha channel.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_RGB32.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.Avi">
-            <summary>
-            Data from AVI file.
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_Avi.</remarks>
-            
-        </member>
-        <member name="F:AForge.Video.DirectShow.Internals.MediaSubType.Asf">
-            <summary>
-            Advanced Streaming Format (ASF).
-            </summary>
-            
-            <remarks>Equals to MEDIASUBTYPE_Asf.</remarks>
             
         </member>
         <member name="T:AForge.Video.DirectShow.Internals.ICreateDevEnum">
