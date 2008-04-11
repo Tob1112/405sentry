@@ -88,7 +88,7 @@
     <Compile Include="Forms\Setup\MotionSettings.Designer.cs">
       <DependentUpon>MotionSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Functions\Camera.cs" />
+    <Compile Include="Objects\Camera.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Forms\Test\TransmitPosition.cs">
       <SubType>Form</SubType>
@@ -97,10 +97,10 @@
       <DependentUpon>TransmitPosition.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions\Servos.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.designer.cs">
+    <Compile Include="Forms\MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\Packet.cs" />
@@ -122,7 +122,7 @@
       <DependentUpon>TransmitPosition.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -154,7 +154,7 @@
     <Compile Include="Forms\Motion\VideoCaptureDeviceForm.designer.cs">
       <DependentUpon>VideoCaptureDeviceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="usb_interface.cs" />
+    <Compile Include="Functions\usb_interface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Grid.jpg" />

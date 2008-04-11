@@ -18,7 +18,20 @@ using AutonomousSentryGun.Objects;
 using AutonomousSentryGun.Forms.Test;
 using AutonomousSentryGun.Forms.Setup;
 
-
+/* Blake: Stuff To Do
+ * 
+ * write aiming code that leads targets in motion based on their speed
+ * optimize performance: 
+ *      reduce OnNewFrame calls to every other frame, effectively handling fewer frames 
+ *          (we only need to really handle no more than 10 frames/sec if we're going to be 
+ *          sending packets at max every 100-125ms)
+ *      look into multi threading
+ *      play with different settings for frame size, with and without erosion
+ * add video stream to transmit position form
+ * add portal sentry sounds
+ * clean up interface/comment code
+ * real life testing
+*/
 namespace AutonomousSentryGun
 {
   public partial class MainForm : Form
@@ -63,6 +76,22 @@ namespace AutonomousSentryGun
      form.Show();
     }
 
+    private void dataTransmissionToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        DataTransmission dtForm = new DataTransmission();
+        dtForm.Show();
+    }
+
+    private void loadSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        openFileDialog1.ShowDialog();
+    }
+
+    private void saveSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        saveFileDialog1.ShowDialog();
+    }
+
     #region Motion Functions/Events
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -91,7 +120,8 @@ namespace AutonomousSentryGun
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 // create video source
-                VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice);
+                //VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, false);
+                VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), false);
 
                 // open it
                 OpenVideoSource(videoSource);
@@ -205,8 +235,9 @@ namespace AutonomousSentryGun
         }
     }
 
+    private Point lastPosition = new Point();
     //Timer that tracks refresh of position tracking
-    private void TrackingTimer_Tick(object sender, EventArgs e) //50ms refresh rate
+    private void TrackingTimer_Tick(object sender, EventArgs e) //125ms refresh rate as of right now
     {
         if (cameraWindow1.Camera != null && cameraWindow1.Camera.MotionDetector != null)
         {
@@ -215,7 +246,8 @@ namespace AutonomousSentryGun
             
             if (rectmotion.Length != 0)
             {
-                aimDot.Visible = true;
+                aimDot.BackColor = Color.Red;
+                //aimDot.Visible = true;
                 //calculate largest detected motion area
                 Rectangle largest = rectmotion[0];
                 for (int i = 1; i < rectmotion.Length; i++)
@@ -225,23 +257,32 @@ namespace AutonomousSentryGun
                         largest = rectmotion[i];
                     }
                 }
-
+                
                 //draw dot on center of largest motion area
                 int x = largest.X + largest.Width / 2 - 2 + cameraWindow1.Location.X;
                 int y = largest.Y + largest.Height / 2 - 2 + cameraWindow1.Location.Y;
                 aimDot.Location = new Point(x, y);
-
-                //send dot position to servos for aiming
-                servos.setPorportionalPosition(cameraWindow1.Bounds, aimDot.Location);                
+                lastPosition = new Point(aimDot.Location.X + 2, aimDot.Location.Y + 2);
+                
+                //send dot position and fire command to the servos for aiming
+                servos.setPorportionalPosition(cameraWindow1.Bounds, lastPosition); 
                 Packet packet = new Packet(servos.PositionToServosController);
                 //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
-                packet.setFireOff();
+                packet.setFireOn();
+                //packet.setFireOff();
                 sendData(packet);               
             }
             else if (rectmotion.Length == 0)
             {
-                aimDot.Visible = false;
+                //when no motion, center aimDot and return servos to center position
+                aimDot.Location = new Point(cameraWindow1.Location.X + cameraWindow1.Width / 2 - 2, cameraWindow1.Location.Y + cameraWindow1.Height / 2 - 2);
+                aimDot.BackColor = Color.Yellow;
+                //aimDot.Visible = false;
+                lastPosition = new Point();                
+                Packet packet = new Packet(servos.getCenterPosition());
+                packet.setFireOff();
+                sendData(packet);
             }
         }
         else
@@ -296,8 +337,8 @@ namespace AutonomousSentryGun
             if (!onOffToolStripMenuItem.Checked)
             {
                 CountingMotionDetector cmd = new CountingMotionDetector(true);
-                cmd.MinObjectsWidth = 50;
-                cmd.MinObjectsHeight = 50;
+                cmd.MinObjectsWidth = 30;
+                cmd.MinObjectsHeight = 30;
                 cmd.MaxObjectsWidth = cameraWindow1.Width;
                 cmd.MaxObjectsHeight = cameraWindow1.Height;
                 SetMotionDetector(cmd);
@@ -368,22 +409,6 @@ namespace AutonomousSentryGun
     }
 
 #endregion    
-
-    private void dataTransmissionToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      DataTransmission dtForm = new DataTransmission();
-      dtForm.Show();
-    }
-
-    private void loadSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      openFileDialog1.ShowDialog();
-    }
-
-    private void saveSetupFileToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      saveFileDialog1.ShowDialog();
-    }
          
   }
 }
