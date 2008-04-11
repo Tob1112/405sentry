@@ -364,7 +364,7 @@ namespace AutonomousSentryGun
 
     private void sendData(Packet packet)
     {
-        usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);        
+        //usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);        
     }
 
 #endregion    
