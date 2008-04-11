@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections;
+using System.Runtime.InteropServices;    // for PInvoke
+using Microsoft.Win32;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -28,7 +31,10 @@ using AutonomousSentryGun.Forms.Setup;
  *      look into multi threading
  *      play with different settings for frame size, with and without erosion
  * add video stream to transmit position form
- * add portal sentry sounds
+ * add portal sentry sounds 
+ *                  -> see below code for how to play sound
+ *                     this is done using the PlaySound function
+ * 
  * clean up interface/comment code
  * real life testing
 */
@@ -55,8 +61,34 @@ namespace AutonomousSentryGun
       //usb buffer
       private byte[] usbRcvBuff;
 
+           [DllImport("winmm.dll", SetLastError=true,CallingConvention=CallingConvention.Winapi)]
+            static extern bool PlaySound(
+                string pszSound,
+                IntPtr hMod,
+                SoundFlags sf );
+
+           // Flags for playing sounds.  For this example, we are reading 
+           // the sound from a filename, so we need only specify 
+           // SND_FILENAME | SND_ASYNC
+           [Flags]
+           public enum SoundFlags : int
+           {
+               SND_SYNC = 0x0000,  // play synchronously (default) 
+               SND_ASYNC = 0x0001,  // play asynchronously 
+               SND_NODEFAULT = 0x0002,  // silence (!default) if sound not found 
+               SND_MEMORY = 0x0004,  // pszSound points to a memory file
+               SND_LOOP = 0x0008,  // loop the sound until next sndPlaySound 
+               SND_NOSTOP = 0x0010,  // don't stop any currently playing sound 
+               SND_NOWAIT = 0x00002000, // don't wait if the driver is busy 
+               SND_ALIAS = 0x00010000, // name is a registry alias 
+               SND_ALIAS_ID = 0x00110000, // alias is a predefined ID
+               SND_FILENAME = 0x00020000, // name is file name 
+               SND_RESOURCE = 0x00040004  // name is resource name or atom 
+           }
+
     public MainForm()
     {
+        
       InitializeComponent();
     }
 
@@ -121,7 +153,7 @@ namespace AutonomousSentryGun
             {
                 // create video source
                 //VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, false);
-                VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), false);
+                VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), true);
 
                 // open it
                 OpenVideoSource(videoSource);
@@ -383,6 +415,10 @@ namespace AutonomousSentryGun
         {
             if (!onOffTrackingToolStripMenuItem1.Checked)
             {
+                //code to play sound taken from
+                //http://www.codeproject.com/KB/audio-video/PlaySounds1.aspx
+                PlaySound("C:\\Documents and Settings\\NTH1345\\Desktop\\405\\AutonomousSentryGun\\Sentry Sounds\\bootup\\sentry_mode_activated.wav", IntPtr.Zero,
+                            SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
                 TrackingTimer.Start();
                 aimDot.Visible = true;                
                 //servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);
