@@ -54,6 +54,18 @@ namespace AForge.Video.DirectShow
         private int bytesReceived;
         // prevent freezing
         private bool preventFreezing = true;
+        // activate erosion filter
+        private bool erosionOn = false;
+        
+        //Video Modifiers
+        //Boolean to activate Input Stream Modification
+        private bool modifyStream = false;
+        //Size of the video input stream
+        private Size streamSize;
+        //sets if input is a YUYV stream or not
+        private bool YUYV = false;
+        //sets the stream's framerate (neither camera supports different frame rates)
+        //double framerate = 5;
         
         // Configuration streams
         private DShowNET.IAMStreamConfig videoStreamConfig = null;
@@ -88,6 +100,16 @@ namespace AForge.Video.DirectShow
         {
             get { return deviceMoniker; }
             set { deviceMoniker = value; }
+        }
+
+        public bool getYUYV()
+        {
+            return YUYV;
+        }
+
+        public bool getErosion()
+        {
+            return erosionOn;
         }
 
         /// <summary>
@@ -201,7 +223,36 @@ namespace AForge.Video.DirectShow
         public VideoCaptureDevice( string deviceMoniker )
         {
             this.deviceMoniker = deviceMoniker;
+            modifyStream = false;
+            YUYV = false;
+            erosionOn = false;
         }
+
+        public VideoCaptureDevice(string deviceMoniker, Size streamRes)
+        {
+            this.deviceMoniker = deviceMoniker;
+            modifyStream = true;
+            streamSize = streamRes;
+            YUYV = false;
+            erosionOn = false;
+        }
+
+        public VideoCaptureDevice(string deviceMoniker, bool erosion)
+        {
+            this.deviceMoniker = deviceMoniker;
+            modifyStream = false;
+            YUYV = false;
+            erosionOn = erosion;
+        }
+
+        public VideoCaptureDevice(string deviceMoniker, Size streamRes, bool erosion)
+        {
+            this.deviceMoniker = deviceMoniker;
+            modifyStream = true;
+            streamSize = streamRes;
+            YUYV = false;
+            erosionOn = erosion;
+        }      
 
         /// <summary>
         /// Start video source.
@@ -313,10 +364,7 @@ namespace AForge.Video.DirectShow
             IGraphBuilder graphBuilder = null;
             DShowNET.ICaptureGraphBuilder2 captureGraphBuilder = null;
             IBaseFilter videoDeviceFilter = null;
-            IBaseFilter grabberFilter = null;
-            IBaseFilter aviFilter = null;
-            IBaseFilter YUY2RGBFilter = null;
-            IBaseFilter CSCFilter = null;
+            IBaseFilter grabberFilter = null;            
             ISampleGrabber sg = null;
             IMediaControl mc = null;
 
@@ -345,19 +393,7 @@ namespace AForge.Video.DirectShow
                     hr = graphBuilder.AddFilter(videoDeviceFilter,
                     "Video Capture Device");
                     if (hr < 0) Marshal.ThrowExceptionForHR(hr);
-                }
-
-                /*aviFilter = (IBaseFilter)Marshal.BindToMoniker("@device:sw:{083863F1-70DE-11D0-BD40-00A0C911CE86}\\{4F3E50BD-A9D7-4721-B0E1-00CB42A0A747}");
-                hr = graphBuilder.AddFilter(aviFilter, "AVI Decompressor");
-                if (hr < 0) Marshal.ThrowExceptionForHR(hr);
-
-                YUY2RGBFilter = (IBaseFilter)Marshal.BindToMoniker("@device:sw:{083863F1-70DE-11D0-BD40-00A0C911CE86}\\{CC58E280-8AA1-11D1-B3F1-00AA003761C5}");
-                hr = graphBuilder.AddFilter(YUY2RGBFilter, "Smart Tee");
-                if (hr < 0) Marshal.ThrowExceptionForHR(hr);*/
-
-                //CSCFilter = (IBaseFilter)Marshal.BindToMoniker("@device:sw:{083863F1-70DE-11D0-BD40-00A0C911CE86}\\{1643E180-90F5-11CE-97D5-00AA0055595A}");
-                //hr = graphBuilder.AddFilter(CSCFilter, "Color Space Converter");
-                //if (hr < 0) Marshal.ThrowExceptionForHR(hr);
+                }                                
 
                 // create sample grabber, object and filter
                 grabberObj = Activator.CreateInstance(Type.GetTypeFromCLSID(Clsid.SampleGrabber, true));
@@ -387,66 +423,49 @@ namespace AForge.Video.DirectShow
                     if (hr != 0)
                         o = null;
                 }
+
                 // Set the video stream configuration to data member
                 videoStreamConfig = o as DShowNET.IAMStreamConfig;
                 o = null;
-
-                //need to change size of stream to 320x240 to speed up motion detection
-                bool bdebug = true;
-                if (bdebug)
+                
+                //modifies the stream size and frame rate                
+                if (modifyStream)
                 {
                     //set size of frame
                     BitmapInfoHeader bmiHeader;
                     bmiHeader = (BitmapInfoHeader)getStreamConfigSetting(videoStreamConfig, "BmiHeader");                    
-                    bmiHeader.Width = 320;
-                    bmiHeader.Height = 240;
+                    bmiHeader.Width = streamSize.Width;
+                    bmiHeader.Height = streamSize.Height;
                     setStreamConfigSetting(videoStreamConfig,"BmiHeader", bmiHeader);
 
-                    //set frame rate (doesn't work yet)
+                    //set frame rate (not supported on the cameras we have)
                     /*
-                    double framerate = 15;
                     long avgTimePerFrame = (long)(10000000 / framerate);
                     setStreamConfigSetting(videoStreamConfig, "AvgTimePerFrame", avgTimePerFrame);
                     */
                 }
 
                 // connect pins (Turns on the video device)
-                //if (graphBuilder.Connect(Tools.GetOutPin(videoDeviceFilter, 0), Tools.GetInPin(aviFilter, 0)) < 0)
-                //    throw new ApplicationException("Failed connecting filters");
-
-                // connect pins (Turns on the video device)
-                //if (graphBuilder.Connect(Tools.GetOutPin(videoDeviceFilter, 0), Tools.GetInPin(CSCFilter, 0)) < 0)
-                //    throw new ApplicationException("Failed connecting filters");
-
-                // connect pins (Turns on the video device)
                 if (graphBuilder.Connect((IPin)AForge.Video.DirectShow.Internals.Tools.GetOutPin((AForge.Video.DirectShow.Internals.IBaseFilter)videoDeviceFilter, 0), (IPin) AForge.Video.DirectShow.Internals.Tools.GetInPin((AForge.Video.DirectShow.Internals.IBaseFilter)grabberFilter, 0)) < 0)
                     throw new ApplicationException("Failed connecting filters");
-
-                bool YUYV = false;
-                AMMediaType mt = new AMMediaType();
-                // Set the sample grabber media type settings
-                if (YUYV)
-                {                    
-                    mt.majorType = MediaType.Video;
-                    mt.subType = MediaSubType.YUYV;
-                    sg.SetMediaType(mt);
-                }
-                else if (!YUYV)
-                {                    
-                    mt.majorType = MediaType.Video;
-                    mt.subType = MediaSubType.RGB24;
-                    sg.SetMediaType(mt);
-                }
                 
-                // get media type
+                // Set the sample grabber media type settings
+                AMMediaType mt = new AMMediaType();                                                  
+                mt.majorType = MediaType.Video;
+                mt.subType = MediaSubType.RGB24;
+                sg.SetMediaType(mt);
+
+                // get media type and set sample grabber parameters
                 if (sg.GetConnectedMediaType(mt) == 0)
                 {
                     VideoInfoHeader vih = (VideoInfoHeader)Marshal.PtrToStructure(mt.formatPtr, typeof(VideoInfoHeader));
-                    //System.Diagnostics.Debug.WriteLine("width = " + vih.BmiHeader.Width + ", height = " + vih.BmiHeader.Height);
-                    vih.BmiHeader.Compression.ToString();
+                    if (vih.BmiHeader.Compression != 0)
+                    {
+                        YUYV = true;
+                        grabber.setYUYV(YUYV);
+                    }                    
                     grabber.Width = vih.BmiHeader.Width;
                     grabber.Height = vih.BmiHeader.Height;                    
-                    //setStreamConfigSetting(videoStreamConfig, "BmiHeader", vih.BmiHeader);                    
                     //mt.Dispose();
                 }
                 
@@ -460,24 +479,12 @@ namespace AForge.Video.DirectShow
                     // render
                     graphBuilder.Render((IPin)AForge.Video.DirectShow.Internals.Tools.GetOutPin((AForge.Video.DirectShow.Internals.IBaseFilter) grabberFilter, 0));
 
-
                     // Do not show active (source) window
                     IVideoWindow win = (IVideoWindow)graphObj;
                     win.put_AutoShow(0);
                     win = null;
                 }
-                /*
-                cat = DShowNET.PinCategory.Preview;
-                med = DShowNET.MediaType.Video;
-                hr = captureGraphBuilder.RenderStream(ref cat, ref med, videoDeviceFilter, null, null);
-                if (hr < 0) Marshal.ThrowExceptionForHR(hr);*/        
-
                 
-                //graphBuilder.Render(Tools.GetOutPin(grabberFilter, 0));
-                /*IVideoWindow win = (IVideoWindow)graphObj;
-                win.put_AutoShow(true);
-                win.put_Visible(true);*/
-
                 // get media control
                 mc = (IMediaControl)graphBuilder;
 
@@ -493,7 +500,11 @@ namespace AForge.Video.DirectShow
             // catch any exceptions
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("----: " + e.Message);
+                // provide information to clients
+                if (VideoSourceError != null)
+                {
+                    VideoSourceError(this, new VideoSourceErrorEventArgs(e.Message));
+                }
             }
             // finalization block
             finally
@@ -710,6 +721,13 @@ namespace AForge.Video.DirectShow
             private VideoCaptureDevice parent;
             private int width, height;            
             private AForge.Imaging.Filters.Erosion erosionFilter = new AForge.Imaging.Filters.Erosion();
+            private bool YUYV;
+            private bool erode;            
+
+            public void setYUYV(bool Y)
+            {
+                YUYV = Y;
+            }
 
             // Width property
             public int Width
@@ -728,6 +746,8 @@ namespace AForge.Video.DirectShow
             public Grabber( VideoCaptureDevice parent )
             {
                 this.parent = parent;
+                YUYV = parent.getYUYV();
+                erode = parent.getErosion();
             }
 
             // Callback to receive samples
@@ -744,12 +764,7 @@ namespace AForge.Video.DirectShow
                 System.Drawing.Bitmap image = new Bitmap( width, height, PixelFormat.Format24bppRgb );
                 
                 // lock bitmap data
-                BitmapData imageData = image.LockBits(
-                    new Rectangle( 0, 0, width, height ),
-                    ImageLockMode.ReadWrite,
-                    PixelFormat.Format24bppRgb );
-
-                bool YUYV = true;
+                BitmapData imageData = image.LockBits(new Rectangle( 0, 0, width, height ), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb );
 
                 // copy image data / convert from YUY2 to RGB24 if needed
                 if (YUYV)
@@ -790,20 +805,7 @@ namespace AForge.Video.DirectShow
                                 *dst++ = (byte)g;
                                 *dst++ = (byte)r;
                             }
-                        }
-                        
-                        int srcStride = imageData.Stride;
-                        int dstStride = imageData.Stride;
-
-                        //int dst2 = imageData.Scan0.ToInt32() + dstStride * (height - 1);
-                        //int src = buffer.ToInt32();                    
-                        /*
-                        for (int y = 0; y < height; y++)
-                        {
-                            Win32.memcpy(dst2, *src, srcStride);
-                            dst -= dstStride;
-                            src += srcStride;
-                        }*/
+                        }                        
                     }
                 }
 
@@ -814,9 +816,7 @@ namespace AForge.Video.DirectShow
                     int dstStride = imageData.Stride;
 
                     unsafe
-                    {
-                        //int dst = imageData.Scan0.ToInt32() + dstStride * (height - 1);
-                        //int src = pBuffer.ToInt32();
+                    {                        
                         byte* dst = (byte*)imageData.Scan0.ToPointer() + dstStride * (height - 1);
                         byte* src = (byte*)pBuffer.ToPointer();
 
@@ -828,13 +828,12 @@ namespace AForge.Video.DirectShow
                             }
                             dst -= 2 * dstStride;
                         }
-                    }
+                    }                  
                 }
                 // unlock bitmap data
                 image.UnlockBits( imageData );
 
-                // notify parent
-                bool erode = false;                
+                // notify parent                                
                 if (erode)
                 {
                     Bitmap ErodedImage = erosionFilter.Apply(image);

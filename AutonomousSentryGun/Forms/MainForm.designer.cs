@@ -51,6 +51,7 @@
         this.servosSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
         this.aimDot = new System.Windows.Forms.PictureBox();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -58,7 +59,6 @@
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
         this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
         this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
@@ -242,6 +242,17 @@
         this.aimDot.TabStop = false;
         this.aimDot.Visible = false;
         // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
+        // 
         // statusBar
         // 
         this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -281,23 +292,12 @@
         // 
         // TrackingTimer
         // 
-        this.TrackingTimer.Interval = 200;
+        this.TrackingTimer.Interval = 125;
         this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
         // 
         // openFileDialog1
         // 
         this.openFileDialog1.FileName = "openFileDialog1";
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // MainForm
         // 

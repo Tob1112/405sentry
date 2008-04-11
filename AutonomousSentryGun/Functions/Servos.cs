@@ -101,5 +101,9 @@ namespace AutonomousSentryGun.Functions
     {
       return new Point(position.X - CENTER_POSITION.X, CENTER_POSITION.Y-position.Y);
     }
+    public Point getCenterPosition()
+    {
+        return CENTER_POSITION;
+    }
   }
 }

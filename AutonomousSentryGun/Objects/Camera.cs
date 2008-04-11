@@ -23,7 +23,7 @@ namespace AutonomousSentryGun
         private int height = -1;
 
 		// alarm level (percentage 0 to 1 i.e. .005 = .5%)
-		private double	alarmLevel = 0.25;
+		private double	alarmLevel = 0.3;
 
 		// public events
 		public event EventHandler NewFrame;
