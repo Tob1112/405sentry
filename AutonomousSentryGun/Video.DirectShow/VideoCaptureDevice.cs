@@ -754,100 +754,106 @@ namespace AForge.Video.DirectShow
             public int SampleCB( double sampleTime, IMediaSample pSample )
             {
                 return 0;
-            }            
-
+            }
+            private int FrameCount = 0;
 			// Callback method that receives a pointer to the sample buffer
             public int BufferCB( double sampleTime, IntPtr pBuffer, int bufferLen )
             {
-                
-                // create new image
-                System.Drawing.Bitmap image = new Bitmap( width, height, PixelFormat.Format24bppRgb );
-                
-                // lock bitmap data
-                BitmapData imageData = image.LockBits(new Rectangle( 0, 0, width, height ), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb );
+                FrameCount++;
 
-                // copy image data / convert from YUY2 to RGB24 if needed
-                if (YUYV)
+                if (FrameCount % 3 == 0)
                 {
-                    int l, c;
-                    int r, g, b, cr, cg, cb, y1, y2;
+                    // create new image
+                    System.Drawing.Bitmap image = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-                    l = height;
-                    unsafe
+                    // lock bitmap data
+                    BitmapData imageData = image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+                    // copy image data / convert from YUY2 to RGB24 if needed
+                    if (YUYV)
                     {
-                        byte* dst = (byte*)imageData.Scan0.ToPointer();
-                        byte* src = (byte*)pBuffer.ToPointer();
-                        while (l-- > 0)
+                        int l, c;
+                        int r, g, b, cr, cg, cb, y1, y2;
+
+                        l = height;
+                        unsafe
                         {
-                            c = width >> 1;
-                            while (c-- > 0)
+                            byte* dst = (byte*)imageData.Scan0.ToPointer();
+                            byte* src = (byte*)pBuffer.ToPointer();
+                            while (l-- > 0)
                             {
-                                y1 = *src++;
-                                cb = ((*src - 128) * 454) >> 8;
-                                cg = (*src++ - 128) * 88;
-                                y2 = *src++;
-                                cr = ((*src - 128) * 359) >> 8;
-                                cg = (cg + (*src++ - 128) * 183) >> 8;
+                                c = width >> 1;
+                                while (c-- > 0)
+                                {
+                                    y1 = *src++;
+                                    cb = ((*src - 128) * 454) >> 8;
+                                    cg = (*src++ - 128) * 88;
+                                    y2 = *src++;
+                                    cr = ((*src - 128) * 359) >> 8;
+                                    cg = (cg + (*src++ - 128) * 183) >> 8;
 
-                                r = y1 + cr;
-                                b = y1 + cb;
-                                g = y1 - cg;
+                                    r = y1 + cr;
+                                    b = y1 + cb;
+                                    g = y1 - cg;
 
-                                *dst++ = (byte)b;
-                                *dst++ = (byte)g;
-                                *dst++ = (byte)r;
+                                    *dst++ = (byte)b;
+                                    *dst++ = (byte)g;
+                                    *dst++ = (byte)r;
 
-                                r = y2 + cr;
-                                b = y2 + cb;
-                                g = y2 - cg;
+                                    r = y2 + cr;
+                                    b = y2 + cb;
+                                    g = y2 - cg;
 
-                                *dst++ = (byte)b;
-                                *dst++ = (byte)g;
-                                *dst++ = (byte)r;
+                                    *dst++ = (byte)b;
+                                    *dst++ = (byte)g;
+                                    *dst++ = (byte)r;
+                                }
                             }
-                        }                        
+                        }
+
+                    }
+
+                    else if (!YUYV)
+                    {
+                        // copy image data
+                        int srcStride = imageData.Stride;
+                        int dstStride = imageData.Stride;
+
+                        unsafe
+                        {
+                            byte* dst = (byte*)imageData.Scan0.ToPointer() + dstStride * (height - 1);
+                            byte* src = (byte*)pBuffer.ToPointer();
+
+                            for (int y = 0; y < height; y++)
+                            {
+                                for (int x = 0; x < srcStride; x++)
+                                {
+                                    *dst++ = *src++;
+                                }
+                                dst -= 2 * dstStride;
+                            }
+                        }
+                    }
+                    // unlock bitmap data
+                    image.UnlockBits(imageData);
+
+                    // notify parent                                
+                    if (erode)
+                    {
+                        Bitmap ErodedImage = erosionFilter.Apply(image);
+                        parent.OnNewFrame(ErodedImage);
+                        ErodedImage.Dispose();
+                        image.Dispose();
+                    }
+                    else if (!erode)
+                    {
+                        parent.OnNewFrame(image);
+                        // release the image
+                        image.Dispose();
                     }
                 }
-
-                else if (!YUYV)
-                {                    
-                    // copy image data
-                    int srcStride = imageData.Stride;
-                    int dstStride = imageData.Stride;
-
-                    unsafe
-                    {                        
-                        byte* dst = (byte*)imageData.Scan0.ToPointer() + dstStride * (height - 1);
-                        byte* src = (byte*)pBuffer.ToPointer();
-
-                        for (int y = 0; y < height; y++)
-                        {
-                            for (int x = 0; x < srcStride; x++)
-                            {
-                                *dst++ = *src++;                                
-                            }
-                            dst -= 2 * dstStride;
-                        }
-                    }                  
-                }
-                // unlock bitmap data
-                image.UnlockBits( imageData );
-
-                // notify parent                                
-                if (erode)
-                {
-                    Bitmap ErodedImage = erosionFilter.Apply(image);
-                    parent.OnNewFrame(ErodedImage);
-                    ErodedImage.Dispose();
-                    image.Dispose();
-                }
-                else if (!erode)
-                {
-                    parent.OnNewFrame(image);
-                    // release the image
-                    image.Dispose(); 
-                }
-                
+                if (FrameCount == 30)
+                    FrameCount = 0;
                 return 0;
             }
         }
