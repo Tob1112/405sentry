@@ -722,7 +722,8 @@ namespace AForge.Video.DirectShow
             private int width, height;            
             private AForge.Imaging.Filters.Erosion erosionFilter = new AForge.Imaging.Filters.Erosion();
             private bool YUYV;
-            private bool erode;            
+            private bool erode;
+            private int FrameCount = 0;
 
             public void setYUYV(bool Y)
             {
@@ -755,7 +756,7 @@ namespace AForge.Video.DirectShow
             {
                 return 0;
             }
-            private int FrameCount = 0;
+            
 			// Callback method that receives a pointer to the sample buffer
             public int BufferCB( double sampleTime, IntPtr pBuffer, int bufferLen )
             {

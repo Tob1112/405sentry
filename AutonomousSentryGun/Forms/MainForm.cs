@@ -21,22 +21,18 @@ using AutonomousSentryGun.Objects;
 using AutonomousSentryGun.Forms.Test;
 using AutonomousSentryGun.Forms.Setup;
 
+//code to play sound taken from
+//http://www.codeproject.com/KB/audio-video/PlaySounds1.aspx
+
 /* Blake: Stuff To Do
+ *  
+ * need to test and optimize aiming code for leading targets
+ * add video stream to transmit position form 
  * 
- * write aiming code that leads targets in motion based on their speed
- * optimize performance: 
- *      reduce OnNewFrame calls to every other frame, effectively handling fewer frames 
- *          (we only need to really handle no more than 10 frames/sec if we're going to be 
- *          sending packets at max every 100-125ms)
- *      look into multi threading
- *      play with different settings for frame size, with and without erosion
- * add video stream to transmit position form
- * add portal sentry sounds 
- *                  -> see below code for how to play sound
- *                     this is done using the PlaySound function
- * 
- * clean up interface/comment code
+ * play with different settings for frame size, frame rate, with and without erosion
  * real life testing
+ *       
+ * clean up interface/comment code 
 */
 namespace AutonomousSentryGun
 {
@@ -53,7 +49,9 @@ namespace AutonomousSentryGun
       private int statReady = 0;
       // statistics array
       private int[] statCount = new int[statLength];
-      
+      // current working directory
+      string pwd = Environment.CurrentDirectory;
+
       // servo coordinates object
       private Servos servos;
       //create the USB interface
@@ -62,10 +60,7 @@ namespace AutonomousSentryGun
       private byte[] usbRcvBuff;
 
            [DllImport("winmm.dll", SetLastError=true,CallingConvention=CallingConvention.Winapi)]
-            static extern bool PlaySound(
-                string pszSound,
-                IntPtr hMod,
-                SoundFlags sf );
+            static extern bool PlaySound(string pszSound, IntPtr hMod, SoundFlags sf );
 
            // Flags for playing sounds.  For this example, we are reading 
            // the sound from a filename, so we need only specify 
@@ -89,7 +84,7 @@ namespace AutonomousSentryGun
     public MainForm()
     {
         
-      InitializeComponent();
+      InitializeComponent();      
     }
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -267,10 +262,15 @@ namespace AutonomousSentryGun
         }
     }
 
-    private Point lastPosition = new Point();
+    private Point lastCenterPosition = new Point();
+    private Point lastLeadingPosition = new Point();
+    private bool firingsoundplayed = false;
+    private bool ceasefiringsoundplayed = true;
+    private bool soundOn = true;
+    private int soundTracker = 0;
     //Timer that tracks refresh of position tracking
     private void TrackingTimer_Tick(object sender, EventArgs e) //125ms refresh rate as of right now
-    {
+    {   
         if (cameraWindow1.Camera != null && cameraWindow1.Camera.MotionDetector != null)
         {
             CountingMotionDetector cmd = (CountingMotionDetector)cameraWindow1.Camera.MotionDetector;
@@ -278,6 +278,29 @@ namespace AutonomousSentryGun
             
             if (rectmotion.Length != 0)
             {
+                if (!firingsoundplayed && soundOn)
+                {
+                    switch (soundTracker % 4)
+                    {
+                        case 0:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target Found\\firing.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            firingsoundplayed = true;
+                            break;
+                        case 1:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target Found\\i_see_you.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            firingsoundplayed = true;
+                            break;
+                        case 2:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target Found\\target_acquired.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            firingsoundplayed = true;
+                            break;
+                        case 3:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target Found\\there_you_are.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            firingsoundplayed = true;
+                            break;
+                    }
+                }
+                ceasefiringsoundplayed = false;
                 aimDot.BackColor = Color.Red;
                 //aimDot.Visible = true;
                 //calculate largest detected motion area
@@ -290,28 +313,68 @@ namespace AutonomousSentryGun
                     }
                 }
                 
-                //draw dot on center of largest motion area
+                //get center of largest motion area
                 int x = largest.X + largest.Width / 2 - 2 + cameraWindow1.Location.X;
                 int y = largest.Y + largest.Height / 2 - 2 + cameraWindow1.Location.Y;
-                aimDot.Location = new Point(x, y);
-                lastPosition = new Point(aimDot.Location.X + 2, aimDot.Location.Y + 2);
-                
-                //send dot position and fire command to the servos for aiming
-                servos.setPorportionalPosition(cameraWindow1.Bounds, lastPosition); 
+                                                
+                //calculate difference from last center point and adjust target lead depending on speed
+                if (lastCenterPosition.IsEmpty)
+                {
+                    lastCenterPosition = new Point(x + 2, y + 2);
+                    lastLeadingPosition = new Point(lastCenterPosition.X, lastCenterPosition.Y);
+                }
+                else if (!lastCenterPosition.IsEmpty)
+                {                    
+                    int xdiff = x - lastCenterPosition.X;
+                    int ydiff = y - lastCenterPosition.Y;
+                    lastLeadingPosition = new Point(x + xdiff, y + ydiff);
+                    lastCenterPosition = new Point(x + 2, y + 2);
+                }
+
+                //set aimdot location
+                aimDot.Location = new Point(lastLeadingPosition.X - 2, lastLeadingPosition.Y - 2);
+
+                //create packet, set servo position, and fire
+                servos.setPorportionalPosition(cameraWindow1.Bounds, lastLeadingPosition);                
                 Packet packet = new Packet(servos.PositionToServosController);
                 //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
-                packet.setFireOn();
-                //packet.setFireOff();
+                packet.setFireOn();                
                 sendData(packet);               
             }
             else if (rectmotion.Length == 0)
             {
+                if (!ceasefiringsoundplayed && soundOn)
+                {
+                    switch (soundTracker % 4)
+                    {
+                        case 0:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target lost\\searching.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            
+                            ceasefiringsoundplayed = true;
+                            break;
+                        case 1:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target lost\\is_anyone_there.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                            ceasefiringsoundplayed = true;
+                            break;
+                        case 2:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target lost\\target_lost.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);                            
+                            ceasefiringsoundplayed = true;
+                            break;
+                        case 3:
+                            PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Target Lost\\are_you_still_there.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);                            
+                            ceasefiringsoundplayed = true;
+                            break;
+                    }
+                    soundTracker++;
+                }
+                firingsoundplayed = false;
                 //when no motion, center aimDot and return servos to center position
                 aimDot.Location = new Point(cameraWindow1.Location.X + cameraWindow1.Width / 2 - 2, cameraWindow1.Location.Y + cameraWindow1.Height / 2 - 2);
                 aimDot.BackColor = Color.Yellow;
                 //aimDot.Visible = false;
-                lastPosition = new Point();                
+                lastCenterPosition = new Point();
+                lastLeadingPosition = new Point();
                 Packet packet = new Packet(servos.getCenterPosition());
                 packet.setFireOff();
                 sendData(packet);
@@ -415,10 +478,8 @@ namespace AutonomousSentryGun
         {
             if (!onOffTrackingToolStripMenuItem1.Checked)
             {
-                //code to play sound taken from
-                //http://www.codeproject.com/KB/audio-video/PlaySounds1.aspx
-                PlaySound("C:\\Documents and Settings\\NTH1345\\Desktop\\405\\AutonomousSentryGun\\Sentry Sounds\\bootup\\sentry_mode_activated.wav", IntPtr.Zero,
-                            SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                //sentry activated sound                
+                PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Bootup\\sentry_mode_activated.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
                 TrackingTimer.Start();
                 aimDot.Visible = true;                
                 //servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);

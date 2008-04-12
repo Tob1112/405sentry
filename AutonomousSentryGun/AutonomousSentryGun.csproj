@@ -157,8 +157,35 @@
     <Compile Include="Functions\usb_interface.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sounds\Sentry Sounds\Target Lost\are_you_still_there.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Found\firing.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Grid.jpg" />
     <Content Include="Images\RedDot.jpg" />
+    <Content Include="Sounds\Sentry Sounds\Target Lost\is_anyone_there.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Found\i_see_you.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Lost\searching.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Bootup\sentry_mode_activated.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Found\target_acquired.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Lost\target_lost.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sentry Sounds\Target Found\there_you_are.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Video.DirectShow\Video.DirectShow.csproj">
