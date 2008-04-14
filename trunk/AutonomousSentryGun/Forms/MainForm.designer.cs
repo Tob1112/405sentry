@@ -43,14 +43,19 @@
         this.onOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.gunTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.onOffTrackingToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+        this.gunFiringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.onOffFiringMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.calibrateGunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.motionDetectionSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.gunTriggerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         this.dataTransmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.servosSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.soundSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+        this.onOffSoundMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
         this.aimDot = new System.Windows.Forms.PictureBox();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -58,11 +63,6 @@
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
         this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
         this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-        this.gunFiringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.onOffFiringMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-        this.soundSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.onOffSoundMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
@@ -184,6 +184,21 @@
         this.onOffTrackingToolStripMenuItem1.Text = "On/Off";
         this.onOffTrackingToolStripMenuItem1.Click += new System.EventHandler(this.onOffTrackingToolStripMenuItem1_Click);
         // 
+        // gunFiringToolStripMenuItem
+        // 
+        this.gunFiringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onOffFiringMenuItem1});
+        this.gunFiringToolStripMenuItem.Name = "gunFiringToolStripMenuItem";
+        this.gunFiringToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+        this.gunFiringToolStripMenuItem.Text = "Gun Firing";
+        // 
+        // onOffFiringMenuItem1
+        // 
+        this.onOffFiringMenuItem1.Name = "onOffFiringMenuItem1";
+        this.onOffFiringMenuItem1.Size = new System.Drawing.Size(119, 22);
+        this.onOffFiringMenuItem1.Text = "On/Off";
+        this.onOffFiringMenuItem1.Click += new System.EventHandler(this.onOffFiringMenuItem1_Click);
+        // 
         // setupToolStripMenuItem
         // 
         this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -229,6 +244,23 @@
         this.servosSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
         this.servosSettingsToolStripMenuItem.Text = "Servos Settings";
         // 
+        // soundSettingsToolStripMenuItem
+        // 
+        this.soundSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onOffSoundMenuItem});
+        this.soundSettingsToolStripMenuItem.Name = "soundSettingsToolStripMenuItem";
+        this.soundSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+        this.soundSettingsToolStripMenuItem.Text = "Sound Settings";
+        // 
+        // onOffSoundMenuItem
+        // 
+        this.onOffSoundMenuItem.Checked = true;
+        this.onOffSoundMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+        this.onOffSoundMenuItem.Name = "onOffSoundMenuItem";
+        this.onOffSoundMenuItem.Size = new System.Drawing.Size(119, 22);
+        this.onOffSoundMenuItem.Text = "On/Off";
+        this.onOffSoundMenuItem.Click += new System.EventHandler(this.onOffSoundMenuItem_Click);
+        // 
         // panel1
         // 
         this.panel1.Controls.Add(this.aimDot);
@@ -247,6 +279,17 @@
         this.aimDot.TabIndex = 2;
         this.aimDot.TabStop = false;
         this.aimDot.Visible = false;
+        // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // statusBar
         // 
@@ -276,7 +319,7 @@
                     | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
         this.objectsCountLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
         this.objectsCountLabel.Name = "objectsCountLabel";
-        this.objectsCountLabel.Size = new System.Drawing.Size(693, 17);
+        this.objectsCountLabel.Size = new System.Drawing.Size(662, 17);
         this.objectsCountLabel.Spring = true;
         this.objectsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
@@ -293,49 +336,6 @@
         // openFileDialog1
         // 
         this.openFileDialog1.FileName = "openFileDialog1";
-        // 
-        // gunFiringToolStripMenuItem
-        // 
-        this.gunFiringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.onOffFiringMenuItem1});
-        this.gunFiringToolStripMenuItem.Name = "gunFiringToolStripMenuItem";
-        this.gunFiringToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-        this.gunFiringToolStripMenuItem.Text = "Gun Firing";
-        // 
-        // onOffFiringMenuItem1
-        // 
-        this.onOffFiringMenuItem1.Name = "onOffFiringMenuItem1";
-        this.onOffFiringMenuItem1.Size = new System.Drawing.Size(119, 22);
-        this.onOffFiringMenuItem1.Text = "On/Off";
-        this.onOffFiringMenuItem1.Click += new System.EventHandler(this.onOffFiringMenuItem1_Click);
-        // 
-        // soundSettingsToolStripMenuItem
-        // 
-        this.soundSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.onOffSoundMenuItem});
-        this.soundSettingsToolStripMenuItem.Name = "soundSettingsToolStripMenuItem";
-        this.soundSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-        this.soundSettingsToolStripMenuItem.Text = "Sound Settings";
-        // 
-        // onOffSoundMenuItem
-        // 
-        this.onOffSoundMenuItem.Checked = true;
-        this.onOffSoundMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.onOffSoundMenuItem.Name = "onOffSoundMenuItem";
-        this.onOffSoundMenuItem.Size = new System.Drawing.Size(152, 22);
-        this.onOffSoundMenuItem.Text = "On/Off";
-        this.onOffSoundMenuItem.Click += new System.EventHandler(this.onOffSoundMenuItem_Click);
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // MainForm
         // 

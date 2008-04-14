@@ -102,7 +102,7 @@ namespace AutonomousSentryGun
 
     private void transmitPositionToolStripMenuItem_Click(object sender, EventArgs e)
     {
-     ConfigureGun form = new ConfigureGun();
+     TransmitPosition form = new TransmitPosition();
      form.Show();
     }
 
@@ -520,7 +520,14 @@ namespace AutonomousSentryGun
 
     private void sendData(Packet packet)
     {
-        //usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);        
+        try
+        {
+            usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);
+        }
+        catch (Exception e)
+        {
+            objectsCountLabel.Text = objectsCountLabel.Text + " - " + "The zigbee module is not plugged into the usb.";
+        }
     }
 
 #endregion    
