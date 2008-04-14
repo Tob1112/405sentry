@@ -52,6 +52,9 @@ namespace AutonomousSentryGun
       // current working directory
       string pwd = Environment.CurrentDirectory;
 
+      private bool soundOn = true;
+      private bool firingOn = false;
+
       // servo coordinates object
       private Servos servos;
       //create the USB interface
@@ -99,13 +102,13 @@ namespace AutonomousSentryGun
 
     private void transmitPositionToolStripMenuItem_Click(object sender, EventArgs e)
     {
-     TransmitPosition form = new TransmitPosition();
+     ConfigureGun form = new ConfigureGun();
      form.Show();
     }
 
     private void dataTransmissionToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        DataTransmission dtForm = new DataTransmission();
+        DataTransmission dtForm = new DataTransmission(TrackingTimer);
         dtForm.Show();
     }
 
@@ -265,8 +268,7 @@ namespace AutonomousSentryGun
     private Point lastCenterPosition = new Point();
     private Point lastLeadingPosition = new Point();
     private bool firingsoundplayed = false;
-    private bool ceasefiringsoundplayed = true;
-    private bool soundOn = true;
+    private bool ceasefiringsoundplayed = true;    
     private int soundTracker = 0;
     //Timer that tracks refresh of position tracking
     private void TrackingTimer_Tick(object sender, EventArgs e) //125ms refresh rate as of right now
@@ -339,7 +341,11 @@ namespace AutonomousSentryGun
                 Packet packet = new Packet(servos.PositionToServosController);
                 //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
-                packet.setFireOn();                
+                packet.setFireOff();
+                if (firingOn)
+                {
+                    packet.setFireOn();
+                }
                 sendData(packet);               
             }
             else if (rectmotion.Length == 0)
@@ -500,12 +506,24 @@ namespace AutonomousSentryGun
         }
     }
 
+    private void onOffFiringMenuItem1_Click(object sender, EventArgs e)
+    {
+        firingOn = !firingOn;
+        onOffFiringMenuItem1.Checked = !onOffFiringMenuItem1.Checked;
+    }
+
+    private void onOffSoundMenuItem_Click(object sender, EventArgs e)
+    {
+        soundOn = !soundOn;
+        onOffSoundMenuItem.Checked = !onOffSoundMenuItem.Checked;
+    }
+
     private void sendData(Packet packet)
     {
         //usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);        
     }
 
 #endregion    
-         
+   
   }
 }
