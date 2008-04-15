@@ -52,11 +52,11 @@ namespace AutonomousSentryGun
       // current working directory
       string pwd = Environment.CurrentDirectory;
 
-      private bool soundOn = true;
+      private bool soundOn = false;
       private bool firingOn = false;
 
       // servo coordinates object
-      private Servos servos;
+      private Servos servos = new Servos(1600, 1477);
       //create the USB interface
       //private usb_interface usbHub = new usb_interface();
       //usb buffer
@@ -92,7 +92,10 @@ namespace AutonomousSentryGun
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Application.Exit();
+        Packet packet = new Packet(servos.getCenterPosition());
+        packet.setFireOff();
+        sendData(packet);
+        Application.Exit();
     }
 
     private void resetToDefaultToolStripMenuItem_Click(object sender, EventArgs e)
@@ -438,9 +441,9 @@ namespace AutonomousSentryGun
             if (!onOffToolStripMenuItem.Checked)
             {
                 CountingMotionDetector cmd = new CountingMotionDetector(true);
-                cmd.MinObjectsWidth = 30;
-                cmd.MinObjectsHeight = 30;
-                cmd.MaxObjectsWidth = cameraWindow1.Width;
+                cmd.MinObjectsWidth = 20;
+                cmd.MinObjectsHeight = 20;
+                cmd.MaxObjectsWidth = cameraWindow1.Width-75;
                 cmd.MaxObjectsHeight = cameraWindow1.Height;
                 SetMotionDetector(cmd);
                 onOffToolStripMenuItem.Checked = true;
@@ -484,12 +487,16 @@ namespace AutonomousSentryGun
         {
             if (!onOffTrackingToolStripMenuItem1.Checked)
             {
-                //sentry activated sound                
-                PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Bootup\\sentry_mode_activated.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                //sentry activated sound    
+                if (soundOn)
+                {
+                    PlaySound(pwd + "\\Sounds\\Sentry Sounds\\Bootup\\sentry_mode_activated.wav", IntPtr.Zero, SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC);
+                }
+
                 TrackingTimer.Start();
                 aimDot.Visible = true;                
                 //servos = new Servos(1600, 1477, cameraWindow1.Width / 2, cameraWindow1.Height / 2);
-                servos = new Servos(1600, 1477);
+                //servos = new Servos(1600, 1477);
 
                 onOffTrackingToolStripMenuItem1.Checked = true;                
             }
@@ -498,6 +505,10 @@ namespace AutonomousSentryGun
                 TrackingTimer.Stop();
                 aimDot.Visible = false;
                 onOffTrackingToolStripMenuItem1.Checked = false;
+
+                Packet packet = new Packet(servos.getCenterPosition());
+                packet.setFireOff();
+                sendData(packet);
             }
         }
         else

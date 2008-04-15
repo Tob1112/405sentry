@@ -55,7 +55,6 @@
         this.onOffSoundMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
         this.aimDot = new System.Windows.Forms.PictureBox();
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -63,6 +62,7 @@
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
         this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
         this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
@@ -254,10 +254,8 @@
         // 
         // onOffSoundMenuItem
         // 
-        this.onOffSoundMenuItem.Checked = true;
-        this.onOffSoundMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
         this.onOffSoundMenuItem.Name = "onOffSoundMenuItem";
-        this.onOffSoundMenuItem.Size = new System.Drawing.Size(119, 22);
+        this.onOffSoundMenuItem.Size = new System.Drawing.Size(152, 22);
         this.onOffSoundMenuItem.Text = "On/Off";
         this.onOffSoundMenuItem.Click += new System.EventHandler(this.onOffSoundMenuItem_Click);
         // 
@@ -279,17 +277,6 @@
         this.aimDot.TabIndex = 2;
         this.aimDot.TabStop = false;
         this.aimDot.Visible = false;
-        // 
-        // cameraWindow1
-        // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // statusBar
         // 
@@ -319,7 +306,7 @@
                     | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
         this.objectsCountLabel.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
         this.objectsCountLabel.Name = "objectsCountLabel";
-        this.objectsCountLabel.Size = new System.Drawing.Size(662, 17);
+        this.objectsCountLabel.Size = new System.Drawing.Size(693, 17);
         this.objectsCountLabel.Spring = true;
         this.objectsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
@@ -330,12 +317,23 @@
         // 
         // TrackingTimer
         // 
-        this.TrackingTimer.Interval = 125;
+        this.TrackingTimer.Interval = 200;
         this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
         // 
         // openFileDialog1
         // 
         this.openFileDialog1.FileName = "openFileDialog1";
+        // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // MainForm
         // 
