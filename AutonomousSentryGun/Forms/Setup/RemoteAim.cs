@@ -199,8 +199,7 @@ namespace AutonomousSentryGun.Forms.Test
         {
             fireOK = false;
             redDot.BackColor = Color.Yellow;
-        }
-        remoteAim();
+        }      
     }
 
     private void RemoteAim_FormClosing(object sender, FormClosingEventArgs e)
