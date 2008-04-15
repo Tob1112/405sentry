@@ -55,6 +55,7 @@
         this.onOffSoundMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.panel1 = new System.Windows.Forms.Panel();
         this.aimDot = new System.Windows.Forms.PictureBox();
+        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
         this.statusBar = new System.Windows.Forms.StatusStrip();
         this.fpsLabel = new System.Windows.Forms.ToolStripStatusLabel();
         this.objectsCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,7 +63,7 @@
         this.TrackingTimer = new System.Windows.Forms.Timer(this.components);
         this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
         this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-        this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
+        this.remoteAimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.menuStrip1.SuspendLayout();
         this.panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.aimDot)).BeginInit();
@@ -124,6 +125,7 @@
         // 
         this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.transmitPositionToolStripMenuItem,
+            this.remoteAimToolStripMenuItem,
             this.cameraFeedToolStripMenuItem,
             this.motionDetectionToolStripMenuItem,
             this.gunTrackingToolStripMenuItem,
@@ -255,7 +257,7 @@
         // onOffSoundMenuItem
         // 
         this.onOffSoundMenuItem.Name = "onOffSoundMenuItem";
-        this.onOffSoundMenuItem.Size = new System.Drawing.Size(152, 22);
+        this.onOffSoundMenuItem.Size = new System.Drawing.Size(119, 22);
         this.onOffSoundMenuItem.Text = "On/Off";
         this.onOffSoundMenuItem.Click += new System.EventHandler(this.onOffSoundMenuItem_Click);
         // 
@@ -277,6 +279,17 @@
         this.aimDot.TabIndex = 2;
         this.aimDot.TabStop = false;
         this.aimDot.Visible = false;
+        // 
+        // cameraWindow1
+        // 
+        this.cameraWindow1.AutoSizeControl = true;
+        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        this.cameraWindow1.Camera = null;
+        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
+        this.cameraWindow1.Name = "cameraWindow1";
+        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
+        this.cameraWindow1.TabIndex = 1;
+        this.cameraWindow1.Text = "cameraWindow1";
         // 
         // statusBar
         // 
@@ -324,16 +337,12 @@
         // 
         this.openFileDialog1.FileName = "openFileDialog1";
         // 
-        // cameraWindow1
+        // remoteAimToolStripMenuItem
         // 
-        this.cameraWindow1.AutoSizeControl = true;
-        this.cameraWindow1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-        this.cameraWindow1.Camera = null;
-        this.cameraWindow1.Location = new System.Drawing.Point(268, 143);
-        this.cameraWindow1.Name = "cameraWindow1";
-        this.cameraWindow1.Size = new System.Drawing.Size(322, 242);
-        this.cameraWindow1.TabIndex = 1;
-        this.cameraWindow1.Text = "cameraWindow1";
+        this.remoteAimToolStripMenuItem.Name = "remoteAimToolStripMenuItem";
+        this.remoteAimToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+        this.remoteAimToolStripMenuItem.Text = "Remote Aim";
+        this.remoteAimToolStripMenuItem.Click += new System.EventHandler(this.remoteAimToolStripMenuItem_Click);
         // 
         // MainForm
         // 
@@ -394,6 +403,7 @@
     private System.Windows.Forms.ToolStripMenuItem onOffFiringMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem soundSettingsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem onOffSoundMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem remoteAimToolStripMenuItem;
   }
 }
 

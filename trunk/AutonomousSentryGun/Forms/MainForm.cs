@@ -177,7 +177,32 @@ namespace AutonomousSentryGun
             CloseVideoSource();
             onOffCameraToolStripMenuItem.Checked = false;
         }
-    }    
+    }
+
+    private void remoteAimToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (onOffToolStripMenuItem.Checked)
+        {
+            SetMotionDetector(null);
+            onOffToolStripMenuItem.Checked = false;
+        }
+        if (onOffTrackingToolStripMenuItem1.Checked)
+        {
+            TrackingTimer.Stop();
+            aimDot.Visible = false;
+            onOffTrackingToolStripMenuItem1.Checked = false;
+        }
+        CloseVideoSource();
+        onOffCameraToolStripMenuItem.Checked = false;
+
+        VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
+
+        if (form.ShowDialog(this) == DialogResult.OK)
+        {
+            RemoteAim ra = new RemoteAim(form.VideoDevice);
+            ra.Show();
+        }
+    }
 
     // Open video source
     private void OpenVideoSource(AForge.Video.IVideoSource source)
@@ -541,7 +566,7 @@ namespace AutonomousSentryGun
         }
     }
 
-#endregion    
+#endregion     
    
   }
 }

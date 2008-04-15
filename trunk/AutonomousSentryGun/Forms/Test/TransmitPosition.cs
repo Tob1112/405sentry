@@ -42,7 +42,7 @@ namespace AutonomousSentryGun.Forms.Test
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
       PosIncTextBox.Text = positionIncrement.ToString();
-      Packet packet = new Packet(servos.PositionToServosController);
+      Packet packet = new Packet(servos.getCenterPosition());
       packet.setFireOff();
       this.sendData(packet);
     }
