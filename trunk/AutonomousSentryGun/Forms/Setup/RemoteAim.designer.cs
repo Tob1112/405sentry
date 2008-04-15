@@ -220,7 +220,7 @@
         // 
         // CoordinateTimer
         // 
-        this.CoordinateTimer.Interval = 200;
+        this.CoordinateTimer.Interval = 150;
         this.CoordinateTimer.Tick += new System.EventHandler(this.CoordinateTimer_Tick);
         // 
         // groupBox3
