@@ -181,6 +181,7 @@
         this.Controls.Add(this.groupBox1);
         this.Name = "TransmitPosition";
         this.Text = "TransmitPosition";
+        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransmitPosition_FormClosing);
         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TransmitPosition_KeyDown);
         ((System.ComponentModel.ISupportInitialize)(this.redDot)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.gridBox)).EndInit();

@@ -43,7 +43,7 @@ namespace AutonomousSentryGun
                 HBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight;
                 WBoxMax.Text = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth.ToString();
                 WBarMax.Value = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth;
-                WBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth;
+                WBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth+75;
                 areaVisualMax.Height = HBarMax.Value;
                 areaVisualMax.Width = WBarMax.Value;
                 areaVisualMax.Refresh();

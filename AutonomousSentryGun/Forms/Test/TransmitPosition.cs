@@ -145,7 +145,7 @@ namespace AutonomousSentryGun.Forms.Test
       YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
       redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
-      Packet packet = new Packet(servos.PositionToServosController);
+      Packet packet = new Packet(servos.getCenterPosition());
       packet.setFireOff();
       this.sendData(packet);
     }
@@ -180,6 +180,13 @@ namespace AutonomousSentryGun.Forms.Test
         transmitPosition();
             
                
+    }
+
+    private void TransmitPosition_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Packet packet = new Packet(servos.getCenterPosition());
+        packet.setFireOff();
+        sendData(packet);
     }
 
   }
