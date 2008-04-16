@@ -92,7 +92,7 @@ namespace AutonomousSentryGun
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        Packet packet = new Packet(servos.getCenterPosition());
+        Packet packet = new Packet(servos.CenterServosPosition);
         packet.setFireOff();
         sendData(packet);
         Application.Exit();
@@ -365,8 +365,8 @@ namespace AutonomousSentryGun
                 aimDot.Location = new Point(lastLeadingPosition.X - 2, lastLeadingPosition.Y - 2);
 
                 //create packet, set servo position, and fire
-                servos.setPorportionalPosition(cameraWindow1.Bounds, lastLeadingPosition);                
-                Packet packet = new Packet(servos.PositionToServosController);
+                servos.SetPorportionalMathPosition(cameraWindow1.Bounds, lastLeadingPosition);                
+                Packet packet = new Packet(servos.ServosPosition);
                 //Console.WriteLine("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 //MessageBox.Show("(" + servos.Position.X + "," + servos.Position.Y + ")");
                 packet.setFireOff();
@@ -409,7 +409,7 @@ namespace AutonomousSentryGun
                 //aimDot.Visible = false;
                 lastCenterPosition = new Point();
                 lastLeadingPosition = new Point();
-                Packet packet = new Packet(servos.getCenterPosition());
+                Packet packet = new Packet(servos.CenterServosPosition);
                 packet.setFireOff();
                 sendData(packet);
             }
@@ -531,7 +531,7 @@ namespace AutonomousSentryGun
                 aimDot.Visible = false;
                 onOffTrackingToolStripMenuItem1.Checked = false;
 
-                Packet packet = new Packet(servos.getCenterPosition());
+                Packet packet = new Packet(servos.CenterServosPosition);
                 packet.setFireOff();
                 sendData(packet);
             }
