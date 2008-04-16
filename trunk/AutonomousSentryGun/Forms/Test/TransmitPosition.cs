@@ -36,13 +36,13 @@ namespace AutonomousSentryGun.Forms.Test
       //usbHub = new usb_interface();
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
       servos = new Servos(1600, 1477);
-      XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
-      YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
-      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      XTextBox.Text = servos.GetMathPosition().X.ToString();
+      YTextBox.Text = servos.GetMathPosition().Y.ToString();
+      redDot.Location = servos.GetPorportionalMathPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.ShootingRange.Width / 2 + ",-" + servos.ShootingRange.Height / 2 + ")";
       PosIncTextBox.Text = positionIncrement.ToString();
-      Packet packet = new Packet(servos.getCenterPosition());
+      Packet packet = new Packet(servos.CenterServosPosition);
       packet.setFireOff();
       this.sendData(packet);
     }
@@ -61,12 +61,12 @@ namespace AutonomousSentryGun.Forms.Test
     {
       int x = int.Parse(XTextBox.Text);
       int y = int.Parse(YTextBox.Text);
-      servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));
-      XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
-      YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
-      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      servos.ServosPosition = servos.ConvertPositionMathToServos(new Point(x, y));
+      XTextBox.Text = servos.GetMathPosition().X.ToString();
+      YTextBox.Text = servos.GetMathPosition().Y.ToString();
+      redDot.Location = servos.GetPorportionalMathPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
-      Packet packet = new Packet(servos.PositionToServosController);
+      Packet packet = new Packet(servos.ServosPosition);
       if (fireOK == true)
           packet.setFireOn();
       else
@@ -140,12 +140,12 @@ namespace AutonomousSentryGun.Forms.Test
     {
       int x = 0;
       int y = 0;
-      servos.Position = servos.ConvertPositionMathToProgram(new Point(x, y));
-      XTextBox.Text = servos.ConvertPositionProgramToMath().X.ToString();
-      YTextBox.Text = servos.ConvertPositionProgramToMath().Y.ToString();
-      redDot.Location = servos.getPorportionalPosition(gridBox.Bounds);
+      servos.ServosPosition = servos.ConvertPositionMathToServos(new Point(x, y));
+      XTextBox.Text = servos.GetMathPosition().X.ToString();
+      YTextBox.Text = servos.GetMathPosition().Y.ToString();
+      redDot.Location = servos.GetPorportionalMathPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
-      Packet packet = new Packet(servos.getCenterPosition());
+      Packet packet = new Packet(servos.CenterServosPosition);
       packet.setFireOff();
       this.sendData(packet);
     }
@@ -184,7 +184,7 @@ namespace AutonomousSentryGun.Forms.Test
 
     private void TransmitPosition_FormClosing(object sender, FormClosingEventArgs e)
     {
-        Packet packet = new Packet(servos.getCenterPosition());
+        Packet packet = new Packet(servos.CenterServosPosition);
         packet.setFireOff();
         sendData(packet);
     }

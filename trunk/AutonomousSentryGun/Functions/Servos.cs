@@ -8,102 +8,110 @@ namespace AutonomousSentryGun.Functions
 {
   class Servos
   {
-    private readonly Size SHOOTING_RANGE_SIZE = new Size(250,250);
+    private readonly Size MAX_SHOOTING_RANGE_SIZE = new Size(250,250);
     private readonly Point CENTER_POSITION = new Point(1600,1477);
-    private readonly Rectangle SHOOTING_RANGE;
+    private Rectangle shootingRange;
     private Point position;
     public Rectangle ShootingRange
     {
       get
       {
-        return SHOOTING_RANGE;
+        return shootingRange;
       }
     }
-    public Point Position
+
+    public Point CenterServosPosition
     {
       get
       {
-        return position;
-      }
-      set
-      {
-        position.X = getValidXCoordinate(value.X);
-        position.Y = getValidYCoordinate(value.Y);
-
+        return CENTER_POSITION;
       }
     }
-    public Point PositionToServosController
+    public Point ServosPosition
     {
       get
       {
         int invertedX = CENTER_POSITION.X - (position.X - CENTER_POSITION.X);
         return new Point(invertedX, position.Y);
       }
+      set
+      {
+        position.X = GetValidXCoordinate(value.X);
+        position.Y = GetValidYCoordinate(value.Y);
+
+      }
     }
 
     public Servos()
     {
-      SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      shootingRange = new Rectangle(GetUpperLeftPosition(MAX_SHOOTING_RANGE_SIZE, CENTER_POSITION), MAX_SHOOTING_RANGE_SIZE);
+      ServosPosition = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
     }
 
     public Servos(int xCenterPosition, int yCenterPosition)
     {
       CENTER_POSITION = new Point(xCenterPosition, yCenterPosition);
-      SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      shootingRange = new Rectangle(GetUpperLeftPosition(MAX_SHOOTING_RANGE_SIZE, CENTER_POSITION), MAX_SHOOTING_RANGE_SIZE);
+      ServosPosition = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
       
     }
    
     public Servos(int xCenterPosition, int yCenterPosition,int xLengthFromCenter, int yLengthFromCenter)
     {
       CENTER_POSITION = new Point(xCenterPosition, yCenterPosition);
-      SHOOTING_RANGE_SIZE = new Size(xLengthFromCenter, yLengthFromCenter);
-      SHOOTING_RANGE = new Rectangle(getUpperLeftPosition(SHOOTING_RANGE_SIZE, CENTER_POSITION), SHOOTING_RANGE_SIZE);
-      Position = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
+      MAX_SHOOTING_RANGE_SIZE = new Size(xLengthFromCenter, yLengthFromCenter);
+      shootingRange = new Rectangle(GetUpperLeftPosition(MAX_SHOOTING_RANGE_SIZE, CENTER_POSITION), MAX_SHOOTING_RANGE_SIZE);
+      ServosPosition = new Point(CENTER_POSITION.X, CENTER_POSITION.Y);
     }
 
-    private int getValidXCoordinate(int x)
+    private int GetValidXCoordinate(int x)
     {
-      if (x > SHOOTING_RANGE.Right)
-        return SHOOTING_RANGE.Right;
-      if (x < SHOOTING_RANGE.Left)
-        return SHOOTING_RANGE.Left;
+      if (x > shootingRange.Right)
+        return shootingRange.Right;
+      if (x < shootingRange.Left)
+        return shootingRange.Left;
       return x;
     }
-    private int getValidYCoordinate(int y)
+    private int GetValidYCoordinate(int y)
     {
-      if (y < SHOOTING_RANGE.Top)
-        return SHOOTING_RANGE.Top;
-      if (y > SHOOTING_RANGE.Bottom)
-        return SHOOTING_RANGE.Bottom;
+      if (y < shootingRange.Top)
+        return shootingRange.Top;
+      if (y > shootingRange.Bottom)
+        return shootingRange.Bottom;
       return y;
     }
-    public void setPorportionalPosition(Rectangle grid, Point position)
+    public void SetPorportionalMathPosition(Rectangle grid, Point position)
     {
-      this.Position = new Point(Convert.ToInt32(Math.Round((double)(position.X - grid.Left) / grid.Width * SHOOTING_RANGE.Width + SHOOTING_RANGE.Left, 0)),Convert.ToInt32(Math.Round((double)(position.Y - grid.Top) / grid.Height * SHOOTING_RANGE.Height + SHOOTING_RANGE.Top, 0)));
+      this.ServosPosition = new Point(Convert.ToInt32(Math.Round((double)(position.X - grid.Left) / grid.Width * shootingRange.Width + shootingRange.Left, 0)),Convert.ToInt32(Math.Round((double)(position.Y - grid.Top) / grid.Height * shootingRange.Height + shootingRange.Top, 0)));
     }
-    public Point getPorportionalPosition(Rectangle grid)
+    public Point GetPorportionalMathPosition(Rectangle grid)
     {
-      Double pointX = (double)(position.X - SHOOTING_RANGE.Left) / SHOOTING_RANGE.Width * grid.Width + grid.Left;
-      Double pointY = (double)(position.Y - SHOOTING_RANGE.Top) / SHOOTING_RANGE.Height * grid.Height + grid.Top;
+      Double pointX = (double)(position.X - shootingRange.Left) / shootingRange.Width * grid.Width + grid.Left;
+      Double pointY = (double)(position.Y - shootingRange.Top) / shootingRange.Height * grid.Height + grid.Top;
       return new Point(Convert.ToInt32(Math.Round(pointX,0)),Convert.ToInt32(Math.Round(pointY,0)));
     }
-    public Point getUpperLeftPosition(Size size, Point centerPosition)
+    private Point GetUpperLeftPosition(Size size, Point centerPosition)
     {
       return new Point(centerPosition.X-size.Width/2,centerPosition.Y-size.Height/2);
     }
-    public Point ConvertPositionMathToProgram(Point p)
+    public Point ConvertPositionMathToServos(Point p)
     {
       return new Point(CENTER_POSITION.X+p.X,CENTER_POSITION.Y-p.Y);
     }
-    public Point ConvertPositionProgramToMath()
+    public Point GetMathPosition()
     {
       return new Point(position.X - CENTER_POSITION.X, CENTER_POSITION.Y-position.Y);
     }
-    public Point getCenterPosition()
+    public void SetShootingRangeSize(int width, int height)
     {
-        return CENTER_POSITION;
+      Size newSize = new Size();
+      newSize.Width = width < MAX_SHOOTING_RANGE_SIZE.Width ?
+        width : MAX_SHOOTING_RANGE_SIZE.Width;
+      newSize.Height = height < MAX_SHOOTING_RANGE_SIZE.Height ?
+        height : MAX_SHOOTING_RANGE_SIZE.Height;
+      shootingRange = new Rectangle(GetUpperLeftPosition(newSize, CENTER_POSITION), newSize);
+      position.X = GetValidXCoordinate(position.X);
+      position.Y = GetValidYCoordinate(position.Y);
     }
   }
 }
