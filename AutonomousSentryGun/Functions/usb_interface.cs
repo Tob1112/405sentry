@@ -1,4 +1,12 @@
 using System;
+using System.Collections;
+using System.Runtime.InteropServices;    // for PInvoke
+using Microsoft.Win32;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 
@@ -135,12 +143,12 @@ public bool gunDisabled(byte headerByte)
         return result;	
 }
 
-        public byte[] getdata(byte[] sendByte)
+        public bool getdata(byte[] sendByte)
         {
-            int i;
+            bool result;
             byte* send_buf = stackalloc byte[64];
             byte* receive_buf = stackalloc byte[64];
-            byte[] rcvbuff = new byte[6];
+            //byte[] rcvbuff = new byte[6];
 
 		//first byte for Zigbee to recognize the USB write
             	send_buf[0] = 0xAA;
@@ -150,18 +158,20 @@ send_buf[2] = sendByte[1];
 send_buf[3] = sendByte[2];
 send_buf[4] = sendByte[3];
 send_buf[5] = sendByte[4];
-	
+send_buf[6] = sendByte[5];	
 
-            DWORD RecvLength = 6;
-            if (SendReceivePacket(send_buf, 6, receive_buf, &RecvLength) == 1)
+            DWORD RecvLength = 7;
+            if (SendReceivePacket(send_buf, 7, receive_buf, &RecvLength) == 1)
             {
-                for (i = 1; i < 6; i++)
-                {
-                    rcvbuff[i] = receive_buf[i];
-                }
+                result = true;
+            }
+            else
+            {
+                MessageBox.Show("USB Error!");
+                result = false;
             }
 
-            return rcvbuff;
+            return result;
         }
         
         
