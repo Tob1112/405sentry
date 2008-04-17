@@ -29,9 +29,11 @@ namespace AutonomousSentryGun.Forms.Test
     private const int REDDOT_OFFSET_Y = 3;
     private int positionIncrement = 25;
 
+    bool showErrorFlag;
 
     public TransmitPosition()
     {
+      showErrorFlag = false;
       InitializeComponent();
       //usbHub = new usb_interface();
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
@@ -125,13 +127,17 @@ namespace AutonomousSentryGun.Forms.Test
 
     private void sendData(Packet packet)
     {
+      
       try
       {
         usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);
+        showErrorFlag = false;
       }
       catch (Exception e)
       {
-        MessageBox.Show("The zigbee module is not plugged into the usb.");
+        if(!showErrorFlag)
+          MessageBox.Show("The zigbee module is not plugged into the usb.");
+        showErrorFlag = true;
       }
     }
 
