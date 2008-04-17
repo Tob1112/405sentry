@@ -22,7 +22,7 @@ namespace AutonomousSentryGun.Forms.Test
   {
     //need to add ability to change servos range in real time
 
-    byte[] usbRcvBuff;
+    bool usbRcvBuff;
 
     char num;
     bool fireOK = false;

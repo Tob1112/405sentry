@@ -60,7 +60,7 @@ namespace AutonomousSentryGun
     //create the USB interface
     //private usb_interface usbHub = new usb_interface();
     //usb buffer
-    private byte[] usbRcvBuff;
+    private bool usbRcvBuff;
 
     [DllImport("winmm.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
     static extern bool PlaySound(string pszSound, IntPtr hMod, SoundFlags sf);
@@ -86,7 +86,6 @@ namespace AutonomousSentryGun
 
     public MainForm()
     {
-
       InitializeComponent();
     }
 
@@ -427,14 +426,14 @@ namespace AutonomousSentryGun
 
     private void sendData(Packet packet)
     {
-      try
-      {
+      //try
+      //{
         usbRcvBuff = AutonomousSentryGun.Program.usbHub.getdata(packet.Data);
-      }
-      catch (Exception e)
-      {
-        objectsCountLabel.Text = objectsCountLabel.Text + " - " + "The zigbee module is not plugged into the usb.";
-      }
+      //}
+      //catch (Exception e)
+      //{
+       // objectsCountLabel.Text = objectsCountLabel.Text + " - " + "The zigbee module is not plugged into the usb.";
+      //}
     }
 
     #endregion
