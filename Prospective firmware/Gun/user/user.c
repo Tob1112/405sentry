@@ -50,22 +50,28 @@ unsigned char timedays;
 volatile char datatemp,datatemp2;
  
 
-char temp_buffa[5];
+char temp_buffa[6];
 char data;
 unsigned int m;
 unsigned int baudrateval;
+int fireOK = 1;
+int bufferCnt = 0;
+int packetCnt = 0;
+int packetOK = 1;
+unsigned char hexInterval=0x80;
+
 
 
 volatile unsigned int head, tail = 0; 
 volatile unsigned int Shead,Stail=0;
-volatile unsigned int length = 59;
+volatile unsigned int length = 63;
 volatile unsigned int Slength=31;
 volatile unsigned char buffer_full=0;
 volatile unsigned char buffer_empty=1; 
 volatile unsigned char Sbuffer_full=0;
 volatile unsigned char Sbuffer_empty=1;
 
-volatile char rcv_buffa[60];
+volatile char rcv_buffa[64];
 volatile char snd_buffa[32];
 
 
@@ -439,13 +445,12 @@ char readusart(void)
   return (data);                     // Return the received data
 }
 
-
-
 //
 // reads an a2d input and returns an int
 //
 // pass the IO pin # 1 to 8 that you want to read
 //
+
 int a2dinputread(unsigned char iopin)
 {
 	switch (iopin)
@@ -538,12 +543,12 @@ int ReadADC2(void)
 void a2d2string(int tempdata)
 {
 
-	templong1=tempdata * (unsigned long)3300;//
+	templong1=tempdata * (unsigned long)3300;
 	templong1= templong1 / 1024;
 	templong1= templong1 / 10;
 
 
-	temptemp=(unsigned int)templong1;  //temp in celsius
+	temptemp=(unsigned int)templong1;  
 
       d=(temptemp/100);
       temp_buffa[0]=(char)(d+48);
@@ -607,8 +612,6 @@ void write_rcvbuffa(unsigned char blah123)
 // read a byte from receive buffer
 unsigned char read_rcvbuffa(void) 
 { 
-
-
 //return a null if buffer is empty, otherwise read 1 from head and increment
 // then returns the value at head.
 // then examines if buffer is empty and sets flag as appropriate for next read (or write)
@@ -749,16 +752,51 @@ void interrupthingie(void)
 	if (PIR1bits.RCIF==1)
 	{
 
-		xbee_sleep=0;
+	//	xbee_sleep=0;
 	//	while(!xbee_cts);
 	    datatemp=RCREG;
 
-		if (!buffer_full)
-		{
-			write_rcvbuffa(datatemp);
-		}
 
+			if (!buffer_full)
+			{
+				//packetCnt++;
+				//bufferCnt++;
+				write_rcvbuffa(datatemp);
+			}
+
+
+
+/*
+		if((packetCnt == 0) & ((datatemp == 0x00) | (datatemp == 0x01)))
+		{
+			if ((!buffer_full) & (bufferCnt < 60))
+			{
+				packetCnt++;
+				bufferCnt++;
+				write_rcvbuffa(datatemp);
+			}
+		}
+		else 
+		{
+			if(packetCnt>0)
+			{
+				if ((!buffer_full) & (bufferCnt < 60) )
+				{
+					if(packetCnt == 5)
+					{
+						packetCnt=0;
+					}
+					else
+					{
+						packetCnt++;
+					}
+					bufferCnt++;
+					write_rcvbuffa(datatemp);
+				}
+			}
+		}	
 	//	xbee_sleep=1;
+*/
 	}
 
 	if (PIR1bits.TMR1IF == 1)    
@@ -969,8 +1007,21 @@ void function25mS(void)
 
 void function100mS(void)
 {
+/*
+	//read in an analog voltage from the IR rcv.
+	d=a2dinputread(IO6); 
+	//convert the value to a string
+	a2d2string(d); 
+
+	if((temp_buffa[0] == '1') || (temp_buffa[2] >= '6'))
+		fireOK = 0;
+	else
+		fireOK = 1;
+*/
+
 	//read in the fire enabled bit
-	if(buffer_empty==0)
+//	if((buffer_empty==0) & (bufferCnt >=6))
+if(buffer_empty==0)
 	{
 		temp_buffa[0]=read_rcvbuffa();
 		//read in the x1 register value
@@ -989,75 +1040,145 @@ void function100mS(void)
 					if(buffer_empty==0)
 					{
 						temp_buffa[4]=read_rcvbuffa();	
-						//last byte has been read so now move the gun and set the firing
-						if (temp_buffa[0] == 0x01)
-							IO7=1;
+						if(buffer_empty==0)
+						{
+							temp_buffa[5]=read_rcvbuffa();
+						//	bufferCnt=bufferCnt-6;
+						/*
+							//start hex test at 0x80 and work to the right so /2
+							for(i=1; i<5; i++)
+							{
+								if((temp_buffa[5] & hexInterval) > 0)
+								{
+									if((temp_buffa[i] & 0x80) > 0)
+									{}
+									else
+									{
+										packetOK=0;
+										continue;
+									}
+								}
+								else
+								{
+									if((((temp_buffa[i]) ^ 0xFF) & 0x80) > 0)
+									{}
+									else
+									{
+										packetOK=0;
+										continue;
+									}
+								}
+								
+								hexInterval=hexInterval /=2;
+			
+								if((temp_buffa[5] & hexInterval) > 0)
+								{
+									if((temp_buffa[i] & 0x08) > 0)
+									{}
+									else
+									{
+										packetOK=0;
+										continue;
+									}
+								}
+								else
+								{
+									if((((temp_buffa[i]) ^ 0xFF) & 0x08) > 0)
+									{}
+									else
+									{
+										packetOK=0;
+										continue;
+									}
+								}
+								if(hexInterval == 0x01)
+								{}
+								else					
+									hexInterval=hexInterval /=2;
+						}
+						*/
+						//packet OK
+						if(packetOK == 1)
+						{
+							if((temp_buffa[0] == 0x00) | (temp_buffa[0] == 0x01))
+							{
+								if ((temp_buffa[0] == 0x01) & (fireOK == 1))
+									IO7=1;
+								else
+									IO7=0;
+								//create and send the I2C packet to the Xservo controller
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//start with register 0 for the X servo
+								HighAdd=0x00;
+								//set the speed to the max supported
+								LowAdd=0x00;
+								//write the speed data to register 0
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 1 for the low bits of the position
+								HighAdd=0x01;
+								//store the low bits of the data
+								LowAdd=temp_buffa[1];
+								//write the low bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 2 for the high bits of servo 1
+								HighAdd=0x02;
+								//store the high bits of the data to the register
+								LowAdd=temp_buffa[2];
+								//write the high bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//create and send the I2C packet to the Yservo controller
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//start with register 0 for the X servo
+								HighAdd=0x03;
+								//set the speed to the max supported
+								LowAdd=0x00;
+								//write the speed data to register 0
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 1 for the low bits of the position
+								HighAdd=0x04;
+								//store the low bits of the data
+								LowAdd=temp_buffa[3];
+								//write the low bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 2 for the high bits of servo 1
+								HighAdd=0x05;
+								//store the high bits of the data to the register
+								LowAdd=temp_buffa[4];
+								//write the high bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+							}	
+						}
+						//packet not OK so discard
 						else
-							IO7=0;
-				if(temp_buffa[0] == 0x00 | temp_buffa[0] == 0x01)
-				{
-				//create and send the I2C packet to the Xservo controller
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//start with register 0 for the X servo
-				HighAdd=0x00;
-				//set the speed to the max supported
-				LowAdd=0x00;
-				//write the speed data to register 0
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 1 for the low bits of the position
-				HighAdd=0x01;
-				//store the low bits of the data
-				LowAdd=temp_buffa[1];
-				//write the low bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 2 for the high bits of servo 1
-				HighAdd=0x02;
-				//store the high bits of the data to the register
-				LowAdd=temp_buffa[2];
-				//write the high bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//create and send the I2C packet to the Yservo controller
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//start with register 0 for the X servo
-				HighAdd=0x03;
-				//set the speed to the max supported
-				LowAdd=0x00;
-				//write the speed data to register 0
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 1 for the low bits of the position
-				HighAdd=0x04;
-				//store the low bits of the data
-				LowAdd=temp_buffa[3];
-				//write the low bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 2 for the high bits of servo 1
-				HighAdd=0x05;
-				//store the high bits of the data to the register
-				LowAdd=temp_buffa[4];
-				//write the high bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-				}
+						{
+							packetCnt=0;
+						}
+						//last byte has been read so now move the gun and set the firing
+					}
 					}
 				}
 			}
 		}
 	}
-;
+	//now reset packetOK
+	packetOK=1;
+	hexInterval=0x80;	
+	;
 }
 
 void function1Sec(void)
@@ -1113,15 +1234,19 @@ putrsuart( "+++" );
 getsuart(temp_buffa,3);
 
 // set channel to C
-putrsuart("ATSC0C\r");
+putrsuart("ATSC12\r");
 getsuart(temp_buffa,3);
 
 //panid
 putrsuart("ATID33\r");
 getsuart(temp_buffa,3);
 
+//destination low
+//putrsuart("ATDLH03E11DB\r");
+//getsuart(temp_buffa,3);
+
 //destination high
-//putrsuart("ATWR\r");
+//putrsuart("ATDH13A200\r");
 //getsuart(temp_buffa,3);
 
 //allow nodes to join at any time
@@ -1227,7 +1352,7 @@ void loadconfigfriendly( void )
 	//
  	//
 
-		ADCON1=0x0E;
+		ADCON1=0x09;
 
 
 	//
@@ -1241,11 +1366,11 @@ void loadconfigfriendly( void )
 	//
 
 		IO1_TRIS = ANALOG_PIN;
-		IO2_TRIS = OUTPUT_PIN;
-		IO3_TRIS = OUTPUT_PIN;
-		IO4_TRIS = OUTPUT_PIN;
-		IO5_TRIS = OUTPUT_PIN;
-		IO6_TRIS = OUTPUT_PIN;
+		IO2_TRIS = ANALOG_PIN;
+		IO3_TRIS = ANALOG_PIN;
+		IO4_TRIS = ANALOG_PIN;
+		IO5_TRIS = ANALOG_PIN;
+		IO6_TRIS = ANALOG_PIN;
 		IO7_TRIS = OUTPUT_PIN;
 		IO8_TRIS = OUTPUT_PIN;
 
@@ -1277,6 +1402,64 @@ void loadconfigfriendly( void )
 	//
 	// please goto i2cstuff.c to change this setting.
 	//
+
+
+						ControlByte=0xC2;
+								//start with register 0 for the X servo
+								HighAdd=0x00;
+								//set the speed to the max supported
+								LowAdd=0x00;
+								//write the speed data to register 0
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 1 for the low bits of the position
+								HighAdd=0x01;
+								//store the low bits of the data
+								LowAdd=0x40;
+								//write the low bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 2 for the high bits of servo 1
+								HighAdd=0x02;
+								//store the high bits of the data to the register
+								LowAdd=0x06;
+								//write the high bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//create and send the I2C packet to the Yservo controller
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//start with register 0 for the X servo
+								HighAdd=0x03;
+								//set the speed to the max supported
+								LowAdd=0x00;
+								//write the speed data to register 0
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 1 for the low bits of the position
+								HighAdd=0x04;
+								//store the low bits of the data
+								LowAdd=0xC5;
+								//write the low bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+								//control byte is always 0xC2
+								ControlByte=0xC2;
+								//use register 2 for the high bits of servo 1
+								HighAdd=0x05;
+								//store the high bits of the data to the register
+								LowAdd=0x05;
+								//write the high bits of the data to the register
+								EErombytewrite2(ControlByte,HighAdd,LowAdd);
+
+
+
 
 }
 

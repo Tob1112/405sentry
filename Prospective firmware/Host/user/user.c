@@ -50,7 +50,7 @@ unsigned char timedays;
 volatile char datatemp,datatemp2;
  
 
-char temp_buffa[5];
+char temp_buffa[6];
 char data;
 unsigned int m;
 unsigned int baudrateval;
@@ -58,14 +58,14 @@ unsigned int baudrateval;
 
 volatile unsigned int head, tail = 0; 
 volatile unsigned int Shead,Stail=0;
-volatile unsigned int length = 59;
+volatile unsigned int length = 63;
 volatile unsigned int Slength=31;
 volatile unsigned char buffer_full=0;
 volatile unsigned char buffer_empty=1; 
 volatile unsigned char Sbuffer_full=0;
 volatile unsigned char Sbuffer_empty=1;
 
-volatile char rcv_buffa[60];
+volatile char rcv_buffa[64];
 volatile char snd_buffa[32];
 
 
@@ -117,8 +117,32 @@ void ServiceRequests(void)
 
         counter = 0;
       
-switch(dataPacket.CMD)
-        {
+	switch(dataPacket.CMD)
+        {	
+
+		case gunMove:
+			//copy all of the USB data to the Xbee interface
+			temp_buffa[0]=dataPacket._byte[1];
+			temp_buffa[1]=dataPacket._byte[2];
+			temp_buffa[2]=dataPacket._byte[3];
+			temp_buffa[3]=dataPacket._byte[4];
+			temp_buffa[4]=dataPacket._byte[5];
+			temp_buffa[5]=dataPacket._byte[6];
+			//write to the Xbee interface
+			putPacket(temp_buffa);
+/*
+			//let the program know if there is a friendly detected
+			
+			//Data=read_rcvbuffa();
+			
+			//returns a 0x00 if no friendly and 0x01 if a friendly found
+		//	if(Data == (0x00 || 0x01))
+		//		dataPacket._byte[1] = Data;
+		//	else
+		//	  	dataPacket._byte[1] = 0xFF;
+*/
+			counter=0x07;
+			break;
 
 		case bootmodecheck:
 			dataPacket._byte[1]=0x05;
@@ -336,10 +360,20 @@ if (good==0x33)
 
 
 
-
+/*
 void commo(void)
 {
 putrsuart("blah");
+}
+*/
+
+void putPacket(char *data)
+{
+	for(i=0; i<6; i++)
+    {
+    	Writeuart_1byte(*data);
+        data++;
+    }
 }
 
 // this sends a string to USART WITHOUT SENDING THE NULL!!!!!
@@ -348,10 +382,10 @@ void putsuart( char *data)
   do
   {  // Transmit a byte
     while(fulluart());
-	if(*data!=0)
-	{
+//	if(*data!=0)
+//	{
     	Writeuart(*data);
-	}
+//	}
   } while( *data++ );
   PORTCbits.RC6=1;
 }
@@ -378,11 +412,8 @@ void Writeuart(char data)
 }
 
 
-
-
 void Writeuart_1byte(char data)
 {
-	//xbee_sleep=0;
 	TXREG=data;
 	while(BusyUSART());
 	PORTCbits.RC6=1;
@@ -687,7 +718,7 @@ void write_sndbuffa(unsigned char blah123)
 
 
 
-// read a byte from send buffer
+// read a byte from receive buffer
 unsigned char read_sndbuffa(void) 
 { 
 
@@ -724,7 +755,7 @@ unsigned char read_sndbuffa(void)
 	}
 	return Data1; 
 } 
-// end read byte from send buffa
+// end read byte from receive buffa
 
 
 
@@ -739,9 +770,6 @@ unsigned char port_to_ascii(unsigned char portvalue)
 		return(0x31);
 	}
 }
-
-
-
 
 void interrupthingie(void)
 {
@@ -766,20 +794,20 @@ void interrupthingie(void)
         WriteTimer1(28100);
 		inctime();
  
-		if (!Sbuffer_empty)
+			if (!Sbuffer_empty)
 		{
-			for (m=0;m<5;m++)
+		for (m=0;m<5;m++)
+		{
+			datatemp2=read_sndbuffa();
+			if (datatemp2!=0x00)
 			{
-				datatemp2=read_sndbuffa();
-				if (datatemp2!=0x00)
-				{
-					Writeuart_1byte(datatemp2);
-				}
-				else
-				{
-					m=5;
-				}
+				Writeuart_1byte(datatemp2);
 			}
+			else
+			{
+				m=5;
+			}
+		}
 		}
 
 	//clear timer 1 flag
@@ -843,7 +871,7 @@ void loadconfig(void)
 		// these specify pins as either input or ouput
 		// do not change these directly
 		// to change the IO pins change the ones listed below here after
-        // the register setup
+       		// the register setup
 		// ie: change the ones listed a IO1=input.
 		TRISA=0x10;
 		TRISB=0xFF;	    
@@ -969,95 +997,7 @@ void function25mS(void)
 
 void function100mS(void)
 {
-	//read in the fire enabled bit
-	if(buffer_empty==0)
-	{
-		temp_buffa[0]=read_rcvbuffa();
-		//read in the x1 register value
-		if(buffer_empty==0)
-		{
-			temp_buffa[1]=read_rcvbuffa();
-			//read in the x2 register value
-			if(buffer_empty==0)
-			{
-				temp_buffa[2]=read_rcvbuffa();
-				//read in the y1 register value
-				if(buffer_empty==0)
-				{
-					temp_buffa[3]=read_rcvbuffa();
-					//read in the y2 register value
-					if(buffer_empty==0)
-					{
-						temp_buffa[4]=read_rcvbuffa();	
-						//last byte has been read so now move the gun and set the firing
-						if (temp_buffa[0] == 0x01)
-							IO7=1;
-						else
-							IO7=0;
-				if(temp_buffa[0] == 0x00 | temp_buffa[0] == 0x01)
-				{
-				//create and send the I2C packet to the Xservo controller
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//start with register 0 for the X servo
-				HighAdd=0x00;
-				//set the speed to the max supported
-				LowAdd=0x00;
-				//write the speed data to register 0
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 1 for the low bits of the position
-				HighAdd=0x01;
-				//store the low bits of the data
-				LowAdd=temp_buffa[1];
-				//write the low bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 2 for the high bits of servo 1
-				HighAdd=0x02;
-				//store the high bits of the data to the register
-				LowAdd=temp_buffa[2];
-				//write the high bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//create and send the I2C packet to the Yservo controller
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//start with register 0 for the X servo
-				HighAdd=0x03;
-				//set the speed to the max supported
-				LowAdd=0x00;
-				//write the speed data to register 0
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 1 for the low bits of the position
-				HighAdd=0x04;
-				//store the low bits of the data
-				LowAdd=temp_buffa[3];
-				//write the low bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-
-				//control byte is always 0xC2
-				ControlByte=0xC2;
-				//use register 2 for the high bits of servo 1
-				HighAdd=0x05;
-				//store the high bits of the data to the register
-				LowAdd=temp_buffa[4];
-				//write the high bits of the data to the register
-				EErombytewrite2(ControlByte,HighAdd,LowAdd);
-				}
-					}
-				}
-			}
-		}
-	}
-;
+	;
 }
 
 void function1Sec(void)
@@ -1086,7 +1026,6 @@ void function1day(void)
 
 
 
-
 //
 // init xbee function
 //
@@ -1109,32 +1048,43 @@ void initxbee(void)
 	}
 
 //this is command mode entry command do not remove
-putrsuart( "+++" );
+putrsuart("+++");
 getsuart(temp_buffa,3);
 
 // set channel to C
-putrsuart("ATSC0C\r");
+putrsuart("ATSC12\r");
 getsuart(temp_buffa,3);
 
 //panid
 putrsuart("ATID33\r");
 getsuart(temp_buffa,3);
 
-//destination high
-//putrsuart("ATWR\r");
-//getsuart(temp_buffa,3);
-
-//allow nodes to join at any time
+//change node joining to always
 putrsuart("ATNJFF\r");
 getsuart(temp_buffa,3);
 
 //node identifier for this node
-putrsuart("ATNIGUN\r");
+putrsuart("ATNIHOST\r");
+getsuart(temp_buffa,3);
+
+// turn off sleep mode
+putrsuart("ATSM0\r");
+getsuart(temp_buffa,3);
+
+//save changes
+//putrsuart("ATWR\r");
+//getsuart(temp_buffa,3);
+
+putrsuart("ATDH0\r");
+getsuart(temp_buffa,3);
+
+putrsuart("ATDL0\r");
 getsuart(temp_buffa,3);
 
 //exit command mode
 putrsuart("ATCN\r");
 getsuart(temp_buffa,3);
+
 
 }
 
@@ -1180,9 +1130,13 @@ getsuart(temp_buffa,3);
 //putrsuart("ATAC\r");
 //getsuart(temp_buffa,3);
 
+//putrsuart("ATWR\r");
+//getsuart(temp_buffa,3);
+
 //exit command mode
 putrsuart("ATCN\r");
 getsuart(temp_buffa,3);
+
 
 }
 
@@ -1221,13 +1175,13 @@ void loadconfigfriendly( void )
 	//   0x0C = IO1,IO2,IO3 analog, All else digital
 	//   0x0B = IO1,IO2,IO3,IO4 analog, All else digital
 	//   0x0A = IO1,IO2,IO3,IO4,IO5 analog, All else digital
-    //	 0x09 =	IO1,IO2,IO3,IO4,IO5,IO6 analog, All else digital
-    //   0x08 = IO1,IO2,IO3,IO4,IO5,IO6,IO7 analog, All else digital
-    //   0x07 = IO1,IO2,IO3,IO4,IO5,IO6,IO7,IO8 ALL analog lines.
+    	//   0x09 = IO1,IO2,IO3,IO4,IO5,IO6 analog, All else digital
+   	//   0x08 = IO1,IO2,IO3,IO4,IO5,IO6,IO7 analog, All else digital
+   	//   0x07 = IO1,IO2,IO3,IO4,IO5,IO6,IO7,IO8 ALL analog lines.
 	//
  	//
 
-		ADCON1=0x0E;
+		ADCON1=0x0F;
 
 
 	//
@@ -1240,7 +1194,7 @@ void loadconfigfriendly( void )
 	// ANALOG_PIN  = makes the pin an analog pin
 	//
 
-		IO1_TRIS = ANALOG_PIN;
+		IO1_TRIS = OUTPUT_PIN;
 		IO2_TRIS = OUTPUT_PIN;
 		IO3_TRIS = OUTPUT_PIN;
 		IO4_TRIS = OUTPUT_PIN;
@@ -1277,6 +1231,7 @@ void loadconfigfriendly( void )
 	//
 	// please goto i2cstuff.c to change this setting.
 	//
+
 
 }
 
