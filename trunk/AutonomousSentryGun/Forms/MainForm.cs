@@ -580,9 +580,9 @@ namespace AutonomousSentryGun
       TrackingTimer.Stop();
       aimDot.Visible = false;
 
-      Packet packet = new Packet(servos.CenterServosPosition);
-      packet.setFireOff();
-      sendData(packet);
+      //Packet packet = new Packet(servos.CenterServosPosition);
+      //packet.setFireOff();
+      //sendData(packet);
 
     }
     #endregion
