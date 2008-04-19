@@ -58,6 +58,9 @@ int fireOK = 1;
 int bufferCnt = 0;
 int packetCnt = 0;
 int packetOK = 1;
+const int PACKET_LENGTH = 5;
+int packetPosition = 0;
+unsigned char packetBuffer[PACKET_LENGTH];
 unsigned char hexInterval=0x80;
 
 
@@ -573,10 +576,19 @@ void a2d2string(int tempdata)
 //this process assumes tail is always an empty spot
 //tail should never equal head
 //
-void write_rcvbuffa(unsigned char blah123) 
+
+void write_rcvbuffa(unsigned char[] packet) 
 { 
 	//check for a full buffer
-	if ((buffer_full) | ((tail+1)==head) | ((tail==length) & (head==0)))
+  int emptyBytes = 0;
+  int currTail = tail;
+  do
+  {
+    emptyBytes++;
+    currTail = (currTail+1)%(length+1);
+  } while(currTail!=head);
+
+	if ((buffer_full) | emptyBytes<=PACKET_LENGTH)
 	{
 //		xbee_rts=1; //inhibit unit from sending more data
 		buffer_full=1;
@@ -585,20 +597,25 @@ void write_rcvbuffa(unsigned char blah123)
 	else
 	{
 		//write the byte and inc to next empty slot
-		rcv_buffa[tail] = blah123; 
-		if (tail >= length) 
-		{	
-			tail = 0; 
-		}
-		else 
-		{
-			tail++; 
-		}
+    int i;
+    for(i=0;i<PACKET_LENGTH;i++)
+    {
+      rcv_buffa[tail] = packet[i]; 
+      tail = (tail+1)%(length+1);  
+    }
 		
+				
 		//update flags
 		buffer_empty=0;
 
-		if (((tail+1)==head) | ((tail==length) & (head==0)))
+    emptyBytes = 0;
+    currTail = tail;
+    do
+    {
+      emptyBytes++;
+      currTail = (currTail+1)%(length+1);
+    } while(currTail!=head);
+		if (emptyBytes<=PACKET_LENGTH)
 		{
 			buffer_full=1;
 //			xbee_rts=1; //inhibit more stuff from comming until buffer is not empty	
@@ -625,18 +642,23 @@ unsigned char read_rcvbuffa(void)
 	{
 		//read 1 from head and inc head 
 		Data1 = rcv_buffa[head]; 
-
-		if (head >= length) 
-		{
-			head = 0; 
-		}
-		else 
-		{
-			head++; 
-		}
+		head = (head+1)%(length+1);
 		
 		//update flags
-		buffer_full=0;
+
+    int emptyBytes = 0;
+    int currTail = tail;
+    do
+    {
+      emptyBytes++;
+      currTail = (currTail+1)%(length+1);
+    } while(currTail!=head);
+		if (emptyBytes>PACKET_LENGTH)
+		{
+			buffer_full=0;
+
+		}
+		
 //		xbee_rts=0;
 
 		if (head==tail)
@@ -647,9 +669,6 @@ unsigned char read_rcvbuffa(void)
 	}
 	return Data1; 
 } 
-// end read byte from receive buffa
-
-
 
 
 //write a byte to send buffa
@@ -761,42 +780,13 @@ void interrupthingie(void)
 			{
 				//packetCnt++;
 				//bufferCnt++;
-				write_rcvbuffa(datatemp);
+				packetBuffer[packetPosition] = datatemp;
+        packetPosition = (packetPosition+1)%PACKET_LENGTH;
+        if(packetPosition == 0)
+        {
+          write_rcvbuffa(packetBuffer);
+        }
 			}
-
-
-
-/*
-		if((packetCnt == 0) & ((datatemp == 0x00) | (datatemp == 0x01)))
-		{
-			if ((!buffer_full) & (bufferCnt < 60))
-			{
-				packetCnt++;
-				bufferCnt++;
-				write_rcvbuffa(datatemp);
-			}
-		}
-		else 
-		{
-			if(packetCnt>0)
-			{
-				if ((!buffer_full) & (bufferCnt < 60) )
-				{
-					if(packetCnt == 5)
-					{
-						packetCnt=0;
-					}
-					else
-					{
-						packetCnt++;
-					}
-					bufferCnt++;
-					write_rcvbuffa(datatemp);
-				}
-			}
-		}	
-	//	xbee_sleep=1;
-*/
 	}
 
 	if (PIR1bits.TMR1IF == 1)    
