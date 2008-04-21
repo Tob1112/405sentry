@@ -490,7 +490,7 @@ namespace AutonomousSentryGun
       {
         // create video source
         //VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, false);
-        VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), true);
+        VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), false);
 
         // open it
         OpenVideoSource(videoSource);

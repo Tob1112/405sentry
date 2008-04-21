@@ -8,6 +8,7 @@ namespace AutonomousSentryGun.Functions
 {
   class Servos
   {
+      //170,230
     private readonly Size MAX_SHOOTING_RANGE_SIZE = new Size(250,250);
     private readonly Point CENTER_POSITION = new Point(1600,1477);
     private Rectangle shootingRange;

@@ -158,7 +158,7 @@ void loadconfigfriendly( void );
 
 void sleep_config_xbee(void);
 
-void write_rcvbuffa(unsigned char c);
+void write_rcvbuffa(void);
 
 unsigned char read_rcvbuffa(void);
 

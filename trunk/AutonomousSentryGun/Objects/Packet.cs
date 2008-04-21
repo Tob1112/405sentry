@@ -18,7 +18,7 @@ namespace AutonomousSentryGun.Objects
     class Packet
     {
         private byte[] data;
-        private const int PACKET_BYTE_LENGTH = 6;
+        private const int PACKET_BYTE_LENGTH = 5;
         //FIRE:1
         //XPOSITION:16
         //YPOSITION:16
@@ -55,7 +55,7 @@ namespace AutonomousSentryGun.Objects
         {
             this.setXPosition(point.X);
             this.setYPosition(point.Y);
-            UpdateCheckSum();
+            //UpdateCheckSum();
         }
         private void setXPosition(int position)
         {
@@ -83,10 +83,11 @@ namespace AutonomousSentryGun.Objects
               //  MessageBox.Show("out of range data?");
             return twoByte;
         }
+        /*
         private void UpdateCheckSum()
         {
             data[Packet.CHECKSUM] = 0x00;
-            /*
+            
             data[Packet.CHECKSUM] = (byte)((((data[Packet.YPOSITION_IDX] & 0x0f) > 7) ? 0x01 : 0x00) |
             (((((((data[Packet.YPOSITION_IDX] & 0xf0) >> 4) & 0x0f) > 7) ? 0x01 : 0x00) << 1) |
             ((((data[Packet.YPOSITION_IDX + 1] & 0x0f) > 7) ? 0x01 : 0x00) << 2) |
@@ -95,7 +96,8 @@ namespace AutonomousSentryGun.Objects
             ((((((data[Packet.XPOSITION_IDX] & 0xf0) >> 4) & 0x0f) > 7) ? 0x01 : 0x00) << 5) |
             ((((data[Packet.XPOSITION_IDX + 1] & 0x0f) > 7) ? 0x01 : 0x00) << 6) |
             (((((data[Packet.XPOSITION_IDX + 1] & 0xf0) >> 4) & 0x0f) > 7) ? 0x01 : 0x00) << 7));
-             */
+             
         }
+        */
     }
 }

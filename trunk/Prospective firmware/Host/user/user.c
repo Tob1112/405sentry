@@ -50,7 +50,7 @@ unsigned char timedays;
 volatile char datatemp,datatemp2;
  
 
-char temp_buffa[6];
+char temp_buffa[5];
 char data;
 unsigned int m;
 unsigned int baudrateval;
@@ -127,7 +127,7 @@ void ServiceRequests(void)
 			temp_buffa[2]=dataPacket._byte[3];
 			temp_buffa[3]=dataPacket._byte[4];
 			temp_buffa[4]=dataPacket._byte[5];
-			temp_buffa[5]=dataPacket._byte[6];
+			//temp_buffa[5]=dataPacket._byte[6];
 			//write to the Xbee interface
 			putPacket(temp_buffa);
 /*
@@ -141,7 +141,7 @@ void ServiceRequests(void)
 		//	else
 		//	  	dataPacket._byte[1] = 0xFF;
 */
-			counter=0x07;
+			counter=0x06;
 			break;
 
 		case bootmodecheck:
@@ -369,7 +369,7 @@ putrsuart("blah");
 
 void putPacket(char *data)
 {
-	for(i=0; i<6; i++)
+	for(i=0; i<5; i++)
     {
     	Writeuart_1byte(*data);
         data++;
