@@ -1,5 +1,5 @@
 MPLINK 4.16, Linker
-Linker Map File - Created Fri Apr 18 15:37:27 2008
+Linker Map File - Created Sun Apr 20 16:20:38 2008
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -9,75 +9,75 @@ Linker Map File - Created Fri Apr 18 15:37:27 2008
    _HIGH_INTERRUPT_VECTOR       code   0x000808    program   0x000006
     _LOW_INTERRUPT_VECTOR       code   0x000818    program   0x000002
                    .cinit    romdata   0x00082a    program   0x00000e
-             .code_user.o       code   0x000838    program   0x000b50
-         .code_i2cstuff.o       code   0x001388    program   0x0002f4
-             .code_usb9.o       code   0x00167c    program   0x0002b6
-             .code_main.o       code   0x001932    program   0x00028a
-       .code_usbctrltrf.o       code   0x001bbc    program   0x00025c
-           .code_usbdrv.o       code   0x001e18    program   0x000186
-           .code_usbgen.o       code   0x001f9e    program   0x000112
-                     PROG       code   0x0020b0    program   0x0000fa
-        .romdata_usbdsc.o    romdata   0x0021aa    program   0x0000bd
-        .romdata___init.o    romdata   0x002267    program   0x000000
-          .romdata_user.o    romdata   0x002267    program   0x000000
-        .idata___init.o_i    romdata   0x002267    program   0x000000
-        .idata_usbgen.o_i    romdata   0x002267    program   0x000000
-        .romdata_usbgen.o    romdata   0x002267    program   0x000000
-         .romdata_udefs.o    romdata   0x002267    program   0x000000
-      .idata_i2cstuff.o_i    romdata   0x002267    program   0x000000
-      .romdata_i2cstuff.o    romdata   0x002267    program   0x000000
-         .idata_udefs.o_i    romdata   0x002267    program   0x000000
-       .idata_adcbusy.o_i    romdata   0x002267    program   0x000000
-       .romdata_adcbusy.o    romdata   0x002267    program   0x000000
-       .idata_adcconv.o_i    romdata   0x002267    program   0x000000
-       .romdata_adcconv.o    romdata   0x002267    program   0x000000
-      .idata_fxd1616u.o_i    romdata   0x002267    program   0x000000
-      .romdata_fxd1616u.o    romdata   0x002267    program   0x000000
-      .idata_fxd3232u.o_i    romdata   0x002267    program   0x000000
-      .romdata_fxd3232u.o    romdata   0x002267    program   0x000000
-       .idata_fxm3232.o_i    romdata   0x002267    program   0x000000
-       .romdata_fxm3232.o    romdata   0x002267    program   0x000000
-        .idata_t1open.o_i    romdata   0x002267    program   0x000000
-        .romdata_t1open.o    romdata   0x002267    program   0x000000
-       .idata_t1write.o_i    romdata   0x002267    program   0x000000
-       .romdata_t1write.o    romdata   0x002267    program   0x000000
-        .romdata_uwrite.o    romdata   0x002267    program   0x000000
-        .idata_uwrite.o_i    romdata   0x002267    program   0x000000
-          .romdata_main.o    romdata   0x002267    program   0x000000
-          .idata_main.o_i    romdata   0x002267    program   0x000000
-       .idata_usbmmap.o_i    romdata   0x002267    program   0x000000
-       .romdata_usbmmap.o    romdata   0x002267    program   0x000000
-         .romdata_c018i.o    romdata   0x002267    program   0x000000
-        .idata_usbdrv.o_i    romdata   0x002267    program   0x000000
-        .romdata_usbdrv.o    romdata   0x002267    program   0x000000
-          .idata_usb9.o_i    romdata   0x002267    program   0x000000
-          .romdata_usb9.o    romdata   0x002267    program   0x000000
-        .idata_usbdsc.o_i    romdata   0x002267    program   0x000000
-         .idata_c018i.o_i    romdata   0x002267    program   0x000000
-    .romdata_usbctrltrf.o    romdata   0x002267    program   0x000000
-    .idata_usbctrltrf.o_i    romdata   0x002267    program   0x000000
-               _cinit_scn       code   0x002268    program   0x00009e
-            .code_udefs.o       code   0x002268    program   0x000000
-            .code_c018i.o       code   0x002268    program   0x000000
-          .code_usbmmap.o       code   0x002268    program   0x000000
-           .code_usbdsc.o       code   0x002268    program   0x000000
-          .code_fxm3232.o       code   0x002306    program   0x000070
-             .stringtable    romdata   0x002376    program   0x000052
-         .code_fxd3232u.o       code   0x0023c8    program   0x000048
-           .code_t1open.o       code   0x002410    program   0x000042
-          .code_t1write.o       code   0x002452    program   0x000038
-             D10KTCYXCODE       code   0x00248a    program   0x00002e
-           .code_uwrite.o       code   0x0024b8    program   0x00002e
-         .code_fxd1616u.o       code   0x0024e6    program   0x00002c
-              D1KTCYXCODE       code   0x002512    program   0x000020
-             _startup_scn       code   0x002532    program   0x00001c
-             D100TCYXCODE       code   0x00254e    program   0x00001c
-              D10TCYXCODE       code   0x00256a    program   0x000016
-                    .code       code   0x002580    program   0x00000e
-          .code_adcbusy.o       code   0x00258e    program   0x00000a
-          .code_adcconv.o       code   0x002598    program   0x000004
-           .code___init.o       code   0x00259c    program   0x000002
-          .idata_user.o_i    romdata   0x00259e    program   0x00000c
+             .code_user.o       code   0x000838    program   0x000b4c
+         .code_i2cstuff.o       code   0x001384    program   0x0002f4
+             .code_usb9.o       code   0x001678    program   0x0002b6
+             .code_main.o       code   0x00192e    program   0x00028a
+       .code_usbctrltrf.o       code   0x001bb8    program   0x00025c
+           .code_usbdrv.o       code   0x001e14    program   0x000186
+           .code_usbgen.o       code   0x001f9a    program   0x000112
+                     PROG       code   0x0020ac    program   0x0000fa
+        .romdata_usbdsc.o    romdata   0x0021a6    program   0x0000bd
+        .romdata___init.o    romdata   0x002263    program   0x000000
+          .romdata_user.o    romdata   0x002263    program   0x000000
+        .idata___init.o_i    romdata   0x002263    program   0x000000
+        .idata_usbgen.o_i    romdata   0x002263    program   0x000000
+        .romdata_usbgen.o    romdata   0x002263    program   0x000000
+         .romdata_udefs.o    romdata   0x002263    program   0x000000
+      .idata_i2cstuff.o_i    romdata   0x002263    program   0x000000
+      .romdata_i2cstuff.o    romdata   0x002263    program   0x000000
+         .idata_udefs.o_i    romdata   0x002263    program   0x000000
+       .idata_adcbusy.o_i    romdata   0x002263    program   0x000000
+       .romdata_adcbusy.o    romdata   0x002263    program   0x000000
+       .idata_adcconv.o_i    romdata   0x002263    program   0x000000
+       .romdata_adcconv.o    romdata   0x002263    program   0x000000
+      .idata_fxd1616u.o_i    romdata   0x002263    program   0x000000
+      .romdata_fxd1616u.o    romdata   0x002263    program   0x000000
+      .idata_fxd3232u.o_i    romdata   0x002263    program   0x000000
+      .romdata_fxd3232u.o    romdata   0x002263    program   0x000000
+       .idata_fxm3232.o_i    romdata   0x002263    program   0x000000
+       .romdata_fxm3232.o    romdata   0x002263    program   0x000000
+        .idata_t1open.o_i    romdata   0x002263    program   0x000000
+        .romdata_t1open.o    romdata   0x002263    program   0x000000
+       .idata_t1write.o_i    romdata   0x002263    program   0x000000
+       .romdata_t1write.o    romdata   0x002263    program   0x000000
+        .romdata_uwrite.o    romdata   0x002263    program   0x000000
+        .idata_uwrite.o_i    romdata   0x002263    program   0x000000
+          .romdata_main.o    romdata   0x002263    program   0x000000
+          .idata_main.o_i    romdata   0x002263    program   0x000000
+       .idata_usbmmap.o_i    romdata   0x002263    program   0x000000
+       .romdata_usbmmap.o    romdata   0x002263    program   0x000000
+         .romdata_c018i.o    romdata   0x002263    program   0x000000
+        .idata_usbdrv.o_i    romdata   0x002263    program   0x000000
+        .romdata_usbdrv.o    romdata   0x002263    program   0x000000
+          .idata_usb9.o_i    romdata   0x002263    program   0x000000
+          .romdata_usb9.o    romdata   0x002263    program   0x000000
+        .idata_usbdsc.o_i    romdata   0x002263    program   0x000000
+         .idata_c018i.o_i    romdata   0x002263    program   0x000000
+    .romdata_usbctrltrf.o    romdata   0x002263    program   0x000000
+    .idata_usbctrltrf.o_i    romdata   0x002263    program   0x000000
+               _cinit_scn       code   0x002264    program   0x00009e
+            .code_udefs.o       code   0x002264    program   0x000000
+            .code_c018i.o       code   0x002264    program   0x000000
+          .code_usbmmap.o       code   0x002264    program   0x000000
+           .code_usbdsc.o       code   0x002264    program   0x000000
+          .code_fxm3232.o       code   0x002302    program   0x000070
+             .stringtable    romdata   0x002372    program   0x000052
+         .code_fxd3232u.o       code   0x0023c4    program   0x000048
+           .code_t1open.o       code   0x00240c    program   0x000042
+          .code_t1write.o       code   0x00244e    program   0x000038
+             D10KTCYXCODE       code   0x002486    program   0x00002e
+           .code_uwrite.o       code   0x0024b4    program   0x00002e
+         .code_fxd1616u.o       code   0x0024e2    program   0x00002c
+              D1KTCYXCODE       code   0x00250e    program   0x000020
+             _startup_scn       code   0x00252e    program   0x00001c
+             D100TCYXCODE       code   0x00254a    program   0x00001c
+              D10TCYXCODE       code   0x002566    program   0x000016
+                    .code       code   0x00257c    program   0x00000e
+          .code_adcbusy.o       code   0x00258a    program   0x00000a
+          .code_adcconv.o       code   0x002594    program   0x000004
+           .code___init.o       code   0x002598    program   0x000002
+          .idata_user.o_i    romdata   0x00259a    program   0x00000c
     .config_300000_main.o    romdata   0x300000    program   0x000001
     .config_300001_main.o    romdata   0x300001    program   0x000001
     .config_300002_main.o    romdata   0x300002    program   0x000001
@@ -97,43 +97,43 @@ Linker Map File - Created Fri Apr 18 15:37:27 2008
             .udata_main.o      udata   0x000060       data   0x000009
          .udata_usbmmap.o      udata   0x000069       data   0x000004
           .udata_usbdrv.o      udata   0x00006d       data   0x000002
-          .udata_usbgen.o      udata   0x00006f       data   0x000001
-           .udata_udefs.o      udata   0x000070       data   0x000001
-         .udata_adcconv.o      udata   0x000071       data   0x000000
-         .idata_adcconv.o      idata   0x000071       data   0x000000
-        .udata_fxd1616u.o      udata   0x000071       data   0x000000
-        .idata_fxd1616u.o      idata   0x000071       data   0x000000
-        .udata_fxd3232u.o      udata   0x000071       data   0x000000
-        .idata_fxd3232u.o      idata   0x000071       data   0x000000
-         .udata_fxm3232.o      udata   0x000071       data   0x000000
-         .idata_fxm3232.o      idata   0x000071       data   0x000000
-          .udata_t1open.o      udata   0x000071       data   0x000000
-          .idata_t1open.o      idata   0x000071       data   0x000000
-         .udata_t1write.o      udata   0x000071       data   0x000000
-         .idata_t1write.o      idata   0x000071       data   0x000000
-          .udata_uwrite.o      udata   0x000071       data   0x000000
-          .idata_uwrite.o      idata   0x000071       data   0x000000
-           .idata_udefs.o      idata   0x000071       data   0x000000
-          .udata___init.o      udata   0x000071       data   0x000000
-           .idata_c018i.o      idata   0x000071       data   0x000000
-            .idata_main.o      idata   0x000071       data   0x000000
-         .idata_usbmmap.o      idata   0x000071       data   0x000000
-          .idata_usbdrv.o      idata   0x000071       data   0x000000
-            .udata_usb9.o      udata   0x000071       data   0x000000
-            .idata_usb9.o      idata   0x000071       data   0x000000
-          .udata_usbdsc.o      udata   0x000071       data   0x000000
-          .idata_usbdsc.o      idata   0x000071       data   0x000000
-      .idata_usbctrltrf.o      idata   0x000071       data   0x000000
-          .idata_usbgen.o      idata   0x000071       data   0x000000
-        .idata_i2cstuff.o      idata   0x000071       data   0x000000
-          .idata___init.o      idata   0x000071       data   0x000000
-         .udata_adcbusy.o      udata   0x000071       data   0x000000
-         .idata_adcbusy.o      idata   0x000071       data   0x000000
-            .udata_user.o      udata   0x000100       data   0x0000da
-            .idata_user.o      idata   0x0001da       data   0x00000c
-      .udata_usbctrltrf.o      udata   0x0001e6       data   0x00000a
-           .udata_c018i.o      udata   0x0001f0       data   0x00000a
-        .udata_i2cstuff.o      udata   0x0001fa       data   0x000006
+           .udata_udefs.o      udata   0x00006f       data   0x000001
+         .idata_adcbusy.o      idata   0x000070       data   0x000000
+         .udata_adcconv.o      udata   0x000070       data   0x000000
+         .idata_adcconv.o      idata   0x000070       data   0x000000
+        .udata_fxd1616u.o      udata   0x000070       data   0x000000
+        .idata_fxd1616u.o      idata   0x000070       data   0x000000
+        .udata_fxd3232u.o      udata   0x000070       data   0x000000
+        .idata_fxd3232u.o      idata   0x000070       data   0x000000
+         .udata_fxm3232.o      udata   0x000070       data   0x000000
+         .idata_fxm3232.o      idata   0x000070       data   0x000000
+          .udata_t1open.o      udata   0x000070       data   0x000000
+          .idata_t1open.o      idata   0x000070       data   0x000000
+         .udata_t1write.o      udata   0x000070       data   0x000000
+         .idata_t1write.o      idata   0x000070       data   0x000000
+          .udata_uwrite.o      udata   0x000070       data   0x000000
+          .idata_uwrite.o      idata   0x000070       data   0x000000
+           .idata_udefs.o      idata   0x000070       data   0x000000
+          .udata___init.o      udata   0x000070       data   0x000000
+           .idata_c018i.o      idata   0x000070       data   0x000000
+            .idata_main.o      idata   0x000070       data   0x000000
+         .idata_usbmmap.o      idata   0x000070       data   0x000000
+          .idata_usbdrv.o      idata   0x000070       data   0x000000
+            .udata_usb9.o      udata   0x000070       data   0x000000
+            .idata_usb9.o      idata   0x000070       data   0x000000
+          .udata_usbdsc.o      udata   0x000070       data   0x000000
+          .idata_usbdsc.o      idata   0x000070       data   0x000000
+      .idata_usbctrltrf.o      idata   0x000070       data   0x000000
+          .idata_usbgen.o      idata   0x000070       data   0x000000
+        .idata_i2cstuff.o      idata   0x000070       data   0x000000
+          .idata___init.o      idata   0x000070       data   0x000000
+         .udata_adcbusy.o      udata   0x000070       data   0x000000
+            .udata_user.o      udata   0x000100       data   0x0000d9
+            .idata_user.o      idata   0x0001d9       data   0x00000c
+      .udata_usbctrltrf.o      udata   0x0001e5       data   0x00000a
+           .udata_c018i.o      udata   0x0001ef       data   0x00000a
+        .udata_i2cstuff.o      udata   0x0001f9       data   0x000006
+          .udata_usbgen.o      udata   0x0001ff       data   0x000001
                    .stack      udata   0x000300       data   0x000100
                   usbram4      udata   0x000400       data   0x0000a8
             SFR_UNBANKED0      udata   0x000f62       data   0x00009e
@@ -147,126 +147,126 @@ Linker Map File - Created Fri Apr 18 15:37:27 2008
                             0x000800    0x000805      
                             0x000808    0x00080d      
                             0x000818    0x000819      
-                            0x00082a    0x002266      
-                            0x002268    0x0025a9      
+                            0x00082a    0x002262      
+                            0x002264    0x0025a5      
                             0x300000    0x300003      
                             0x300005    0x300006      
                             0x300008    0x30000d      
-            7583 out of 33048 program addresses used, program memory utilization is 22%
+            7579 out of 33048 program addresses used, program memory utilization is 22%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                  BusyADC   0x00258e    program     extern C:\MCC18\src\pmc_common\ADC\adcbusy.c
-               ClearArray   0x001f68    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-               ConvertADC   0x002598    program     extern C:\MCC18\src\pmc_common\ADC\adcconv.c
-                   D100_1   0x00255c    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-                    D100x   0x00255a    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-                   D10K_1   0x002496    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                    D10Kl   0x0024a2    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                    D10Kx   0x002494    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                    D10_1   0x00257a    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-                     D10x   0x002572    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-                    D1K_1   0x00251e    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-                     D1Kx   0x00251c    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-                   D3232S   0x0020e0    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                D3232SNEG   0x0020ee    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                 D3232SOK   0x0020ea    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                  D3232SX   0x00210e    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                  DA3232S   0x0020ca    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-             Delay100TCYx   0x00254e    program     extern C:\MCC18\src\traditional\delays\d100tcyx.asm
-             Delay10KTCYx   0x00248a    program     extern C:\MCC18\src\traditional\delays\d10ktcyx.asm
-              Delay10TCYx   0x00256a    program     extern C:\MCC18\src\traditional\delays\d10tcyx.asm
-              Delay1KTCYx   0x002512    program     extern C:\MCC18\src\traditional\delays\d1ktcyx.asm
-            EErombyteread   0x00139e    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-           EErombytewrite   0x001466    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-          EErombytewrite2   0x001580    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                 FXD1616U   0x0024e6    program     extern C:\MCC18\src\traditional\math\fxd1616u.c
-                 FXD3232S   0x0020b0    program     extern C:\MCC18\src\traditional\math\fxd3232s.asm
-                 FXD3232U   0x0023c8    program     extern C:\MCC18\src\traditional\math\fxd3232u.c
-                 FXM2424U   0x002118    program     extern C:\MCC18\src\traditional\math\fxm2424u.asm
-                  FXM3232   0x002306    program     extern C:\MCC18\src\traditional\math\fxm3232.c
-         InitializeSystem   0x001b12    program     static H:\Zigbee FW\Host\main.c 
-               OpenTimer1   0x002410    program     extern C:\MCC18\src\pmc_common\Timers\t1open.c
+                  BusyADC   0x00258a    program     extern C:\MCC18\src\pmc_common\ADC\adcbusy.c
+               ClearArray   0x001f64    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+               ConvertADC   0x002594    program     extern C:\MCC18\src\pmc_common\ADC\adcconv.c
+                   D100_1   0x002558    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+                    D100x   0x002556    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+                   D10K_1   0x002492    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                    D10Kl   0x00249e    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                    D10Kx   0x002490    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                    D10_1   0x002576    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+                     D10x   0x00256e    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+                    D1K_1   0x00251a    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+                     D1Kx   0x002518    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+                   D3232S   0x0020dc    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                D3232SNEG   0x0020ea    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                 D3232SOK   0x0020e6    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                  D3232SX   0x00210a    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                  DA3232S   0x0020c6    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+             Delay100TCYx   0x00254a    program     extern C:\MCC18\src\traditional\delays\d100tcyx.asm
+             Delay10KTCYx   0x002486    program     extern C:\MCC18\src\traditional\delays\d10ktcyx.asm
+              Delay10TCYx   0x002566    program     extern C:\MCC18\src\traditional\delays\d10tcyx.asm
+              Delay1KTCYx   0x00250e    program     extern C:\MCC18\src\traditional\delays\d1ktcyx.asm
+            EErombyteread   0x00139a    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+           EErombytewrite   0x001462    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+          EErombytewrite2   0x00157c    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                 FXD1616U   0x0024e2    program     extern C:\MCC18\src\traditional\math\fxd1616u.c
+                 FXD3232S   0x0020ac    program     extern C:\MCC18\src\traditional\math\fxd3232s.asm
+                 FXD3232U   0x0023c4    program     extern C:\MCC18\src\traditional\math\fxd3232u.c
+                 FXM2424U   0x002114    program     extern C:\MCC18\src\traditional\math\fxm2424u.asm
+                  FXM3232   0x002302    program     extern C:\MCC18\src\traditional\math\fxm3232.c
+         InitializeSystem   0x001b0e    program     static H:\Zigbee FW\Host\main.c 
+               OpenTimer1   0x00240c    program     extern C:\MCC18\src\pmc_common\Timers\t1open.c
                 ProcessIO   0x000838    program     extern H:\Zigbee FW\Host\user\user.c
-                 ReadADC2   0x000cd4    program     extern H:\Zigbee FW\Host\user\user.c
+                 ReadADC2   0x000cd0    program     extern H:\Zigbee FW\Host\user\user.c
           ServiceRequests   0x00084c    program     extern H:\Zigbee FW\Host\user\user.c
-                   TXbyte   0x000968    program     extern H:\Zigbee FW\Host\user\user.c
-        USBCheckBusStatus   0x001e18    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-       USBCheckStdRequest   0x00167c    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-         USBCtrlEPService   0x001bbc    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
- USBCtrlEPServiceComplete   0x001d3e    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfInHandler   0x001c24    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-     USBCtrlTrfOutHandler   0x001c06    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfRxService   0x001ce6    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-   USBCtrlTrfSetupHandler   0x001bf2    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfTxService   0x001c5a    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-         USBDriverService   0x001e5c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBErrorHandler   0x001f20    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-             USBGenInitEP   0x001f9e    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-               USBGenRead   0x00201c    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-              USBGenWrite   0x001fc8    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-         USBModuleDisable   0x001e4e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBModuleEnable   0x001e40    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-  USBProtocolResetHandler   0x001f24    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBRemoteWakeup   0x001eea    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-            USBSoftDetach   0x001e58    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBStallHandler   0x001f12    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-  USBStdFeatureReqHandler   0x001822    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-      USBStdGetDscHandler   0x00171a    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-   USBStdGetStatusHandler   0x0017be    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-      USBStdSetCfgHandler   0x001788    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-               USBSuspend   0x001eda    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-                 USBTasks   0x001b38    program     extern H:\Zigbee FW\Host\main.c 
-                USBTasks2   0x00097a    program     extern H:\Zigbee FW\Host\user\user.c
-       USBWakeFromSuspend   0x001ee2    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-               USB_CD_Ptr   0x002258    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-               USB_SD_Ptr   0x00225e    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-          USB_SOF_Handler   0x001f0e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-               WriteI2Cme   0x001502    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-              WriteTimer1   0x002452    program     extern C:\MCC18\src\pmc_common\Timers\t1write.c
-               WriteUSART   0x0024b8    program     extern C:\MCC18\src\pmc_common\USART\uwrite.c
-                Writeuart   0x000c1a    program     extern H:\Zigbee FW\Host\user\user.c
-          Writeuart_1byte   0x000c20    program     extern H:\Zigbee FW\Host\user\user.c
-       _D100TCYXCODE_0008   0x002556    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D100TCYXCODE_0012   0x002560    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D100TCYXCODE_0018   0x002566    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D10KTCYXCODE_0010   0x00249a    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-       _D10KTCYXCODE_001C   0x0024a6    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-        _D10TCYXCODE_000A   0x002574    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D10TCYXCODE_000C   0x002576    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D10TCYXCODE_000E   0x002578    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D1KTCYXCODE_0010   0x002522    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-        _D1KTCYXCODE_0016   0x002528    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-      ___case_-1_lbl00014   0x000934    program     static                          
+                   TXbyte   0x000964    program     extern H:\Zigbee FW\Host\user\user.c
+        USBCheckBusStatus   0x001e14    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+       USBCheckStdRequest   0x001678    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+         USBCtrlEPService   0x001bb8    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+ USBCtrlEPServiceComplete   0x001d3a    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfInHandler   0x001c20    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+     USBCtrlTrfOutHandler   0x001c02    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfRxService   0x001ce2    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+   USBCtrlTrfSetupHandler   0x001bee    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfTxService   0x001c56    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+         USBDriverService   0x001e58    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBErrorHandler   0x001f1c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+             USBGenInitEP   0x001f9a    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+               USBGenRead   0x002018    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+              USBGenWrite   0x001fc4    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+         USBModuleDisable   0x001e4a    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBModuleEnable   0x001e3c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+USBPrepareForNextSetupTrf   0x001dac    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+  USBProtocolResetHandler   0x001f20    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBRemoteWakeup   0x001ee6    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+            USBSoftDetach   0x001e54    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBStallHandler   0x001f0e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+  USBStdFeatureReqHandler   0x00181e    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+      USBStdGetDscHandler   0x001716    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+   USBStdGetStatusHandler   0x0017ba    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+      USBStdSetCfgHandler   0x001784    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+               USBSuspend   0x001ed6    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+                 USBTasks   0x001b34    program     extern H:\Zigbee FW\Host\main.c 
+                USBTasks2   0x000976    program     extern H:\Zigbee FW\Host\user\user.c
+       USBWakeFromSuspend   0x001ede    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+               USB_CD_Ptr   0x002254    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+               USB_SD_Ptr   0x00225a    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+          USB_SOF_Handler   0x001f0a    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+               WriteI2Cme   0x0014fe    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+              WriteTimer1   0x00244e    program     extern C:\MCC18\src\pmc_common\Timers\t1write.c
+               WriteUSART   0x0024b4    program     extern C:\MCC18\src\pmc_common\USART\uwrite.c
+                Writeuart   0x000c16    program     extern H:\Zigbee FW\Host\user\user.c
+          Writeuart_1byte   0x000c1c    program     extern H:\Zigbee FW\Host\user\user.c
+       _D100TCYXCODE_0008   0x002552    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D100TCYXCODE_0012   0x00255c    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D100TCYXCODE_0018   0x002562    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D10KTCYXCODE_0010   0x002496    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+       _D10KTCYXCODE_001C   0x0024a2    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+        _D10TCYXCODE_000A   0x002570    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D10TCYXCODE_000C   0x002572    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D10TCYXCODE_000E   0x002574    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D1KTCYXCODE_0010   0x00251e    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+        _D1KTCYXCODE_0016   0x002524    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+      ___case_-1_lbl00014   0x000930    program     static                          
      ___case_-86_lbl00005   0x000896    program     static                          
-     ___case_-96_lbl00009   0x0008e4    program     static                          
-       ___case_0_lbl00007   0x0008d2    program     static                          
-      ___case_68_lbl00006   0x0008c4    program     static                          
-      ___default_lbl00013   0x000932    program     static                          
-          ___for_lbl00010   0x000920    program     static                          
-          ___for_lbl00011   0x00092a    program     static                          
-          ___for_lbl00012   0x0008fa    program     static                          
-           ___if_lbl00008   0x0008f2    program     static                          
-           ___if_lbl00015   0x00095a    program     static                          
-           ___if_lbl00016   0x00095a    program     static                          
-           ___if_lbl00017   0x00095a    program     static                          
-       ___return_lbl00000   0x002374    program     static                          
+     ___case_-96_lbl00009   0x0008e0    program     static                          
+       ___case_0_lbl00007   0x0008ce    program     static                          
+      ___case_68_lbl00006   0x0008c0    program     static                          
+      ___default_lbl00013   0x00092e    program     static                          
+          ___for_lbl00010   0x00091c    program     static                          
+          ___for_lbl00011   0x000926    program     static                          
+          ___for_lbl00012   0x0008f6    program     static                          
+           ___if_lbl00008   0x0008ee    program     static                          
+           ___if_lbl00015   0x000956    program     static                          
+           ___if_lbl00016   0x000956    program     static                          
+           ___if_lbl00017   0x000956    program     static                          
+       ___return_lbl00000   0x002370    program     static                          
        ___return_lbl00000   0x000004    program     static                          
        ___return_lbl00000   0x000804    program     static                          
-       ___return_lbl00000   0x002510    program     static                          
-       ___return_lbl00000   0x00240e    program     static                          
-       ___return_lbl00001   0x00254c    program     static                          
+       ___return_lbl00000   0x00250c    program     static                          
+       ___return_lbl00000   0x00240a    program     static                          
+       ___return_lbl00001   0x002548    program     static                          
        ___return_lbl00001   0x00080c    program     static                          
-       ___return_lbl00002   0x002304    program     static                          
-       ___return_lbl00003   0x00095a    program     static                          
-       ___return_lbl00042   0x001f92    program     static                          
-   ___switchexit_lbl00004   0x000938    program     static                          
-        ___while_lbl00043   0x001f84    program     static                          
-        ___while_lbl00044   0x001f92    program     static                          
+       ___return_lbl00002   0x002300    program     static                          
+       ___return_lbl00003   0x000956    program     static                          
+       ___return_lbl00042   0x001f8e    program     static                          
+   ___switchexit_lbl00004   0x000934    program     static                          
+        ___while_lbl00043   0x001f80    program     static                          
+        ___while_lbl00044   0x001f8e    program     static                          
                __config_0   0x300000    program     static H:\Zigbee FW\Host\main.c 
                __config_1   0x300001    program     static H:\Zigbee FW\Host\main.c 
               __config_10   0x30000c    program     static H:\Zigbee FW\Host\main.c 
@@ -279,135 +279,135 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                __config_7   0x300009    program     static H:\Zigbee FW\Host\main.c 
                __config_8   0x30000a    program     static H:\Zigbee FW\Host\main.c 
                __config_9   0x30000b    program     static H:\Zigbee FW\Host\main.c 
-                   __init   0x00259c    program     extern C:\MCC18\src\traditional\stdclib\__init.c
-                   __pa_0   0x001606    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_0   0x001b46    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_0   0x00207a    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_0   0x001884    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_0   0x001dc0    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_0   0x00120e    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_1   0x001612    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_1   0x001b52    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_1   0x002092    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_1   0x0018e0    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_1   0x001dd4    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_1   0x001216    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_10   0x0012c4    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_11   0x0012da    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_12   0x0012e4    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_13   0x0012f8    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_14   0x001300    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_15   0x001310    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_16   0x001322    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_17   0x001330    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_18   0x001340    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_19   0x00134e    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_2   0x00161c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_2   0x0020a4    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_2   0x001b66    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_2   0x0018f8    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_2   0x001228    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_2   0x001de2    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                  __pa_20   0x001354    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_21   0x00135c    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_22   0x00136a    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_23   0x001378    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_24   0x001380    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_3   0x001626    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_3   0x001b76    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_3   0x00190a    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_3   0x001df2    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_3   0x001234    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_4   0x001246    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_4   0x001634    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_4   0x001e0a    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_4   0x001b80    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_4   0x001918    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_5   0x001260    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_5   0x001b98    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_5   0x001640    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_5   0x001922    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_6   0x001ba2    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_6   0x001654    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_6   0x00192a    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_6   0x001266    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_7   0x001660    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_7   0x00127e    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_7   0x001bb2    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_8   0x001672    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_8   0x001296    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_9   0x0012ae    program     static H:\Zigbee FW\Host\user\user.c
-               __string_0   0x0023c4    program     static H:\Zigbee FW\Host\user\user.c
-               __string_1   0x0023be    program     static H:\Zigbee FW\Host\user\user.c
-              __string_10   0x002376    program     static H:\Zigbee FW\Host\user\user.c
-               __string_2   0x0023b3    program     static H:\Zigbee FW\Host\user\user.c
-               __string_3   0x0023ad    program     static H:\Zigbee FW\Host\user\user.c
-               __string_4   0x0023a5    program     static H:\Zigbee FW\Host\user\user.c
-               __string_5   0x00239d    program     static H:\Zigbee FW\Host\user\user.c
-               __string_6   0x002395    program     static H:\Zigbee FW\Host\user\user.c
-               __string_7   0x00238b    program     static H:\Zigbee FW\Host\user\user.c
-               __string_8   0x002384    program     static H:\Zigbee FW\Host\user\user.c
-               __string_9   0x00237d    program     static H:\Zigbee FW\Host\user\user.c
-              __tmplbl_35   0x001228    program     static                          
-              __tmplbl_37   0x001330    program     static                          
-            __zero_memory   0x002580    program     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                _do_cinit   0x002268    program     extern C:\MCC18\src\traditional\startup\c018i.c
+                   __init   0x002598    program     extern C:\MCC18\src\traditional\stdclib\__init.c
+                   __pa_0   0x001602    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_0   0x001b42    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_0   0x002076    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_0   0x001880    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_0   0x001dbc    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_0   0x00120a    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_1   0x00160e    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_1   0x001b4e    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_1   0x00208e    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_1   0x0018dc    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_1   0x001dd0    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_1   0x001212    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_10   0x0012c0    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_11   0x0012d6    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_12   0x0012e0    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_13   0x0012f4    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_14   0x0012fc    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_15   0x00130c    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_16   0x00131e    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_17   0x00132c    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_18   0x00133c    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_19   0x00134a    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_2   0x001618    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_2   0x0020a0    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_2   0x001b62    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_2   0x0018f4    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_2   0x001224    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_2   0x001dde    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                  __pa_20   0x001350    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_21   0x001358    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_22   0x001366    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_23   0x001374    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_24   0x00137c    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_3   0x001622    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_3   0x001b72    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_3   0x001906    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_3   0x001dee    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_3   0x001230    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_4   0x001242    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_4   0x001630    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_4   0x001e06    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_4   0x001b7c    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_4   0x001914    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_5   0x00125c    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_5   0x001b94    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_5   0x00163c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_5   0x00191e    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_6   0x001b9e    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_6   0x001650    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_6   0x001926    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_6   0x001262    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_7   0x00165c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_7   0x00127a    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_7   0x001bae    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_8   0x00166e    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_8   0x001292    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_9   0x0012aa    program     static H:\Zigbee FW\Host\user\user.c
+               __string_0   0x0023c0    program     static H:\Zigbee FW\Host\user\user.c
+               __string_1   0x0023ba    program     static H:\Zigbee FW\Host\user\user.c
+              __string_10   0x002372    program     static H:\Zigbee FW\Host\user\user.c
+               __string_2   0x0023af    program     static H:\Zigbee FW\Host\user\user.c
+               __string_3   0x0023a9    program     static H:\Zigbee FW\Host\user\user.c
+               __string_4   0x0023a1    program     static H:\Zigbee FW\Host\user\user.c
+               __string_5   0x002399    program     static H:\Zigbee FW\Host\user\user.c
+               __string_6   0x002391    program     static H:\Zigbee FW\Host\user\user.c
+               __string_7   0x002387    program     static H:\Zigbee FW\Host\user\user.c
+               __string_8   0x002380    program     static H:\Zigbee FW\Host\user\user.c
+               __string_9   0x002379    program     static H:\Zigbee FW\Host\user\user.c
+              __tmplbl_35   0x001224    program     static                          
+              __tmplbl_37   0x00132c    program     static                          
+            __zero_memory   0x00257c    program     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                _do_cinit   0x002264    program     extern C:\MCC18\src\traditional\startup\c018i.c
                    _entry   0x000000    program     extern C:\MCC18\src\traditional\startup\c018i.c
-                   _false   0x00240a    program     static                          
+                   _false   0x002406    program     static                          
                 _high_ISR   0x000808    program     extern H:\Zigbee FW\Host\main.c 
                  _low_ISR   0x000818    program     extern H:\Zigbee FW\Host\main.c 
                    _reset   0x000800    program     extern H:\Zigbee FW\Host\main.c 
-                 _startup   0x002532    program     extern C:\MCC18\src\traditional\startup\c018i.c
-               a2d2string   0x000cf6    program     extern H:\Zigbee FW\Host\user\user.c
-             a2dinputread   0x000c72    program     extern H:\Zigbee FW\Host\user\user.c
-                    cfg01   0x0021bc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-           changebaudrate   0x000ad4    program     extern H:\Zigbee FW\Host\user\user.c
-                checkrcv1   0x00154c    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-               clear_loop   0x002586    program     static C:\MCC18\src\traditional\proc\p18F4550.asm
-                copy_loop   0x0022da    program     static                          
-            copy_one_byte   0x0022e0    program     static                          
-                dataready   0x000c3c    program     extern H:\Zigbee FW\Host\user\user.c
-               device_dsc   0x0021aa    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                     done   0x002304    program     static                          
-             done_copying   0x0022ee    program     static                          
-                  endloop   0x00250c    program     static                          
-                 fulluart   0x000c2c    program     extern H:\Zigbee FW\Host\user\user.c
-            function100mS   0x00115a    program     extern H:\Zigbee FW\Host\user\user.c
-             function1Sec   0x00115c    program     extern H:\Zigbee FW\Host\user\user.c
-             function1day   0x001162    program     extern H:\Zigbee FW\Host\user\user.c
-            function1hour   0x001160    program     extern H:\Zigbee FW\Host\user\user.c
-             function1min   0x00115e    program     extern H:\Zigbee FW\Host\user\user.c
-             function25mS   0x001158    program     extern H:\Zigbee FW\Host\user\user.c
-             getdelayuart   0x000b04    program     extern H:\Zigbee FW\Host\user\user.c
-                 getsuart   0x000c42    program     extern H:\Zigbee FW\Host\user\user.c
-                  inctime   0x0010d0    program     extern H:\Zigbee FW\Host\user\user.c
-                  initi2c   0x001388    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                 initxbee   0x001164    program     extern H:\Zigbee FW\Host\user\user.c
-               interrupt1   0x001932    program     extern H:\Zigbee FW\Host\main.c 
-          interrupthingie   0x00101a    program     extern H:\Zigbee FW\Host\user\user.c
-               loadconfig   0x0010a0    program     extern H:\Zigbee FW\Host\user\user.c
-       loadconfigfriendly   0x0011e8    program     extern H:\Zigbee FW\Host\user\user.c
-                     loop   0x0023d6    program     static                          
-                     loop   0x0024f0    program     static                          
-                     loop   0x002542    program     static                          
-                     main   0x0019cc    program     extern H:\Zigbee FW\Host\main.c 
-            port_to_ascii   0x001008    program     extern H:\Zigbee FW\Host\user\user.c
-                putPacket   0x000b7c    program     extern H:\Zigbee FW\Host\user\user.c
-                putrsuart   0x000bdc    program     extern H:\Zigbee FW\Host\user\user.c
-                 putsuart   0x000baa    program     extern H:\Zigbee FW\Host\user\user.c
-            read_rcvbuffa   0x000e70    program     extern H:\Zigbee FW\Host\user\user.c
-            read_sndbuffa   0x000f90    program     extern H:\Zigbee FW\Host\user\user.c
-                readusart   0x000c64    program     extern H:\Zigbee FW\Host\user\user.c
-                    sd000   0x0021dc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    sd001   0x0021e0    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    sd002   0x002214    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-        sleep_config_xbee   0x0011ca    program     extern H:\Zigbee FW\Host\user\user.c
-               startUsart   0x000988    program     extern H:\Zigbee FW\Host\user\user.c
-               starttimer   0x001078    program     extern H:\Zigbee FW\Host\user\user.c
-                     test   0x002282    program     static                          
-                 testxbee   0x000a66    program     extern H:\Zigbee FW\Host\user\user.c
-           write_rcvbuffa   0x000dc8    program     extern H:\Zigbee FW\Host\user\user.c
-           write_sndbuffa   0x000ee8    program     extern H:\Zigbee FW\Host\user\user.c
+                 _startup   0x00252e    program     extern C:\MCC18\src\traditional\startup\c018i.c
+               a2d2string   0x000cf2    program     extern H:\Zigbee FW\Host\user\user.c
+             a2dinputread   0x000c6e    program     extern H:\Zigbee FW\Host\user\user.c
+                    cfg01   0x0021b8    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+           changebaudrate   0x000ad0    program     extern H:\Zigbee FW\Host\user\user.c
+                checkrcv1   0x001548    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+               clear_loop   0x002582    program     static C:\MCC18\src\traditional\proc\p18F4550.asm
+                copy_loop   0x0022d6    program     static                          
+            copy_one_byte   0x0022dc    program     static                          
+                dataready   0x000c38    program     extern H:\Zigbee FW\Host\user\user.c
+               device_dsc   0x0021a6    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                     done   0x002300    program     static                          
+             done_copying   0x0022ea    program     static                          
+                  endloop   0x002508    program     static                          
+                 fulluart   0x000c28    program     extern H:\Zigbee FW\Host\user\user.c
+            function100mS   0x001156    program     extern H:\Zigbee FW\Host\user\user.c
+             function1Sec   0x001158    program     extern H:\Zigbee FW\Host\user\user.c
+             function1day   0x00115e    program     extern H:\Zigbee FW\Host\user\user.c
+            function1hour   0x00115c    program     extern H:\Zigbee FW\Host\user\user.c
+             function1min   0x00115a    program     extern H:\Zigbee FW\Host\user\user.c
+             function25mS   0x001154    program     extern H:\Zigbee FW\Host\user\user.c
+             getdelayuart   0x000b00    program     extern H:\Zigbee FW\Host\user\user.c
+                 getsuart   0x000c3e    program     extern H:\Zigbee FW\Host\user\user.c
+                  inctime   0x0010cc    program     extern H:\Zigbee FW\Host\user\user.c
+                  initi2c   0x001384    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                 initxbee   0x001160    program     extern H:\Zigbee FW\Host\user\user.c
+               interrupt1   0x00192e    program     extern H:\Zigbee FW\Host\main.c 
+          interrupthingie   0x001016    program     extern H:\Zigbee FW\Host\user\user.c
+               loadconfig   0x00109c    program     extern H:\Zigbee FW\Host\user\user.c
+       loadconfigfriendly   0x0011e4    program     extern H:\Zigbee FW\Host\user\user.c
+                     loop   0x0023d2    program     static                          
+                     loop   0x0024ec    program     static                          
+                     loop   0x00253e    program     static                          
+                     main   0x0019c8    program     extern H:\Zigbee FW\Host\main.c 
+            port_to_ascii   0x001004    program     extern H:\Zigbee FW\Host\user\user.c
+                putPacket   0x000b78    program     extern H:\Zigbee FW\Host\user\user.c
+                putrsuart   0x000bd8    program     extern H:\Zigbee FW\Host\user\user.c
+                 putsuart   0x000ba6    program     extern H:\Zigbee FW\Host\user\user.c
+            read_rcvbuffa   0x000e6c    program     extern H:\Zigbee FW\Host\user\user.c
+            read_sndbuffa   0x000f8c    program     extern H:\Zigbee FW\Host\user\user.c
+                readusart   0x000c60    program     extern H:\Zigbee FW\Host\user\user.c
+                    sd000   0x0021d8    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    sd001   0x0021dc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    sd002   0x002210    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+        sleep_config_xbee   0x0011c6    program     extern H:\Zigbee FW\Host\user\user.c
+               startUsart   0x000984    program     extern H:\Zigbee FW\Host\user\user.c
+               starttimer   0x001074    program     extern H:\Zigbee FW\Host\user\user.c
+                     test   0x00227e    program     static                          
+                 testxbee   0x000a62    program     extern H:\Zigbee FW\Host\user\user.c
+           write_rcvbuffa   0x000dc4    program     extern H:\Zigbee FW\Host\user\user.c
+           write_sndbuffa   0x000ee4    program     extern H:\Zigbee FW\Host\user\user.c
                    ADCON0   0x000fc2       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                ADCON0bits   0x000fc2       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    ADCON1   0x000fc1       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -575,12 +575,12 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                STATUSbits   0x000fd8       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    STKPTR   0x000ffc       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                STKPTRbits   0x000ffc       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-            Sbuffer_empty   0x0001e5       data     extern H:\Zigbee FW\Host\user\user.c
-             Sbuffer_full   0x0001e4       data     extern H:\Zigbee FW\Host\user\user.c
+            Sbuffer_empty   0x0001e4       data     extern H:\Zigbee FW\Host\user\user.c
+             Sbuffer_full   0x0001e3       data     extern H:\Zigbee FW\Host\user\user.c
                  SetupPkt   0x000418       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
-                    Shead   0x000178       data     extern H:\Zigbee FW\Host\user\user.c
-                  Slength   0x0001e0       data     extern H:\Zigbee FW\Host\user\user.c
-                    Stail   0x0001dc       data     extern H:\Zigbee FW\Host\user\user.c
+                    Shead   0x000177       data     extern H:\Zigbee FW\Host\user\user.c
+                  Slength   0x0001df       data     extern H:\Zigbee FW\Host\user\user.c
+                    Stail   0x0001db       data     extern H:\Zigbee FW\Host\user\user.c
                     T0CON   0x000fd5       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 T0CONbits   0x000fd5       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     T1CON   0x000fcd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -669,7 +669,7 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                   UIEbits   0x000f69       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                       UIR   0x000f68       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   UIRbits   0x000f68       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-             USART_Status   0x000070       data     extern C:\MCC18\src\pmc_common\USART\udefs.c
+             USART_Status   0x00006f       data     extern C:\MCC18\src\pmc_common\USART\udefs.c
                     USTAT   0x000f6c       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 USTATbits   0x000f6c       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    WDTCON   0x000fd1       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -708,20 +708,20 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                  addressh   0x00014d       data     extern H:\Zigbee FW\Host\user\user.c
                  addressl   0x00014e       data     extern H:\Zigbee FW\Host\user\user.c
                         b   0x000064       data     extern H:\Zigbee FW\Host\main.c 
-              baudrateval   0x000174       data     extern H:\Zigbee FW\Host\user\user.c
-                   blah22   0x0001fa       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-             buffer_empty   0x0001e3       data     extern H:\Zigbee FW\Host\user\user.c
-              buffer_full   0x0001e2       data     extern H:\Zigbee FW\Host\user\user.c
+              baudrateval   0x000173       data     extern H:\Zigbee FW\Host\user\user.c
+                   blah22   0x0001f9       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+             buffer_empty   0x0001e2       data     extern H:\Zigbee FW\Host\user\user.c
+              buffer_full   0x0001e1       data     extern H:\Zigbee FW\Host\user\user.c
                         c   0x000066       data     extern H:\Zigbee FW\Host\main.c 
                   counter   0x000100       data     extern H:\Zigbee FW\Host\user\user.c
-   ctrl_trf_session_owner   0x0001e7       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-           ctrl_trf_state   0x0001e6       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                curr_byte   0x0001f3       data     static C:\MCC18\src\traditional\startup\c018i.c
-               curr_entry   0x0001f5       data     static C:\MCC18\src\traditional\startup\c018i.c
+   ctrl_trf_session_owner   0x0001e6       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+           ctrl_trf_state   0x0001e5       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                curr_byte   0x0001f2       data     static C:\MCC18\src\traditional\startup\c018i.c
+               curr_entry   0x0001f4       data     static C:\MCC18\src\traditional\startup\c018i.c
                         d   0x000158       data     extern H:\Zigbee FW\Host\user\user.c
-                     data   0x000171       data     extern H:\Zigbee FW\Host\user\user.c
+                     data   0x000170       data     extern H:\Zigbee FW\Host\user\user.c
                dataPacket   0x000102       data     extern H:\Zigbee FW\Host\user\user.c
-                 data_ptr   0x0001f7       data     static C:\MCC18\src\traditional\startup\c018i.c
+                 data_ptr   0x0001f6       data     static C:\MCC18\src\traditional\startup\c018i.c
                    datamm   0x00014c       data     extern H:\Zigbee FW\Host\user\user.c
                  datatemp   0x000169       data     extern H:\Zigbee FW\Host\user\user.c
                 datatemp2   0x00016a       data     extern H:\Zigbee FW\Host\user\user.c
@@ -732,25 +732,25 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                     ep1Bo   0x000408       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                     ep2Bi   0x000414       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                     ep2Bo   0x000410       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
-                    error   0x0001fd       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                        g   0x0001fb       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                     head   0x000176       data     extern H:\Zigbee FW\Host\user\user.c
+                    error   0x0001fc       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                        g   0x0001fa       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                     head   0x000175       data     extern H:\Zigbee FW\Host\user\user.c
                         i   0x000154       data     extern H:\Zigbee FW\Host\user\user.c
-                 i2cerror   0x0001fe       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                 i2cerror   0x0001fd       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
                 i2cerror1   0x000152       data     extern H:\Zigbee FW\Host\user\user.c
                         j   0x000156       data     extern H:\Zigbee FW\Host\user\user.c
-                   length   0x0001de       data     extern H:\Zigbee FW\Host\user\user.c
-                        m   0x000172       data     extern H:\Zigbee FW\Host\user\user.c
+                   length   0x0001dd       data     extern H:\Zigbee FW\Host\user\user.c
+                        m   0x000171       data     extern H:\Zigbee FW\Host\user\user.c
                         n   0x00014a       data     extern H:\Zigbee FW\Host\user\user.c
                   notdone   0x000060       data     extern H:\Zigbee FW\Host\main.c 
-                     pDst   0x0001eb       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                     pSrc   0x0001e8       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                     prom   0x0001f0       data     static C:\MCC18\src\traditional\startup\c018i.c
-                rcv_buffa   0x00017a       data     extern H:\Zigbee FW\Host\user\user.c
+                     pDst   0x0001ea       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                     pSrc   0x0001e7       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                     prom   0x0001ef       data     static C:\MCC18\src\traditional\startup\c018i.c
+                rcv_buffa   0x000179       data     extern H:\Zigbee FW\Host\user\user.c
                 resultant   0x00015a       data     extern H:\Zigbee FW\Host\user\user.c
                    seqrun   0x000150       data     extern H:\Zigbee FW\Host\user\user.c
-                snd_buffa   0x0001ba       data     extern H:\Zigbee FW\Host\user\user.c
-                     tail   0x0001da       data     extern H:\Zigbee FW\Host\user\user.c
+                snd_buffa   0x0001b9       data     extern H:\Zigbee FW\Host\user\user.c
+                     tail   0x0001d9       data     extern H:\Zigbee FW\Host\user\user.c
                temp_buffa   0x00016b       data     extern H:\Zigbee FW\Host\user\user.c
                 templong1   0x00015e       data     extern H:\Zigbee FW\Host\user\user.c
                  temptemp   0x00015c       data     extern H:\Zigbee FW\Host\user\user.c
@@ -769,8 +769,8 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                  usb_stat   0x00006a       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                 usbgen_in   0x000468       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                usbgen_out   0x000428       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
-            usbgen_rx_len   0x00006f       data     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   wCount   0x0001ee       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+            usbgen_rx_len   0x0001ff       data     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   wCount   0x0001ed       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
 
 
 
@@ -787,233 +787,233 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                 ProcessIO   0x000838    program     extern H:\Zigbee FW\Host\user\user.c
           ServiceRequests   0x00084c    program     extern H:\Zigbee FW\Host\user\user.c
      ___case_-86_lbl00005   0x000896    program     static                          
-      ___case_68_lbl00006   0x0008c4    program     static                          
-       ___case_0_lbl00007   0x0008d2    program     static                          
-     ___case_-96_lbl00009   0x0008e4    program     static                          
-           ___if_lbl00008   0x0008f2    program     static                          
-          ___for_lbl00012   0x0008fa    program     static                          
-          ___for_lbl00010   0x000920    program     static                          
-          ___for_lbl00011   0x00092a    program     static                          
-      ___default_lbl00013   0x000932    program     static                          
-      ___case_-1_lbl00014   0x000934    program     static                          
-   ___switchexit_lbl00004   0x000938    program     static                          
-       ___return_lbl00003   0x00095a    program     static                          
-           ___if_lbl00017   0x00095a    program     static                          
-           ___if_lbl00016   0x00095a    program     static                          
-           ___if_lbl00015   0x00095a    program     static                          
-                   TXbyte   0x000968    program     extern H:\Zigbee FW\Host\user\user.c
-                USBTasks2   0x00097a    program     extern H:\Zigbee FW\Host\user\user.c
-               startUsart   0x000988    program     extern H:\Zigbee FW\Host\user\user.c
-                 testxbee   0x000a66    program     extern H:\Zigbee FW\Host\user\user.c
-           changebaudrate   0x000ad4    program     extern H:\Zigbee FW\Host\user\user.c
-             getdelayuart   0x000b04    program     extern H:\Zigbee FW\Host\user\user.c
-                putPacket   0x000b7c    program     extern H:\Zigbee FW\Host\user\user.c
-                 putsuart   0x000baa    program     extern H:\Zigbee FW\Host\user\user.c
-                putrsuart   0x000bdc    program     extern H:\Zigbee FW\Host\user\user.c
-                Writeuart   0x000c1a    program     extern H:\Zigbee FW\Host\user\user.c
-          Writeuart_1byte   0x000c20    program     extern H:\Zigbee FW\Host\user\user.c
-                 fulluart   0x000c2c    program     extern H:\Zigbee FW\Host\user\user.c
-                dataready   0x000c3c    program     extern H:\Zigbee FW\Host\user\user.c
-                 getsuart   0x000c42    program     extern H:\Zigbee FW\Host\user\user.c
-                readusart   0x000c64    program     extern H:\Zigbee FW\Host\user\user.c
-             a2dinputread   0x000c72    program     extern H:\Zigbee FW\Host\user\user.c
-                 ReadADC2   0x000cd4    program     extern H:\Zigbee FW\Host\user\user.c
-               a2d2string   0x000cf6    program     extern H:\Zigbee FW\Host\user\user.c
-           write_rcvbuffa   0x000dc8    program     extern H:\Zigbee FW\Host\user\user.c
-            read_rcvbuffa   0x000e70    program     extern H:\Zigbee FW\Host\user\user.c
-           write_sndbuffa   0x000ee8    program     extern H:\Zigbee FW\Host\user\user.c
-            read_sndbuffa   0x000f90    program     extern H:\Zigbee FW\Host\user\user.c
-            port_to_ascii   0x001008    program     extern H:\Zigbee FW\Host\user\user.c
-          interrupthingie   0x00101a    program     extern H:\Zigbee FW\Host\user\user.c
-               starttimer   0x001078    program     extern H:\Zigbee FW\Host\user\user.c
-               loadconfig   0x0010a0    program     extern H:\Zigbee FW\Host\user\user.c
-                  inctime   0x0010d0    program     extern H:\Zigbee FW\Host\user\user.c
-             function25mS   0x001158    program     extern H:\Zigbee FW\Host\user\user.c
-            function100mS   0x00115a    program     extern H:\Zigbee FW\Host\user\user.c
-             function1Sec   0x00115c    program     extern H:\Zigbee FW\Host\user\user.c
-             function1min   0x00115e    program     extern H:\Zigbee FW\Host\user\user.c
-            function1hour   0x001160    program     extern H:\Zigbee FW\Host\user\user.c
-             function1day   0x001162    program     extern H:\Zigbee FW\Host\user\user.c
-                 initxbee   0x001164    program     extern H:\Zigbee FW\Host\user\user.c
-        sleep_config_xbee   0x0011ca    program     extern H:\Zigbee FW\Host\user\user.c
-       loadconfigfriendly   0x0011e8    program     extern H:\Zigbee FW\Host\user\user.c
-                   __pa_0   0x00120e    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_1   0x001216    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_2   0x001228    program     static H:\Zigbee FW\Host\user\user.c
-              __tmplbl_35   0x001228    program     static                          
-                   __pa_3   0x001234    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_4   0x001246    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_5   0x001260    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_6   0x001266    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_7   0x00127e    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_8   0x001296    program     static H:\Zigbee FW\Host\user\user.c
-                   __pa_9   0x0012ae    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_10   0x0012c4    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_11   0x0012da    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_12   0x0012e4    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_13   0x0012f8    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_14   0x001300    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_15   0x001310    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_16   0x001322    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_17   0x001330    program     static H:\Zigbee FW\Host\user\user.c
-              __tmplbl_37   0x001330    program     static                          
-                  __pa_18   0x001340    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_19   0x00134e    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_20   0x001354    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_21   0x00135c    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_22   0x00136a    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_23   0x001378    program     static H:\Zigbee FW\Host\user\user.c
-                  __pa_24   0x001380    program     static H:\Zigbee FW\Host\user\user.c
-                  initi2c   0x001388    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-            EErombyteread   0x00139e    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-           EErombytewrite   0x001466    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-               WriteI2Cme   0x001502    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                checkrcv1   0x00154c    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-          EErombytewrite2   0x001580    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_0   0x001606    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_1   0x001612    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_2   0x00161c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_3   0x001626    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_4   0x001634    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_5   0x001640    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_6   0x001654    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_7   0x001660    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-                   __pa_8   0x001672    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
-       USBCheckStdRequest   0x00167c    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-      USBStdGetDscHandler   0x00171a    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-      USBStdSetCfgHandler   0x001788    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-   USBStdGetStatusHandler   0x0017be    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-  USBStdFeatureReqHandler   0x001822    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_0   0x001884    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_1   0x0018e0    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_2   0x0018f8    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_3   0x00190a    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_4   0x001918    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_5   0x001922    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                   __pa_6   0x00192a    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-               interrupt1   0x001932    program     extern H:\Zigbee FW\Host\main.c 
-                     main   0x0019cc    program     extern H:\Zigbee FW\Host\main.c 
-         InitializeSystem   0x001b12    program     static H:\Zigbee FW\Host\main.c 
-                 USBTasks   0x001b38    program     extern H:\Zigbee FW\Host\main.c 
-                   __pa_0   0x001b46    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_1   0x001b52    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_2   0x001b66    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_3   0x001b76    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_4   0x001b80    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_5   0x001b98    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_6   0x001ba2    program     static H:\Zigbee FW\Host\main.c 
-                   __pa_7   0x001bb2    program     static H:\Zigbee FW\Host\main.c 
-         USBCtrlEPService   0x001bbc    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-   USBCtrlTrfSetupHandler   0x001bf2    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-     USBCtrlTrfOutHandler   0x001c06    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfInHandler   0x001c24    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfTxService   0x001c5a    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-      USBCtrlTrfRxService   0x001ce6    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
- USBCtrlEPServiceComplete   0x001d3e    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_0   0x001dc0    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_1   0x001dd4    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_2   0x001de2    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_3   0x001df2    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   __pa_4   0x001e0a    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-        USBCheckBusStatus   0x001e18    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBModuleEnable   0x001e40    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-         USBModuleDisable   0x001e4e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-            USBSoftDetach   0x001e58    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-         USBDriverService   0x001e5c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-               USBSuspend   0x001eda    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-       USBWakeFromSuspend   0x001ee2    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBRemoteWakeup   0x001eea    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USB_SOF_Handler   0x001f0e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBStallHandler   0x001f12    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-          USBErrorHandler   0x001f20    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-  USBProtocolResetHandler   0x001f24    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-               ClearArray   0x001f68    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-        ___while_lbl00043   0x001f84    program     static                          
-       ___return_lbl00042   0x001f92    program     static                          
-        ___while_lbl00044   0x001f92    program     static                          
-             USBGenInitEP   0x001f9e    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-              USBGenWrite   0x001fc8    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-               USBGenRead   0x00201c    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_0   0x00207a    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_1   0x002092    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                   __pa_2   0x0020a4    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-                 FXD3232S   0x0020b0    program     extern C:\MCC18\src\traditional\math\fxd3232s.asm
-                  DA3232S   0x0020ca    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                   D3232S   0x0020e0    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                 D3232SOK   0x0020ea    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                D3232SNEG   0x0020ee    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                  D3232SX   0x00210e    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
-                 FXM2424U   0x002118    program     extern C:\MCC18\src\traditional\math\fxm2424u.asm
-               device_dsc   0x0021aa    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    cfg01   0x0021bc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    sd000   0x0021dc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    sd001   0x0021e0    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                    sd002   0x002214    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-               USB_CD_Ptr   0x002258    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-               USB_SD_Ptr   0x00225e    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
-                _do_cinit   0x002268    program     extern C:\MCC18\src\traditional\startup\c018i.c
-                     test   0x002282    program     static                          
-                copy_loop   0x0022da    program     static                          
-            copy_one_byte   0x0022e0    program     static                          
-             done_copying   0x0022ee    program     static                          
-                     done   0x002304    program     static                          
-       ___return_lbl00002   0x002304    program     static                          
-                  FXM3232   0x002306    program     extern C:\MCC18\src\traditional\math\fxm3232.c
-       ___return_lbl00000   0x002374    program     static                          
-              __string_10   0x002376    program     static H:\Zigbee FW\Host\user\user.c
-               __string_9   0x00237d    program     static H:\Zigbee FW\Host\user\user.c
-               __string_8   0x002384    program     static H:\Zigbee FW\Host\user\user.c
-               __string_7   0x00238b    program     static H:\Zigbee FW\Host\user\user.c
-               __string_6   0x002395    program     static H:\Zigbee FW\Host\user\user.c
-               __string_5   0x00239d    program     static H:\Zigbee FW\Host\user\user.c
-               __string_4   0x0023a5    program     static H:\Zigbee FW\Host\user\user.c
-               __string_3   0x0023ad    program     static H:\Zigbee FW\Host\user\user.c
-               __string_2   0x0023b3    program     static H:\Zigbee FW\Host\user\user.c
-               __string_1   0x0023be    program     static H:\Zigbee FW\Host\user\user.c
-               __string_0   0x0023c4    program     static H:\Zigbee FW\Host\user\user.c
-                 FXD3232U   0x0023c8    program     extern C:\MCC18\src\traditional\math\fxd3232u.c
-                     loop   0x0023d6    program     static                          
-                   _false   0x00240a    program     static                          
-       ___return_lbl00000   0x00240e    program     static                          
-               OpenTimer1   0x002410    program     extern C:\MCC18\src\pmc_common\Timers\t1open.c
-              WriteTimer1   0x002452    program     extern C:\MCC18\src\pmc_common\Timers\t1write.c
-             Delay10KTCYx   0x00248a    program     extern C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                    D10Kx   0x002494    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                   D10K_1   0x002496    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-       _D10KTCYXCODE_0010   0x00249a    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-                    D10Kl   0x0024a2    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-       _D10KTCYXCODE_001C   0x0024a6    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
-               WriteUSART   0x0024b8    program     extern C:\MCC18\src\pmc_common\USART\uwrite.c
-                 FXD1616U   0x0024e6    program     extern C:\MCC18\src\traditional\math\fxd1616u.c
-                     loop   0x0024f0    program     static                          
-                  endloop   0x00250c    program     static                          
-       ___return_lbl00000   0x002510    program     static                          
-              Delay1KTCYx   0x002512    program     extern C:\MCC18\src\traditional\delays\d1ktcyx.asm
-                     D1Kx   0x00251c    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-                    D1K_1   0x00251e    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-        _D1KTCYXCODE_0010   0x002522    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-        _D1KTCYXCODE_0016   0x002528    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
-                 _startup   0x002532    program     extern C:\MCC18\src\traditional\startup\c018i.c
-                     loop   0x002542    program     static                          
-       ___return_lbl00001   0x00254c    program     static                          
-             Delay100TCYx   0x00254e    program     extern C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D100TCYXCODE_0008   0x002556    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-                    D100x   0x00255a    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-                   D100_1   0x00255c    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D100TCYXCODE_0012   0x002560    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-       _D100TCYXCODE_0018   0x002566    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
-              Delay10TCYx   0x00256a    program     extern C:\MCC18\src\traditional\delays\d10tcyx.asm
-                     D10x   0x002572    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D10TCYXCODE_000A   0x002574    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D10TCYXCODE_000C   0x002576    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-        _D10TCYXCODE_000E   0x002578    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-                    D10_1   0x00257a    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
-            __zero_memory   0x002580    program     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-               clear_loop   0x002586    program     static C:\MCC18\src\traditional\proc\p18F4550.asm
-                  BusyADC   0x00258e    program     extern C:\MCC18\src\pmc_common\ADC\adcbusy.c
-               ConvertADC   0x002598    program     extern C:\MCC18\src\pmc_common\ADC\adcconv.c
-                   __init   0x00259c    program     extern C:\MCC18\src\traditional\stdclib\__init.c
+      ___case_68_lbl00006   0x0008c0    program     static                          
+       ___case_0_lbl00007   0x0008ce    program     static                          
+     ___case_-96_lbl00009   0x0008e0    program     static                          
+           ___if_lbl00008   0x0008ee    program     static                          
+          ___for_lbl00012   0x0008f6    program     static                          
+          ___for_lbl00010   0x00091c    program     static                          
+          ___for_lbl00011   0x000926    program     static                          
+      ___default_lbl00013   0x00092e    program     static                          
+      ___case_-1_lbl00014   0x000930    program     static                          
+   ___switchexit_lbl00004   0x000934    program     static                          
+       ___return_lbl00003   0x000956    program     static                          
+           ___if_lbl00017   0x000956    program     static                          
+           ___if_lbl00016   0x000956    program     static                          
+           ___if_lbl00015   0x000956    program     static                          
+                   TXbyte   0x000964    program     extern H:\Zigbee FW\Host\user\user.c
+                USBTasks2   0x000976    program     extern H:\Zigbee FW\Host\user\user.c
+               startUsart   0x000984    program     extern H:\Zigbee FW\Host\user\user.c
+                 testxbee   0x000a62    program     extern H:\Zigbee FW\Host\user\user.c
+           changebaudrate   0x000ad0    program     extern H:\Zigbee FW\Host\user\user.c
+             getdelayuart   0x000b00    program     extern H:\Zigbee FW\Host\user\user.c
+                putPacket   0x000b78    program     extern H:\Zigbee FW\Host\user\user.c
+                 putsuart   0x000ba6    program     extern H:\Zigbee FW\Host\user\user.c
+                putrsuart   0x000bd8    program     extern H:\Zigbee FW\Host\user\user.c
+                Writeuart   0x000c16    program     extern H:\Zigbee FW\Host\user\user.c
+          Writeuart_1byte   0x000c1c    program     extern H:\Zigbee FW\Host\user\user.c
+                 fulluart   0x000c28    program     extern H:\Zigbee FW\Host\user\user.c
+                dataready   0x000c38    program     extern H:\Zigbee FW\Host\user\user.c
+                 getsuart   0x000c3e    program     extern H:\Zigbee FW\Host\user\user.c
+                readusart   0x000c60    program     extern H:\Zigbee FW\Host\user\user.c
+             a2dinputread   0x000c6e    program     extern H:\Zigbee FW\Host\user\user.c
+                 ReadADC2   0x000cd0    program     extern H:\Zigbee FW\Host\user\user.c
+               a2d2string   0x000cf2    program     extern H:\Zigbee FW\Host\user\user.c
+           write_rcvbuffa   0x000dc4    program     extern H:\Zigbee FW\Host\user\user.c
+            read_rcvbuffa   0x000e6c    program     extern H:\Zigbee FW\Host\user\user.c
+           write_sndbuffa   0x000ee4    program     extern H:\Zigbee FW\Host\user\user.c
+            read_sndbuffa   0x000f8c    program     extern H:\Zigbee FW\Host\user\user.c
+            port_to_ascii   0x001004    program     extern H:\Zigbee FW\Host\user\user.c
+          interrupthingie   0x001016    program     extern H:\Zigbee FW\Host\user\user.c
+               starttimer   0x001074    program     extern H:\Zigbee FW\Host\user\user.c
+               loadconfig   0x00109c    program     extern H:\Zigbee FW\Host\user\user.c
+                  inctime   0x0010cc    program     extern H:\Zigbee FW\Host\user\user.c
+             function25mS   0x001154    program     extern H:\Zigbee FW\Host\user\user.c
+            function100mS   0x001156    program     extern H:\Zigbee FW\Host\user\user.c
+             function1Sec   0x001158    program     extern H:\Zigbee FW\Host\user\user.c
+             function1min   0x00115a    program     extern H:\Zigbee FW\Host\user\user.c
+            function1hour   0x00115c    program     extern H:\Zigbee FW\Host\user\user.c
+             function1day   0x00115e    program     extern H:\Zigbee FW\Host\user\user.c
+                 initxbee   0x001160    program     extern H:\Zigbee FW\Host\user\user.c
+        sleep_config_xbee   0x0011c6    program     extern H:\Zigbee FW\Host\user\user.c
+       loadconfigfriendly   0x0011e4    program     extern H:\Zigbee FW\Host\user\user.c
+                   __pa_0   0x00120a    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_1   0x001212    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_2   0x001224    program     static H:\Zigbee FW\Host\user\user.c
+              __tmplbl_35   0x001224    program     static                          
+                   __pa_3   0x001230    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_4   0x001242    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_5   0x00125c    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_6   0x001262    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_7   0x00127a    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_8   0x001292    program     static H:\Zigbee FW\Host\user\user.c
+                   __pa_9   0x0012aa    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_10   0x0012c0    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_11   0x0012d6    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_12   0x0012e0    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_13   0x0012f4    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_14   0x0012fc    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_15   0x00130c    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_16   0x00131e    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_17   0x00132c    program     static H:\Zigbee FW\Host\user\user.c
+              __tmplbl_37   0x00132c    program     static                          
+                  __pa_18   0x00133c    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_19   0x00134a    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_20   0x001350    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_21   0x001358    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_22   0x001366    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_23   0x001374    program     static H:\Zigbee FW\Host\user\user.c
+                  __pa_24   0x00137c    program     static H:\Zigbee FW\Host\user\user.c
+                  initi2c   0x001384    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+            EErombyteread   0x00139a    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+           EErombytewrite   0x001462    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+               WriteI2Cme   0x0014fe    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                checkrcv1   0x001548    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+          EErombytewrite2   0x00157c    program     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_0   0x001602    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_1   0x00160e    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_2   0x001618    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_3   0x001622    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_4   0x001630    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_5   0x00163c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_6   0x001650    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_7   0x00165c    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                   __pa_8   0x00166e    program     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+       USBCheckStdRequest   0x001678    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+      USBStdGetDscHandler   0x001716    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+      USBStdSetCfgHandler   0x001784    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+   USBStdGetStatusHandler   0x0017ba    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+  USBStdFeatureReqHandler   0x00181e    program     extern H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_0   0x001880    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_1   0x0018dc    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_2   0x0018f4    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_3   0x001906    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_4   0x001914    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_5   0x00191e    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                   __pa_6   0x001926    program     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+               interrupt1   0x00192e    program     extern H:\Zigbee FW\Host\main.c 
+                     main   0x0019c8    program     extern H:\Zigbee FW\Host\main.c 
+         InitializeSystem   0x001b0e    program     static H:\Zigbee FW\Host\main.c 
+                 USBTasks   0x001b34    program     extern H:\Zigbee FW\Host\main.c 
+                   __pa_0   0x001b42    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_1   0x001b4e    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_2   0x001b62    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_3   0x001b72    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_4   0x001b7c    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_5   0x001b94    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_6   0x001b9e    program     static H:\Zigbee FW\Host\main.c 
+                   __pa_7   0x001bae    program     static H:\Zigbee FW\Host\main.c 
+         USBCtrlEPService   0x001bb8    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+   USBCtrlTrfSetupHandler   0x001bee    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+     USBCtrlTrfOutHandler   0x001c02    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfInHandler   0x001c20    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfTxService   0x001c56    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+      USBCtrlTrfRxService   0x001ce2    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+ USBCtrlEPServiceComplete   0x001d3a    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+USBPrepareForNextSetupTrf   0x001dac    program     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_0   0x001dbc    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_1   0x001dd0    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_2   0x001dde    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_3   0x001dee    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   __pa_4   0x001e06    program     static H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+        USBCheckBusStatus   0x001e14    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBModuleEnable   0x001e3c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+         USBModuleDisable   0x001e4a    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+            USBSoftDetach   0x001e54    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+         USBDriverService   0x001e58    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+               USBSuspend   0x001ed6    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+       USBWakeFromSuspend   0x001ede    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBRemoteWakeup   0x001ee6    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USB_SOF_Handler   0x001f0a    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBStallHandler   0x001f0e    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+          USBErrorHandler   0x001f1c    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+  USBProtocolResetHandler   0x001f20    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+               ClearArray   0x001f64    program     extern H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
+        ___while_lbl00043   0x001f80    program     static                          
+       ___return_lbl00042   0x001f8e    program     static                          
+        ___while_lbl00044   0x001f8e    program     static                          
+             USBGenInitEP   0x001f9a    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+              USBGenWrite   0x001fc4    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+               USBGenRead   0x002018    program     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_0   0x002076    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_1   0x00208e    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                   __pa_2   0x0020a0    program     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                 FXD3232S   0x0020ac    program     extern C:\MCC18\src\traditional\math\fxd3232s.asm
+                  DA3232S   0x0020c6    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                   D3232S   0x0020dc    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                 D3232SOK   0x0020e6    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                D3232SNEG   0x0020ea    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                  D3232SX   0x00210a    program     static C:\MCC18\src\traditional\math\fxd3232s.asm
+                 FXM2424U   0x002114    program     extern C:\MCC18\src\traditional\math\fxm2424u.asm
+               device_dsc   0x0021a6    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    cfg01   0x0021b8    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    sd000   0x0021d8    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    sd001   0x0021dc    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                    sd002   0x002210    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+               USB_CD_Ptr   0x002254    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+               USB_SD_Ptr   0x00225a    program     extern H:\Zigbee FW\Host\autofiles\usbdsc.c
+                _do_cinit   0x002264    program     extern C:\MCC18\src\traditional\startup\c018i.c
+                     test   0x00227e    program     static                          
+                copy_loop   0x0022d6    program     static                          
+            copy_one_byte   0x0022dc    program     static                          
+             done_copying   0x0022ea    program     static                          
+                     done   0x002300    program     static                          
+       ___return_lbl00002   0x002300    program     static                          
+                  FXM3232   0x002302    program     extern C:\MCC18\src\traditional\math\fxm3232.c
+       ___return_lbl00000   0x002370    program     static                          
+              __string_10   0x002372    program     static H:\Zigbee FW\Host\user\user.c
+               __string_9   0x002379    program     static H:\Zigbee FW\Host\user\user.c
+               __string_8   0x002380    program     static H:\Zigbee FW\Host\user\user.c
+               __string_7   0x002387    program     static H:\Zigbee FW\Host\user\user.c
+               __string_6   0x002391    program     static H:\Zigbee FW\Host\user\user.c
+               __string_5   0x002399    program     static H:\Zigbee FW\Host\user\user.c
+               __string_4   0x0023a1    program     static H:\Zigbee FW\Host\user\user.c
+               __string_3   0x0023a9    program     static H:\Zigbee FW\Host\user\user.c
+               __string_2   0x0023af    program     static H:\Zigbee FW\Host\user\user.c
+               __string_1   0x0023ba    program     static H:\Zigbee FW\Host\user\user.c
+               __string_0   0x0023c0    program     static H:\Zigbee FW\Host\user\user.c
+                 FXD3232U   0x0023c4    program     extern C:\MCC18\src\traditional\math\fxd3232u.c
+                     loop   0x0023d2    program     static                          
+                   _false   0x002406    program     static                          
+       ___return_lbl00000   0x00240a    program     static                          
+               OpenTimer1   0x00240c    program     extern C:\MCC18\src\pmc_common\Timers\t1open.c
+              WriteTimer1   0x00244e    program     extern C:\MCC18\src\pmc_common\Timers\t1write.c
+             Delay10KTCYx   0x002486    program     extern C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                    D10Kx   0x002490    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                   D10K_1   0x002492    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+       _D10KTCYXCODE_0010   0x002496    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+                    D10Kl   0x00249e    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+       _D10KTCYXCODE_001C   0x0024a2    program     static C:\MCC18\src\traditional\delays\d10ktcyx.asm
+               WriteUSART   0x0024b4    program     extern C:\MCC18\src\pmc_common\USART\uwrite.c
+                 FXD1616U   0x0024e2    program     extern C:\MCC18\src\traditional\math\fxd1616u.c
+                     loop   0x0024ec    program     static                          
+                  endloop   0x002508    program     static                          
+       ___return_lbl00000   0x00250c    program     static                          
+              Delay1KTCYx   0x00250e    program     extern C:\MCC18\src\traditional\delays\d1ktcyx.asm
+                     D1Kx   0x002518    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+                    D1K_1   0x00251a    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+        _D1KTCYXCODE_0010   0x00251e    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+        _D1KTCYXCODE_0016   0x002524    program     static C:\MCC18\src\traditional\delays\d1ktcyx.asm
+                 _startup   0x00252e    program     extern C:\MCC18\src\traditional\startup\c018i.c
+                     loop   0x00253e    program     static                          
+       ___return_lbl00001   0x002548    program     static                          
+             Delay100TCYx   0x00254a    program     extern C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D100TCYXCODE_0008   0x002552    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+                    D100x   0x002556    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+                   D100_1   0x002558    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D100TCYXCODE_0012   0x00255c    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+       _D100TCYXCODE_0018   0x002562    program     static C:\MCC18\src\traditional\delays\d100tcyx.asm
+              Delay10TCYx   0x002566    program     extern C:\MCC18\src\traditional\delays\d10tcyx.asm
+                     D10x   0x00256e    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D10TCYXCODE_000A   0x002570    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D10TCYXCODE_000C   0x002572    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+        _D10TCYXCODE_000E   0x002574    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+                    D10_1   0x002576    program     static C:\MCC18\src\traditional\delays\d10tcyx.asm
+            __zero_memory   0x00257c    program     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+               clear_loop   0x002582    program     static C:\MCC18\src\traditional\proc\p18F4550.asm
+                  BusyADC   0x00258a    program     extern C:\MCC18\src\pmc_common\ADC\adcbusy.c
+               ConvertADC   0x002594    program     extern C:\MCC18\src\pmc_common\ADC\adcconv.c
+                   __init   0x002598    program     extern C:\MCC18\src\traditional\stdclib\__init.c
                __config_0   0x300000    program     static H:\Zigbee FW\Host\main.c 
                __config_1   0x300001    program     static H:\Zigbee FW\Host\main.c 
                __config_2   0x300002    program     static H:\Zigbee FW\Host\main.c 
@@ -1052,10 +1052,10 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                  __TEMPB1   0x000012       data     extern C:\MCC18\src\traditional\math\temparg.asm
                    __TEMP   0x000013       data     extern C:\MCC18\src\traditional\math\temparg.asm
                  __TEMPB0   0x000013       data     extern C:\MCC18\src\traditional\math\temparg.asm
-                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\user\user.c
-                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
-                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
                   __tmp_0   0x000014       data     static H:\Zigbee FW\Host\I2C\i2cstuff.c
+                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
+                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\system\usb\usb9\usb9.c
+                  __tmp_0   0x000014       data     static H:\Zigbee FW\Host\user\user.c
             DelayCounter2   0x00001c       data     extern C:\MCC18\src\traditional\delays\delayd2.asm
             DelayCounter1   0x00001d       data     extern C:\MCC18\src\traditional\delays\delayd1.asm
                   notdone   0x000060       data     extern H:\Zigbee FW\Host\main.c 
@@ -1068,8 +1068,7 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
            usb_active_cfg   0x00006b       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
              usb_alt_intf   0x00006c       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
               delay_count   0x00006d       data     static H:\Zigbee FW\Host\system\usb\usbdrv\usbdrv.c
-            usbgen_rx_len   0x00006f       data     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
-             USART_Status   0x000070       data     extern C:\MCC18\src\pmc_common\USART\udefs.c
+             USART_Status   0x00006f       data     extern C:\MCC18\src\pmc_common\USART\udefs.c
                   counter   0x000100       data     extern H:\Zigbee FW\Host\user\user.c
                 trf_state   0x000101       data     extern H:\Zigbee FW\Host\user\user.c
                dataPacket   0x000102       data     extern H:\Zigbee FW\Host\user\user.c
@@ -1103,34 +1102,35 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                  datatemp   0x000169       data     extern H:\Zigbee FW\Host\user\user.c
                 datatemp2   0x00016a       data     extern H:\Zigbee FW\Host\user\user.c
                temp_buffa   0x00016b       data     extern H:\Zigbee FW\Host\user\user.c
-                     data   0x000171       data     extern H:\Zigbee FW\Host\user\user.c
-                        m   0x000172       data     extern H:\Zigbee FW\Host\user\user.c
-              baudrateval   0x000174       data     extern H:\Zigbee FW\Host\user\user.c
-                     head   0x000176       data     extern H:\Zigbee FW\Host\user\user.c
-                    Shead   0x000178       data     extern H:\Zigbee FW\Host\user\user.c
-                rcv_buffa   0x00017a       data     extern H:\Zigbee FW\Host\user\user.c
-                snd_buffa   0x0001ba       data     extern H:\Zigbee FW\Host\user\user.c
-                     tail   0x0001da       data     extern H:\Zigbee FW\Host\user\user.c
-                    Stail   0x0001dc       data     extern H:\Zigbee FW\Host\user\user.c
-                   length   0x0001de       data     extern H:\Zigbee FW\Host\user\user.c
-                  Slength   0x0001e0       data     extern H:\Zigbee FW\Host\user\user.c
-              buffer_full   0x0001e2       data     extern H:\Zigbee FW\Host\user\user.c
-             buffer_empty   0x0001e3       data     extern H:\Zigbee FW\Host\user\user.c
-             Sbuffer_full   0x0001e4       data     extern H:\Zigbee FW\Host\user\user.c
-            Sbuffer_empty   0x0001e5       data     extern H:\Zigbee FW\Host\user\user.c
-           ctrl_trf_state   0x0001e6       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-   ctrl_trf_session_owner   0x0001e7       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                     pSrc   0x0001e8       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                     pDst   0x0001eb       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                   wCount   0x0001ee       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
-                     prom   0x0001f0       data     static C:\MCC18\src\traditional\startup\c018i.c
-                curr_byte   0x0001f3       data     static C:\MCC18\src\traditional\startup\c018i.c
-               curr_entry   0x0001f5       data     static C:\MCC18\src\traditional\startup\c018i.c
-                 data_ptr   0x0001f7       data     static C:\MCC18\src\traditional\startup\c018i.c
-                   blah22   0x0001fa       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                        g   0x0001fb       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                    error   0x0001fd       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
-                 i2cerror   0x0001fe       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                     data   0x000170       data     extern H:\Zigbee FW\Host\user\user.c
+                        m   0x000171       data     extern H:\Zigbee FW\Host\user\user.c
+              baudrateval   0x000173       data     extern H:\Zigbee FW\Host\user\user.c
+                     head   0x000175       data     extern H:\Zigbee FW\Host\user\user.c
+                    Shead   0x000177       data     extern H:\Zigbee FW\Host\user\user.c
+                rcv_buffa   0x000179       data     extern H:\Zigbee FW\Host\user\user.c
+                snd_buffa   0x0001b9       data     extern H:\Zigbee FW\Host\user\user.c
+                     tail   0x0001d9       data     extern H:\Zigbee FW\Host\user\user.c
+                    Stail   0x0001db       data     extern H:\Zigbee FW\Host\user\user.c
+                   length   0x0001dd       data     extern H:\Zigbee FW\Host\user\user.c
+                  Slength   0x0001df       data     extern H:\Zigbee FW\Host\user\user.c
+              buffer_full   0x0001e1       data     extern H:\Zigbee FW\Host\user\user.c
+             buffer_empty   0x0001e2       data     extern H:\Zigbee FW\Host\user\user.c
+             Sbuffer_full   0x0001e3       data     extern H:\Zigbee FW\Host\user\user.c
+            Sbuffer_empty   0x0001e4       data     extern H:\Zigbee FW\Host\user\user.c
+           ctrl_trf_state   0x0001e5       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+   ctrl_trf_session_owner   0x0001e6       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                     pSrc   0x0001e7       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                     pDst   0x0001ea       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                   wCount   0x0001ed       data     extern H:\Zigbee FW\Host\system\usb\usbctrltrf\usbctrltrf.c
+                     prom   0x0001ef       data     static C:\MCC18\src\traditional\startup\c018i.c
+                curr_byte   0x0001f2       data     static C:\MCC18\src\traditional\startup\c018i.c
+               curr_entry   0x0001f4       data     static C:\MCC18\src\traditional\startup\c018i.c
+                 data_ptr   0x0001f6       data     static C:\MCC18\src\traditional\startup\c018i.c
+                   blah22   0x0001f9       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                        g   0x0001fa       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                    error   0x0001fc       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+                 i2cerror   0x0001fd       data     extern H:\Zigbee FW\Host\I2C\i2cstuff.c
+            usbgen_rx_len   0x0001ff       data     extern H:\Zigbee FW\Host\system\usb\class\generic\usbgen.c
                     ep0Bo   0x000400       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                     ep0Bi   0x000404       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                     ep1Bo   0x000408       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
@@ -1142,17 +1142,17 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                usbgen_out   0x000428       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                 usbgen_in   0x000468       data     extern H:\Zigbee FW\Host\system\usb\usbmmap.c
                   SPPDATA   0x000f62       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                   SPPCFG   0x000f63       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                SPPCFGbits   0x000f63       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                   SPPCFG   0x000f63       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    SPPEPS   0x000f64       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                SPPEPSbits   0x000f64       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                SPPCONbits   0x000f65       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    SPPCON   0x000f65       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                UFRMLbits   0x000f66       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     UFRML   0x000f66       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                UFRMLbits   0x000f66       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      UFRM   0x000f66       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                UFRMHbits   0x000f67       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     UFRMH   0x000f67       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                UFRMHbits   0x000f67       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                       UIR   0x000f68       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   UIRbits   0x000f68       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                       UIE   0x000f69       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -1163,10 +1163,10 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                  UEIEbits   0x000f6b       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 USTATbits   0x000f6c       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     USTAT   0x000f6c       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     UCON   0x000f6d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  UCONbits   0x000f6d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                UADDRbits   0x000f6e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     UCON   0x000f6d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     UADDR   0x000f6e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                UADDRbits   0x000f6e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  UCFGbits   0x000f6f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      UCFG   0x000f6f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  UEP0bits   0x000f70       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -1201,16 +1201,16 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                     UEP14   0x000f7e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     UEP15   0x000f7f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 UEP15bits   0x000f7f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                    PORTA   0x000f80       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 PORTAbits   0x000f80       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                PORTBbits   0x000f81       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                    PORTA   0x000f80       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     PORTB   0x000f81       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                PORTBbits   0x000f81       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     PORTC   0x000f82       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 PORTCbits   0x000f82       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     PORTD   0x000f83       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 PORTDbits   0x000f83       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                    PORTE   0x000f84       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 PORTEbits   0x000f84       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                    PORTE   0x000f84       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  LATAbits   0x000f89       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      LATA   0x000f89       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      LATB   0x000f8a       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -1227,43 +1227,43 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                     TRISA   0x000f92       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TRISB   0x000f93       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 TRISBbits   0x000f93       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     DDRB   0x000f93       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  DDRBbits   0x000f93       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     DDRB   0x000f93       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TRISC   0x000f94       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 TRISCbits   0x000f94       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     DDRC   0x000f94       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  DDRCbits   0x000f94       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     DDRC   0x000f94       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TRISD   0x000f95       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 TRISDbits   0x000f95       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     DDRD   0x000f95       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  DDRDbits   0x000f95       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     DDRD   0x000f95       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      DDRE   0x000f96       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  DDREbits   0x000f96       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                TRISEbits   0x000f96       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TRISE   0x000f96       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-              OSCTUNEbits   0x000f9b       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                TRISEbits   0x000f96       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   OSCTUNE   0x000f9b       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     PIE1   0x000f9d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+              OSCTUNEbits   0x000f9b       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  PIE1bits   0x000f9d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     PIE1   0x000f9d       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      PIR1   0x000f9e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  PIR1bits   0x000f9e       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                     IPR1   0x000f9f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  IPR1bits   0x000f9f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                 PIE2bits   0x000fa0       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                     IPR1   0x000f9f       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      PIE2   0x000fa0       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                 PIE2bits   0x000fa0       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      PIR2   0x000fa1       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  PIR2bits   0x000fa1       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                      IPR2   0x000fa2       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  IPR2bits   0x000fa2       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                   EECON1   0x000fa6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                EECON1bits   0x000fa6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                   EECON1   0x000fa6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    EECON2   0x000fa7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    EEDATA   0x000fa8       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     EEADR   0x000fa9       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     RCSTA   0x000fab       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 RCSTAbits   0x000fab       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                TXSTAbits   0x000fac       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TXSTA   0x000fac       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                TXSTAbits   0x000fac       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TXREG   0x000fad       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     RCREG   0x000fae       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     SPBRG   0x000faf       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
@@ -1272,29 +1272,29 @@ USBPrepareForNextSetupTrf   0x001db0    program     extern H:\Zigbee FW\Host\sys
                     T3CON   0x000fb1       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TMR3L   0x000fb2       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     TMR3H   0x000fb3       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                    CMCON   0x000fb4       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                 CMCONbits   0x000fb4       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                    CMCON   0x000fb4       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    CVRCON   0x000fb5       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                CVRCONbits   0x000fb5       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-               CCP1ASbits   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                   CCP1AS   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
               ECCP1ASbits   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   ECCP1AS   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+               CCP1ASbits   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                   CCP1AS   0x000fb6       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
              ECCP1DELbits   0x000fb7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                  ECCP1DEL   0x000fb7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-              CCP1DELbits   0x000fb7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   CCP1DEL   0x000fb7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                  BAUDCON   0x000fb8       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+              CCP1DELbits   0x000fb7       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
               BAUDCONbits   0x000fb8       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-              CCP2CONbits   0x000fba       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                  BAUDCON   0x000fb8       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   CCP2CON   0x000fba       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                    CCPR2   0x000fbb       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+              CCP2CONbits   0x000fba       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    CCPR2L   0x000fbb       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                    CCPR2   0x000fbb       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    CCPR2H   0x000fbc       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                   CCP1CON   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-              CCP1CONbits   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
-                 ECCP1CON   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
              ECCP1CONbits   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+                 ECCP1CON   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
+              CCP1CONbits   0x000fbd       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    CCPR1L   0x000fbe       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                     CCPR1   0x000fbe       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm
                    CCPR1H   0x000fbf       data     extern C:\MCC18\src\traditional\proc\p18F4550.asm

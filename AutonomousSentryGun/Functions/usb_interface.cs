@@ -151,18 +151,19 @@ public bool gunDisabled(byte headerByte)
             //byte[] rcvbuff = new byte[6];
 
 		//first byte for Zigbee to recognize the USB write
-            	send_buf[0] = 0xAA;
+            send_buf[0] = 0xAA;
 		//copy all of the sendByte bits to the send_buffer
 	    	send_buf[1] = sendByte[0];
             send_buf[2] = sendByte[1];
             send_buf[3] = sendByte[2];
             send_buf[4] = sendByte[3];
             send_buf[5] = sendByte[4];
-            send_buf[6] = sendByte[5];	
-
-            DWORD RecvLength = 7;
-            if (SendReceivePacket(send_buf, 7, receive_buf, &RecvLength) == 1)
+            //send_buf[6] = sendByte[5];	
+            //MessageBox.Show(sendByte[0].ToString());
+            DWORD RecvLength = 6;
+            if (SendReceivePacket(send_buf, 6, receive_buf, &RecvLength) == 1)
             {
+                //MessageBox.Show("Data sent");
                 result = true;
             }
             else
