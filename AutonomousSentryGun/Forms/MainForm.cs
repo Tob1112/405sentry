@@ -26,8 +26,7 @@ using AutonomousSentryGun.Forms.Setup;
 
 /* Blake: Stuff To Do
  *  
- * need to test and optimize aiming code for leading targets
- * add video stream to transmit position form 
+ * need to test and optimize aiming code for leading targets 
  * 
  * play with different settings for frame size, frame rate, with and without erosion
  * real life testing
@@ -143,6 +142,19 @@ namespace AutonomousSentryGun
         RemoteAim ra = new RemoteAim(form.VideoDevice);
         ra.Show();
       }
+    }
+
+    private void fPSToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        AllOffButton_Click(sender, e);
+
+        VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
+
+        if (form.ShowDialog(this) == DialogResult.OK)
+        {
+            FPSAim fps = new FPSAim(form.VideoDevice);
+            fps.Show();
+        }
     }
 
     // Open video source
@@ -605,5 +617,6 @@ namespace AutonomousSentryGun
       firingOn = false;
     }
     #endregion
+
   }
 }
