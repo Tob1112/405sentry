@@ -37,6 +37,8 @@ namespace AutonomousSentryGun
 {
   public partial class MainForm : Form
   {
+
+    #region Member Variables
     // motion detector
     private IMotionDetector detector = null;
 
@@ -60,7 +62,9 @@ namespace AutonomousSentryGun
     //private usb_interface usbHub = new usb_interface();
     //usb buffer
     private bool usbRcvBuff;
+#endregion
 
+    #region Sound Settings
     [DllImport("winmm.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
     static extern bool PlaySound(string pszSound, IntPtr hMod, SoundFlags sf);
 
@@ -83,10 +87,14 @@ namespace AutonomousSentryGun
       SND_RESOURCE = 0x00040004  // name is resource name or atom 
     }
 
+    #endregion
+
     public MainForm()
     {
       InitializeComponent();
     }
+
+    #region Misc. Form Events
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -123,6 +131,7 @@ namespace AutonomousSentryGun
     {
       saveFileDialog1.ShowDialog();
     }
+#endregion
 
     #region Motion Functions/Events
 

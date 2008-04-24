@@ -14,17 +14,15 @@ using usb_api;
 
 using AutonomousSentryGun.Functions;
 using AutonomousSentryGun.Objects;
+using AutonomousSentryGun.Forms.Setup;
 
 namespace AutonomousSentryGun.Forms.Test
 {
 
   public partial class RemoteAim : Form
   {
-    //need to add ability to change servos range in real time
-
-    bool usbRcvBuff;
-
-    char num;
+    //170,230 servo range
+    bool usbRcvBuff;    
     bool fireOK = false;
 
     private Servos servos;
@@ -319,6 +317,11 @@ namespace AutonomousSentryGun.Forms.Test
       textBoxYServo.Text = servos.ShootingRange.Height.ToString();
     }
 
+    private void DTbutton1_Click(object sender, EventArgs e)
+    {
+        DataTransmission dtForm = new DataTransmission(CoordinateTimer);
+        dtForm.Show();
+    }
 
   }
 }

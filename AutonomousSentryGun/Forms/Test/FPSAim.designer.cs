@@ -46,7 +46,9 @@
         this.sensitivitytrackBar = new System.Windows.Forms.TrackBar();
         this.panel1 = new System.Windows.Forms.Panel();
         this.label2 = new System.Windows.Forms.Label();
+        this.label3 = new System.Windows.Forms.Label();
         this.gridBox = new AutonomousSentryGun.CameraWindow();
+        this.DTbutton1 = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)(this.redDot)).BeginInit();
         this.groupBox2.SuspendLayout();
         this.groupBox3.SuspendLayout();
@@ -67,13 +69,14 @@
         // 
         // centerButton
         // 
-        this.centerButton.Location = new System.Drawing.Point(419, 482);
+        this.centerButton.Location = new System.Drawing.Point(419, 455);
         this.centerButton.Name = "centerButton";
         this.centerButton.Size = new System.Drawing.Size(75, 23);
         this.centerButton.TabIndex = 19;
         this.centerButton.Text = "Center";
         this.centerButton.UseVisualStyleBackColor = true;
         this.centerButton.Click += new System.EventHandler(this.centerButton_Click);
+        this.centerButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.centerButton_KeyDown);
         // 
         // label1
         // 
@@ -116,6 +119,7 @@
         this.textBoxXServo.Size = new System.Drawing.Size(46, 20);
         this.textBoxXServo.TabIndex = 8;
         this.textBoxXServo.MouseLeave += new System.EventHandler(this.textBoxXServo_MouseLeave);
+        this.textBoxXServo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxXServo_KeyDown);
         // 
         // textBoxYServo
         // 
@@ -124,6 +128,7 @@
         this.textBoxYServo.Size = new System.Drawing.Size(46, 20);
         this.textBoxYServo.TabIndex = 9;
         this.textBoxYServo.MouseLeave += new System.EventHandler(this.textBoxYServo_MouseLeave);
+        this.textBoxYServo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxYServo_KeyDown);
         // 
         // label6
         // 
@@ -136,7 +141,7 @@
         // 
         // CoordinateTimer
         // 
-        this.CoordinateTimer.Interval = 200;
+        this.CoordinateTimer.Interval = 150;
         this.CoordinateTimer.Tick += new System.EventHandler(this.CoordinateTimer_Tick);
         // 
         // groupBox3
@@ -168,6 +173,7 @@
         this.textBoxXCoord.Name = "textBoxXCoord";
         this.textBoxXCoord.Size = new System.Drawing.Size(46, 20);
         this.textBoxXCoord.TabIndex = 8;
+        this.textBoxXCoord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxXCoord_KeyDown);
         // 
         // textBoxYCoord
         // 
@@ -175,6 +181,7 @@
         this.textBoxYCoord.Name = "textBoxYCoord";
         this.textBoxYCoord.Size = new System.Drawing.Size(46, 20);
         this.textBoxYCoord.TabIndex = 9;
+        this.textBoxYCoord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxYCoord_KeyDown);
         // 
         // label8
         // 
@@ -195,12 +202,13 @@
         this.sensitivitytrackBar.Tag = "";
         this.sensitivitytrackBar.Value = 5;
         this.sensitivitytrackBar.Scroll += new System.EventHandler(this.sensitivitytrackBar_Scroll);
+        this.sensitivitytrackBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sensitivitytrackBar_KeyDown);
         // 
         // panel1
         // 
         this.panel1.Controls.Add(this.label2);
         this.panel1.Controls.Add(this.sensitivitytrackBar);
-        this.panel1.Location = new System.Drawing.Point(357, 532);
+        this.panel1.Location = new System.Drawing.Point(357, 542);
         this.panel1.Name = "panel1";
         this.panel1.Size = new System.Drawing.Size(200, 100);
         this.panel1.TabIndex = 27;
@@ -213,6 +221,15 @@
         this.label2.Size = new System.Drawing.Size(54, 13);
         this.label2.TabIndex = 27;
         this.label2.Text = "Sensitivity";
+        // 
+        // label3
+        // 
+        this.label3.AutoSize = true;
+        this.label3.Location = new System.Drawing.Point(354, 9);
+        this.label3.Name = "label3";
+        this.label3.Size = new System.Drawing.Size(204, 13);
+        this.label3.TabIndex = 28;
+        this.label3.Text = "Press \'Escape\' to toggle aiming on and off";
         // 
         // gridBox
         // 
@@ -228,11 +245,24 @@
         this.gridBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gridBox_MouseUp);
         this.gridBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridBox_KeyDown);
         // 
+        // DTbutton1
+        // 
+        this.DTbutton1.Location = new System.Drawing.Point(411, 492);
+        this.DTbutton1.Name = "DTbutton1";
+        this.DTbutton1.Size = new System.Drawing.Size(94, 38);
+        this.DTbutton1.TabIndex = 29;
+        this.DTbutton1.Text = "Data Transmission";
+        this.DTbutton1.UseVisualStyleBackColor = true;
+        this.DTbutton1.Click += new System.EventHandler(this.DTbutton1_Click);
+        this.DTbutton1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DTbutton1_KeyDown);
+        // 
         // FPSAim
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(905, 644);
+        this.Controls.Add(this.DTbutton1);
+        this.Controls.Add(this.label3);
         this.Controls.Add(this.panel1);
         this.Controls.Add(this.groupBox3);
         this.Controls.Add(this.groupBox2);
@@ -280,6 +310,8 @@
     private System.Windows.Forms.TrackBar sensitivitytrackBar;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Button DTbutton1;
 
   }
 }
