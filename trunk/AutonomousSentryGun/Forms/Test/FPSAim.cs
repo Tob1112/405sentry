@@ -14,6 +14,7 @@ using usb_api;
 
 using AutonomousSentryGun.Functions;
 using AutonomousSentryGun.Objects;
+using AutonomousSentryGun.Forms.Setup;
 using AutonomousSentryGun;
 
 namespace AutonomousSentryGun.Forms.Test
@@ -71,8 +72,8 @@ namespace AutonomousSentryGun.Forms.Test
     private void KeyDownUpProcess(KeyEventArgs e)
     {
       switch (e.KeyCode)
-      {        
-        case Keys.Space:
+      { 
+        case Keys.Escape:
           {
               //isDragging = !isDragging;
               if (CoordinateTimer.Enabled)
@@ -138,6 +139,41 @@ namespace AutonomousSentryGun.Forms.Test
     {
       KeyDownUpProcess(e);
     }
+
+    private void centerButton_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void textBoxYCoord_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void textBoxXCoord_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void textBoxXServo_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void textBoxYServo_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void sensitivitytrackBar_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }
+
+    private void DTbutton1_KeyDown(object sender, KeyEventArgs e)
+    {
+        KeyDownUpProcess(e);
+    }  
 
     private void FPSAim_FormClosing(object sender, FormClosingEventArgs e)
     {
@@ -274,5 +310,11 @@ namespace AutonomousSentryGun.Forms.Test
     {
         sensitivity = sensitivitytrackBar.Value;
     }
+
+    private void DTbutton1_Click(object sender, EventArgs e)
+    {
+        DataTransmission dtForm = new DataTransmission(CoordinateTimer);
+        dtForm.Show();
+    }       
   }
 }

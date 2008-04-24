@@ -52,6 +52,7 @@
         this.textBoxYCoord = new System.Windows.Forms.TextBox();
         this.label8 = new System.Windows.Forms.Label();
         this.gridBox = new AutonomousSentryGun.CameraWindow();
+        this.DTbutton1 = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)(this.redDot)).BeginInit();
         this.groupBox1.SuspendLayout();
         this.groupBox2.SuspendLayout();
@@ -222,7 +223,7 @@
         // 
         // CoordinateTimer
         // 
-        this.CoordinateTimer.Interval = 200;
+        this.CoordinateTimer.Interval = 150;
         this.CoordinateTimer.Tick += new System.EventHandler(this.CoordinateTimer_Tick);
         // 
         // groupBox3
@@ -282,11 +283,22 @@
         this.gridBox.TabIndex = 23;
         this.gridBox.Text = "cameraWindow1";
         // 
+        // DTbutton1
+        // 
+        this.DTbutton1.Location = new System.Drawing.Point(249, 414);
+        this.DTbutton1.Name = "DTbutton1";
+        this.DTbutton1.Size = new System.Drawing.Size(92, 41);
+        this.DTbutton1.TabIndex = 26;
+        this.DTbutton1.Text = "Data Transmission";
+        this.DTbutton1.UseVisualStyleBackColor = true;
+        this.DTbutton1.Click += new System.EventHandler(this.DTbutton1_Click);
+        // 
         // RemoteAim
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(353, 520);
+        this.Controls.Add(this.DTbutton1);
         this.Controls.Add(this.groupBox3);
         this.Controls.Add(this.groupBox2);
         this.Controls.Add(this.redDot);
@@ -338,6 +350,7 @@
     private System.Windows.Forms.TextBox textBoxXCoord;
     private System.Windows.Forms.TextBox textBoxYCoord;
     private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.Button DTbutton1;
 
   }
 }

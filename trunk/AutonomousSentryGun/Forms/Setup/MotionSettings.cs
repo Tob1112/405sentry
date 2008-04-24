@@ -30,20 +30,20 @@ namespace AutonomousSentryGun
             {
                 HBox.Text = ((CountingMotionDetector)activecamera.MotionDetector).MinObjectsHeight.ToString();
                 HBar.Value = ((CountingMotionDetector)activecamera.MotionDetector).MinObjectsHeight;
-                HBar.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight/2;
+                //HBar.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight/2;
                 WBox.Text = ((CountingMotionDetector)activecamera.MotionDetector).MinObjectsWidth.ToString();
                 WBar.Value = ((CountingMotionDetector)activecamera.MotionDetector).MinObjectsWidth;
-                WBar.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth/2;
+                //WBar.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth/2;
                 areaVisual.Height = HBar.Value; 
                 areaVisual.Width = WBar.Value;
                 areaVisual.Refresh();
 
                 HBoxMax.Text = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight.ToString();
                 HBarMax.Value = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight;
-                HBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight;
+                //HBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsHeight;
                 WBoxMax.Text = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth.ToString();
                 WBarMax.Value = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth;
-                WBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth+75;
+                //WBarMax.Maximum = ((CountingMotionDetector)activecamera.MotionDetector).MaxObjectsWidth+75;
                 areaVisualMax.Height = HBarMax.Value;
                 areaVisualMax.Width = WBarMax.Value;
                 areaVisualMax.Refresh();

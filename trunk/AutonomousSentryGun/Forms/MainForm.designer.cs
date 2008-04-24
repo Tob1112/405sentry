@@ -40,9 +40,7 @@
         this.remoteAimToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.fPSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.calibrateGunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.motionDetectionSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        this.gunTriggerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
         this.dataTransmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.servosSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         this.soundSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,9 +161,7 @@
         // setupToolStripMenuItem
         // 
         this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.calibrateGunToolStripMenuItem,
             this.motionDetectionSettingsToolStripMenuItem,
-            this.gunTriggerToolStripMenuItem1,
             this.dataTransmissionToolStripMenuItem,
             this.servosSettingsToolStripMenuItem,
             this.soundSettingsToolStripMenuItem});
@@ -173,24 +169,12 @@
         this.setupToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
         this.setupToolStripMenuItem.Text = "Setup";
         // 
-        // calibrateGunToolStripMenuItem
-        // 
-        this.calibrateGunToolStripMenuItem.Name = "calibrateGunToolStripMenuItem";
-        this.calibrateGunToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-        this.calibrateGunToolStripMenuItem.Text = "Calibrate Gun";
-        // 
         // motionDetectionSettingsToolStripMenuItem
         // 
         this.motionDetectionSettingsToolStripMenuItem.Name = "motionDetectionSettingsToolStripMenuItem";
         this.motionDetectionSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
         this.motionDetectionSettingsToolStripMenuItem.Text = "Motion Detection Settings";
         this.motionDetectionSettingsToolStripMenuItem.Click += new System.EventHandler(this.motionDetectionSettingsToolStripMenuItem_Click);
-        // 
-        // gunTriggerToolStripMenuItem1
-        // 
-        this.gunTriggerToolStripMenuItem1.Name = "gunTriggerToolStripMenuItem1";
-        this.gunTriggerToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
-        this.gunTriggerToolStripMenuItem1.Text = "Gun Trigger";
         // 
         // dataTransmissionToolStripMenuItem
         // 
@@ -413,7 +397,7 @@
         // 
         // TrackingTimer
         // 
-        this.TrackingTimer.Interval = 200;
+        this.TrackingTimer.Interval = 150;
         this.TrackingTimer.Tick += new System.EventHandler(this.TrackingTimer_Tick);
         // 
         // openFileDialog1
@@ -460,9 +444,7 @@
     private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem transmitPositionToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem calibrateGunToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem motionDetectionSettingsToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem gunTriggerToolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem dataTransmissionToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem servosSettingsToolStripMenuItem;
     private CameraWindow cameraWindow1;

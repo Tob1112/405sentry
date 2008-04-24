@@ -19,9 +19,7 @@ namespace AutonomousSentryGun.Forms.Test
     //create the USB interface
     //usb_interface usbHub;
 
-    bool usbRcvBuff;
-
-    char num;
+    bool usbRcvBuff;    
     bool fireOK = false;
 
     private Servos servos;
