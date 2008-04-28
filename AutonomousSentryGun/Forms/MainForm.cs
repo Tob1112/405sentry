@@ -58,6 +58,17 @@ namespace AutonomousSentryGun
 
     // servo coordinates object
     private Servos servos = new Servos();
+    public Servos MainServos
+    {
+      get
+      {
+        return servos;
+      }
+      set
+      {
+        servos = value;
+      }
+    }
     //create the USB interface
     //private usb_interface usbHub = new usb_interface();
     //usb buffer
@@ -628,6 +639,12 @@ namespace AutonomousSentryGun
       firingOn = false;
     }
     #endregion
+
+    private void servosSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      ServosSettings ss = new ServosSettings(this);
+      ss.Show();
+    }
 
   }
 }
