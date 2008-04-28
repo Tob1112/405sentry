@@ -35,7 +35,7 @@ namespace AutonomousSentryGun.Forms.Test
       InitializeComponent();
       //usbHub = new usb_interface();
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
-      servos = new Servos(1600, 1477);
+      servos = new Servos(1630, 1477);
       XTextBox.Text = servos.GetMathPosition().X.ToString();
       YTextBox.Text = servos.GetMathPosition().Y.ToString();
       redDot.Location = servos.GetPorportionalMathPosition(gridBox.Bounds);

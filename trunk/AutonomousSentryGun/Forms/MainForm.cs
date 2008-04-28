@@ -57,7 +57,7 @@ namespace AutonomousSentryGun
     private bool firingOn = false;
 
     // servo coordinates object
-    private Servos servos = new Servos(1600, 1477);
+    private Servos servos = new Servos();
     //create the USB interface
     //private usb_interface usbHub = new usb_interface();
     //usb buffer
@@ -260,6 +260,7 @@ namespace AutonomousSentryGun
     private bool firingsoundplayed = false;
     private bool ceasefiringsoundplayed = true;
     private int soundTracker = 0;
+    private int multiplier = 4;
     //Timer that tracks refresh of position tracking
     private void TrackingTimer_Tick(object sender, EventArgs e) //125ms refresh rate as of right now
     {
@@ -306,21 +307,22 @@ namespace AutonomousSentryGun
           }
 
           //get center of largest motion area
-          int x = largest.X + largest.Width / 2 - 2 + cameraWindow1.Location.X;
-          int y = largest.Y + largest.Height / 2 - 2 + cameraWindow1.Location.Y;
+          int x = largest.X + largest.Width / 2 + cameraWindow1.Location.X;
+          int y = largest.Y + largest.Height / 2 + cameraWindow1.Location.Y;
 
           //calculate difference from last center point and adjust target lead depending on speed
           if (lastCenterPosition.IsEmpty)
           {
-            lastCenterPosition = new Point(x + 2, y + 2);
+            lastCenterPosition = new Point(x, y);
             lastLeadingPosition = new Point(lastCenterPosition.X, lastCenterPosition.Y);
           }
           else if (!lastCenterPosition.IsEmpty)
           {
             int xdiff = x - lastCenterPosition.X;
             int ydiff = y - lastCenterPosition.Y;
-            lastLeadingPosition = new Point(x + xdiff, y + ydiff);
-            lastCenterPosition = new Point(x + 2, y + 2);
+            lastLeadingPosition = new Point(x + multiplier*xdiff, y + ydiff);
+            lastCenterPosition = new Point(x, y);
+            Console.WriteLine(xdiff.ToString());
           }
 
           //set aimdot location
@@ -511,7 +513,7 @@ namespace AutonomousSentryGun
       {
         // create video source
         //VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, false);
-        VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), false);
+        VideoCaptureDevice videoSource = new VideoCaptureDevice(form.VideoDevice, new Size(320, 240), true);
 
         // open it
         OpenVideoSource(videoSource);
