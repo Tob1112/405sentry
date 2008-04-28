@@ -723,6 +723,7 @@ namespace AForge.Video.DirectShow
             private AForge.Imaging.Filters.Erosion erosionFilter = new AForge.Imaging.Filters.Erosion();
             private bool YUYV;
             private bool erode;
+            private bool grayscale = true;
             private int FrameCount = 0;
 
             public void setYUYV(bool Y)
@@ -774,7 +775,9 @@ namespace AForge.Video.DirectShow
                     if (YUYV)
                     {
                         int l, c;
-                        int r, g, b, cr, cg, cb, y1, y2;
+                        int r, g, b, cr, cg, cb, y2;
+                        int r0, b0, r1, b1, y0, u, y1, v;
+                        double g0, g1;
 
                         l = height;
                         unsafe
@@ -786,28 +789,62 @@ namespace AForge.Video.DirectShow
                                 c = width >> 1;
                                 while (c-- > 0)
                                 {
-                                    y1 = *src++;
-                                    cb = ((*src - 128) * 454) >> 8;
-                                    cg = (*src++ - 128) * 88;
-                                    y2 = *src++;
-                                    cr = ((*src - 128) * 359) >> 8;
-                                    cg = (cg + (*src++ - 128) * 183) >> 8;
+                                    if (!grayscale)
+                                    {                                        
+                                        y1 = *src++;
+                                        cb = ((*src - 128) * 454) >> 8;
+                                        cg = (*src++ - 128) * 88;
+                                        y2 = *src++;
+                                        cr = ((*src - 128) * 359) >> 8;
+                                        cg = (cg + (*src++ - 128) * 183) >> 8;
 
-                                    r = y1 + cr;
-                                    b = y1 + cb;
-                                    g = y1 - cg;
+                                        r = y1 + cr;
+                                        b = y1 + cb;
+                                        g = y1 - cg;
 
-                                    *dst++ = (byte)b;
-                                    *dst++ = (byte)g;
-                                    *dst++ = (byte)r;
+                                        *dst++ = (byte)b;
+                                        *dst++ = (byte)g;
+                                        *dst++ = (byte)r;
 
-                                    r = y2 + cr;
-                                    b = y2 + cb;
-                                    g = y2 - cg;
+                                        r = y2 + cr;
+                                        b = y2 + cb;
+                                        g = y2 - cg;
 
-                                    *dst++ = (byte)b;
-                                    *dst++ = (byte)g;
-                                    *dst++ = (byte)r;
+                                        *dst++ = (byte)b;
+                                        *dst++ = (byte)g;
+                                        *dst++ = (byte)r;
+                                        
+                                    }
+
+                                    else if (grayscale)
+                                    {
+                                        y0 = *src++;
+                                        u = *src++;
+                                        y1 = *src++;
+                                        v = *src++;
+
+                                        //r0 = y0 + v - 128;
+                                        //b0 = y0 + u - 128;
+                                        //g0 = (y0 - .2125 * r0 - .0721 * b0) / .7514;
+                                        //r1 = y1 + v - 128;
+                                        //b1 = y1 + u - 128;
+                                        //g1 = (y1 - .2125 * r1 - .0721 * b1) / .7514;
+                                        r0 = y0;
+                                        b0 = y0;
+                                        g0 = y0;
+
+                                        r1 = y1;
+                                        b1 = y1;
+                                        g1 = y1;
+
+                                        *dst++ = (byte)b0;
+                                        *dst++ = (byte)g0;
+                                        *dst++ = (byte)r0;
+
+                                        *dst++ = (byte)b1;
+                                        *dst++ = (byte)g1;
+                                        *dst++ = (byte)r1;
+                                    }
                                 }
                             }
                         }

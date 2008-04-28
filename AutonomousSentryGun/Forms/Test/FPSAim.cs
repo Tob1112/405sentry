@@ -45,7 +45,7 @@ namespace AutonomousSentryGun.Forms.Test
       OpenVideoSource(videoSource);
 
       redDot.Location = new Point(gridBox.Width / 2 + gridBox.Left, gridBox.Height / 2 + gridBox.Top);
-      servos = new Servos(1600, 1477);      
+      servos = new Servos();      
       redDot.Location = servos.GetPorportionalMathPosition(gridBox.Bounds);
       redDot.Location = new Point(redDot.Location.X - REDDOT_OFFSET_X, redDot.Location.Y - REDDOT_OFFSET_Y);
       label1.Text = "(-" + servos.CenterServosPosition.X + "," + servos.CenterServosPosition.Y + ")";      
