@@ -6,11 +6,11 @@ using System.Text;
 
 namespace AutonomousSentryGun.Functions
 {
-  class Servos
+  public class Servos
   {
       //170,230
     private readonly Size MAX_SHOOTING_RANGE_SIZE = new Size(170,230);
-    private readonly Point CENTER_POSITION = new Point(1630,1477);
+    private readonly Point CENTER_POSITION = new Point(1619,1477);
     private Rectangle shootingRange;
     private Point position;
     public Rectangle ShootingRange

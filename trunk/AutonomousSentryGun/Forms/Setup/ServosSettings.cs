@@ -30,7 +30,7 @@ namespace AutonomousSentryGun.Forms.Setup
     }
     private void UpdateSettingsButton_Click(object sender, EventArgs e)
     {
-      mainForm.MainServos = new Servos(Int32.Parse(XCenterTextBox.Text),Int32.Parse(YCenterTextBox.Text),Int32.Parse(XRangeTextBox.Text)/2,Int32.Parse(YRangeTextBox.Text)/2);
+      mainForm.MainServos = new Servos(Int32.Parse(XCenterTextBox.Text),Int32.Parse(YCenterTextBox.Text),Int32.Parse(XRangeTextBox.Text),Int32.Parse(YRangeTextBox.Text));
       this.Close();
     }
   }
