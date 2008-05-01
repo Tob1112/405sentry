@@ -1,0 +1,59 @@
+int packetOK = 1;
+byte hexInterval=0x80;
+
+//start hex test at 0x80 and work to the right so /2
+for(int i=1; i<5; i++)
+{
+	if((temp_buffa[5] & hexInterval) > 0)
+	{
+		if((temp_buffa[i] & 0x80) > 0)
+			;
+		else
+		{
+			packetOK=0;
+			continue;
+		}
+	}
+	else
+	{
+		if((temp_buffa[i] & 0xF0) == 0)
+		{
+			packetOK=0;
+			continue;
+		}
+	}
+	hexInterval /=2;
+		
+	if((temp_buffa[5] & hexInterval) > 0)
+	{
+		if((temp_buffa[i] & 0x80) > 0)
+			;
+		else
+		{
+			packetOK=0;
+			continue;
+		}
+	}
+	else
+	{
+		if((temp_buffa[i] & 0xF0) == 0)
+		{
+			packetOK=0;
+			continue;
+		}
+	}
+	hexInterval /=2;
+}
+
+
+//packet OK
+if(packetOK == 1)
+
+//packet not OK so discard
+else
+;
+
+//now reset packetOK
+packetOK=1;
+hexInterval=0x80;
+	

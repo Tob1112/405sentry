@@ -130,17 +130,6 @@ void ServiceRequests(void)
 			//temp_buffa[5]=dataPacket._byte[6];
 			//write to the Xbee interface
 			putPacket(temp_buffa);
-/*
-			//let the program know if there is a friendly detected
-			
-			//Data=read_rcvbuffa();
-			
-			//returns a 0x00 if no friendly and 0x01 if a friendly found
-		//	if(Data == (0x00 || 0x01))
-		//		dataPacket._byte[1] = Data;
-		//	else
-		//	  	dataPacket._byte[1] = 0xFF;
-*/
 			counter=0x06;
 			break;
 
