@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace AutonomousSentryGun
+namespace AutonomousSentryGun.Forms.Motion
 {
     public partial class CameraWindow : System.Windows.Forms.Control
     {

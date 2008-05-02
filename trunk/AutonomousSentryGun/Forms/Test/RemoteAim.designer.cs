@@ -1,4 +1,5 @@
-﻿namespace AutonomousSentryGun.Forms.Test
+﻿using AutonomousSentryGun.Forms.Motion;
+namespace AutonomousSentryGun.Forms.Test
 {
   partial class RemoteAim
   {
@@ -51,7 +52,7 @@
         this.textBoxXCoord = new System.Windows.Forms.TextBox();
         this.textBoxYCoord = new System.Windows.Forms.TextBox();
         this.label8 = new System.Windows.Forms.Label();
-        this.gridBox = new AutonomousSentryGun.CameraWindow();
+        this.gridBox = new CameraWindow();
         this.DTbutton1 = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)(this.redDot)).BeginInit();
         this.groupBox1.SuspendLayout();

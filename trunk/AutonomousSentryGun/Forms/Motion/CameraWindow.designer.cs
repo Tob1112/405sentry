@@ -1,4 +1,4 @@
-namespace AutonomousSentryGun
+namespace AutonomousSentryGun.Forms.Motion
 {
     partial class CameraWindow
     {

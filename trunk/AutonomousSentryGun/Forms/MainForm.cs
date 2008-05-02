@@ -18,6 +18,7 @@ using usb_api;
 
 using AutonomousSentryGun.Functions;
 using AutonomousSentryGun.Objects;
+using AutonomousSentryGun.Forms.Motion;
 using AutonomousSentryGun.Forms.Test;
 using AutonomousSentryGun.Forms.Setup;
 

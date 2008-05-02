@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using AForge.Video.DirectShow;
 
-namespace AutonomousSentryGun
+namespace AutonomousSentryGun.Forms.Motion
 {
     public partial class VideoCaptureDeviceForm : Form
     {

@@ -1,4 +1,5 @@
-﻿namespace AutonomousSentryGun
+﻿using AutonomousSentryGun.Forms.Motion;
+namespace AutonomousSentryGun
 {
   partial class MainForm
   {
@@ -31,9 +32,6 @@
       this.components = new System.ComponentModel.Container();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.loadSetupFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.saveSetupFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.transmitPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +53,7 @@
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.MotionDetectionButton = new System.Windows.Forms.Button();
       this.aimDot = new System.Windows.Forms.PictureBox();
-      this.cameraWindow1 = new AutonomousSentryGun.CameraWindow();
+      this.cameraWindow1 = new AutonomousSentryGun.Forms.Motion.CameraWindow();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.CameraFeedButton = new System.Windows.Forms.Button();
       this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -91,39 +89,15 @@
       // fileToolStripMenuItem
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadSetupFileToolStripMenuItem,
-            this.saveSetupFileToolStripMenuItem,
-            this.resetToDefaultToolStripMenuItem,
             this.exitToolStripMenuItem});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
       this.fileToolStripMenuItem.Text = "File";
       // 
-      // loadSetupFileToolStripMenuItem
-      // 
-      this.loadSetupFileToolStripMenuItem.Name = "loadSetupFileToolStripMenuItem";
-      this.loadSetupFileToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-      this.loadSetupFileToolStripMenuItem.Text = "Load Setup File...";
-      this.loadSetupFileToolStripMenuItem.Click += new System.EventHandler(this.loadSetupFileToolStripMenuItem_Click);
-      // 
-      // saveSetupFileToolStripMenuItem
-      // 
-      this.saveSetupFileToolStripMenuItem.Name = "saveSetupFileToolStripMenuItem";
-      this.saveSetupFileToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-      this.saveSetupFileToolStripMenuItem.Text = "Save Setup File...";
-      this.saveSetupFileToolStripMenuItem.Click += new System.EventHandler(this.saveSetupFileToolStripMenuItem_Click);
-      // 
-      // resetToDefaultToolStripMenuItem
-      // 
-      this.resetToDefaultToolStripMenuItem.Name = "resetToDefaultToolStripMenuItem";
-      this.resetToDefaultToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-      this.resetToDefaultToolStripMenuItem.Text = "Reset to Default";
-      this.resetToDefaultToolStripMenuItem.Click += new System.EventHandler(this.resetToDefaultToolStripMenuItem_Click);
-      // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.exitToolStripMenuItem.Text = "Exit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
       // 
@@ -438,9 +412,6 @@
 
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem loadSetupFileToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem saveSetupFileToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem resetToDefaultToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem transmitPositionToolStripMenuItem;
