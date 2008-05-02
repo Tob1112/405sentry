@@ -1,4 +1,5 @@
-﻿namespace AutonomousSentryGun.Forms.Test
+﻿using AutonomousSentryGun.Forms.Motion;
+namespace AutonomousSentryGun.Forms.Test
 {
   partial class FPSAim
   {
@@ -47,7 +48,7 @@
         this.panel1 = new System.Windows.Forms.Panel();
         this.label2 = new System.Windows.Forms.Label();
         this.label3 = new System.Windows.Forms.Label();
-        this.gridBox = new AutonomousSentryGun.CameraWindow();
+        this.gridBox = new CameraWindow();
         this.DTbutton1 = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)(this.redDot)).BeginInit();
         this.groupBox2.SuspendLayout();
